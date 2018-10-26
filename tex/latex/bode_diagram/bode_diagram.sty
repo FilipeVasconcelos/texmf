@@ -1,0 +1,68 @@
+% bode_diagram package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{bode_diagram}
+  [2018/03/20 v0.01 LaTeX package pour tracer des diagrammes de Bode vierge]
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{pgf}
+\RequirePackage{amsmath}
+\RequirePackage{amsthm}
+\RequirePackage{amssymb}
+%\RequirePackage{gensymb}
+
+
+\def\hi{Ce paquet permet de dessiner des diagrammes de Bode vierge}
+\let\myDate\date
+
+\newcommand*{\bode}[5]{%
+\def\xg{#1}
+\def\yg{#2}
+\def\xp{#3}
+\def\yp{#4}
+\def\hh{#5}
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=\hh\textheight,
+    ylabel={Gain (dB)},
+    yticklabels={},
+    xticklabels={},
+    ytick={0,1,...,\yg}, 
+    xmode=log,ymode=normal,
+    xmin=1e0, xmax=1e\xg,
+    ymin=0, ymax=\yg,
+    grid=both,
+    major grid style={black!40}
+]
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=\hh\textheight,
+    xlabel={Fréquence (rad/s)},
+    ylabel={Phase (degré)},
+    yticklabels={},
+    xticklabels={},
+    ytick={0,1,...,\yp}, 
+    xmode=log,ymode=normal,
+    xmin=1e0, xmax=1e\xp,
+    ymin=0, ymax=\yp,
+    grid=both,
+    major grid style={black!40}
+]
+\end{axis}
+\end{tikzpicture}
+}
+
+\endinput
+%%
+%% End of file `bode_diagram.sty'.

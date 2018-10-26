@@ -1,0 +1,83 @@
+% defined_vectors package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{defined_vectors}
+  [2017/06/05 v0.01 LaTeX package pour le calcul vectoriel]
+\RequirePackage{ifthen}
+
+\def\hi{Ce paquet definit differents vecteurs.}
+\let\myDate\date
+
+
+%vecteurs
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+\newcommand*{\norme}[1]{\left\lVert#1\right\rVert}
+\newcommand*{\vct}[1]{\overrightarrow{#1}}
+\newcommand*{\uu}[1]{\overrightarrow{u{#1}}}
+%\makeatletter
+\@ifpackageloaded{esvect}
+{
+\renewcommand*{\vv}[1]{\overrightarrow{v{#1}}}
+}
+{
+\newcommand*{\vv}[1]{\overrightarrow{v{#1}}}
+}
+%\makeatother
+\newcommand*{\ww}[1]{\overrightarrow{w{#1}}}
+\newcommand{\UU}{\overrightarrow{U}}
+\newcommand{\om}{\overrightarrow{\omega}}
+\newcommand{\ab}{\overrightarrow{AB}}
+\newcommand{\ac}{\overrightarrow{AC}}
+\newcommand{\ag}[1]{\overrightarrow{AG#1}}
+\newcommand{\ah}{\overrightarrow{AH}}
+\newcommand{\ai}{\overrightarrow{AI}}
+\newcommand{\ao}{\overrightarrow{AO}}
+\newcommand{\ap}[1]{\overrightarrow{AP#1}}
+\newcommand{\am}[1]{\overrightarrow{AM#1}}
+\newcommand{\ba}{\overrightarrow{BA}}
+\newcommand{\bo}{\overrightarrow{BO}}
+\newcommand{\bc}{\overrightarrow{BC}}
+\newcommand{\bd}{\overrightarrow{BD}}
+\newcommand{\bg}[1]{\overrightarrow{BG#1}}
+\newcommand{\bM}[1]{\overrightarrow{BM#1}}
+\newcommand{\bp}{\overrightarrow{BP}}
+\newcommand{\cd}{\overrightarrow{CD}}
+\newcommand{\co}{\overrightarrow{CO}}
+\newcommand{\de}{\overrightarrow{DE}}
+\newcommand{\dg}{\overrightarrow{DG}}
+\newcommand{\eg}{\overrightarrow{EG}}
+\newcommand{\ia}{\overrightarrow{IA}}
+\newcommand{\io}{\overrightarrow{IO}}
+\newcommand{\vij}{\overrightarrow{IJ}}
+\newcommand{\ji}{\overrightarrow{JI}}
+\newcommand{\oi}{\overrightarrow{OI}}
+\newcommand{\go}{\overrightarrow{GO}}
+\newcommand{\gp}{\overrightarrow{GP}}
+\newcommand{\nn}{\overrightarrow{n}}
+\newcommand{\oa}{\overrightarrow{OA}}
+\newcommand{\ob}{\overrightarrow{OB}}
+\newcommand{\oc}{\overrightarrow{OC}}
+\newcommand{\od}{\overrightarrow{OD}}
+\newcommand*{\vog}[1]{\overrightarrow{OG{#1}}}
+\newcommand*{\op}[1]{\overrightarrow{OP{#1}}}
+\newcommand{\oM}{\overrightarrow{OM}}
+\newcommand{\oq}{\overrightarrow{OQ}}
+\newcommand{\qo}{\overrightarrow{QO}}
+\newcommand{\qp}{\overrightarrow{QP}}
+\newcommand{\oou}{\overrightarrow{OO_1}}
+\newcommand{\oup}{\overrightarrow{O_1P}}
+\newcommand{\rr}{\overrightarrow{r}}
+\newcommand{\vrho}{\overrightarrow{\rho}}
+\newcommand{\ttt}{\overrightarrow{\theta}}
+\newcommand{\ppp}{\overrightarrow{\phi}}
+
+
+\endinput
+%%
+%% End of file `defined_vectors.sty'.

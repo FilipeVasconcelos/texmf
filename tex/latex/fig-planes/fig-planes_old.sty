@@ -1,0 +1,94 @@
+% fig-planes package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{fig-planes}
+  [2017/06/05 v0.01 LaTeX package dessiner des figures planes]
+
+\RequirePackage{xargs}
+\RequirePackage{tikz}
+\RequirePackage{amsmath}
+\RequirePackage{kinematik}
+\def\hi{Ce paquet dessine des figures planes tikz de changement de base pour la cinématique des solides.}
+\let\myDate\date
+%\newcommand\GoodBye[1][\bfseries]{{#1Good Bye}}
+
+\newcommand{\cvect}[2]{%
+  \csname #1#1\endcsname{_#2}%
+}
+\newcommand{\cang}[2]{%
+    \csname #1\endcsname{_#2}%
+}
+
+\newcommandx*\coord[3][1=1, 3=n]{(#2_{#1},\ldots,#2_{#3})}
+
+
+\newcommandx*\figplanes[10][1=n,2=alpha,usedefault=@,4=1,5=1,6=x,7=y,8=z,9=O]{%
+\def\key{#1}
+\def\angle{\cang{#2}{#3}}
+\def\rt{#4}
+\def\rf{#5}
+\def\xbt{\cvect{#6}{\rt}}
+\def\xbf{\cvect{#6}{\rf}}
+\def\ybt{\cvect{#7}{\rt}}
+\def\ybf{\cvect{#7}{\rf}}
+\def\zbt{\cvect{#8}{\rt}}
+\def\zbf{\cvect{#8}{\rf}}
+\def\center{#9}
+\ifthenelse{\equal{\key}{n}}{%
+\begin{tikzpicture}[scale=1.2]
+    \draw [-latex,thick] (0,0) -- (2,0) coordinate (x_0) node [right] {$\xbf$} ;
+    \draw [thick] (0,0) coordinate (a) node [below,yshift=-1ex]{\center} ;
+    \draw [-latex,thick] (0,0) --  (1.8793852415718169,0.6840402866513374) coordinate (u) node [right] {$\xbt$};
+    \draw [-latex,thick] (0,0)  -- (0,2) coordinate (y_0) node [above] {$\ybf$};
+    \draw [-latex,thick] (0,0) --  (-0.6840402866513374,1.8793852415718169) coordinate (v) node [above] {$\ybt$};
+    \draw [-latex,thick] pic["$\angle$",draw=black,-latex,angle eccentricity=1.2,angle radius=1.7cm] {angle=x_0--a--u}
+                         pic["$\angle$",draw=black,-latex,angle eccentricity=1.2,angle radius=1.7cm] {angle=y_0--a--v};
+    \draw [thick] (0,0) circle (3pt) node [left,xshift=-1ex] {$\zbt=\zbf$};
+\end{tikzpicture}}{}%
+\ifthenelse{\equal{\key}{r}}{%
+\begin{tikzpicture}[scale=1.2]
+    \draw [-latex,thick] (0,0) -- (2,0) coordinate (x_0) node [right] {$\xbf$} ;
+    \draw [thick] (0,0) coordinate (a) node [below,yshift=-1ex]{\center} ;
+    \draw [-latex,thick] (0,0) --  (1.8793852415718169,0.6840402866513374) coordinate (u) node [right] {$\xbt$};
+    \draw [-latex,thick] (0,0)  -- (0,2) coordinate (y_0) node [above] {$\ybf$};
+    \draw [-latex,thick] (0,0) --  (-0.6840402866513374,1.8793852415718169) coordinate (v) node [above] {$\ybt$};
+    \draw [-latex,thick] pic["$\angle$",draw=black,-latex,angle eccentricity=1.2,angle radius=1.7cm] {angle=x_0--a--u}
+                         pic["$\angle$",draw=black,-latex,angle eccentricity=1.2,angle radius=1.7cm] {angle=y_0--a--v};
+    \draw [thick] (0,0) circle (3pt) node [left,xshift=-1ex] {$\zbt=\zbf$};
+    \node at (0.9,-1.2) {$\Om{(\rt/\rf)}=\dot{\angle}\zbf$};
+\end{tikzpicture}}{}%
+\ifthenelse{\equal{\key}{b}}{%
+\begin{tikzpicture}[scale=1.2]
+    \draw [-latex,thick] (0,0) -- (2,0) coordinate (x_0) node [right] {$\xbf$} ;
+    \draw [thick] (0,0) coordinate (a) node [below,yshift=-1ex]{\center} ;
+    \draw [-latex,thick] (0,0) --  (1.8793852415718169,0.6840402866513374) coordinate (u) node [right] {$\xbt$};
+    \draw [-latex,thick] (0,0)  -- (0,2) coordinate (y_0) node [above] {$\ybf$};
+    \draw [-latex,thick] (0,0) --  (-0.6840402866513374,1.8793852415718169) coordinate (v) node [above] {$\ybt$};
+    \draw [-latex,thick] pic["$\angle$",draw=black,-latex,angle eccentricity=1.2,angle radius=1.7cm] {angle=x_0--a--u}
+                         pic["$\angle$",draw=black,-latex,angle eccentricity=1.2,angle radius=1.7cm] {angle=y_0--a--v};
+    \draw [thick] (0,0) circle (3pt) node [left,xshift=-1ex] {$\zbt=\zbf$};
+    \node at (0.9,-1.2) {$\begin{aligned}\Om{(\rt/\rf)}&=\dot{\angle}\zbf\\\TCV{}{\center\in\rt/\rf}&=\vnull\end{aligned}$};
+\end{tikzpicture}}{}%
+\ifthenelse{\equal{\key}{o}}{%
+\begin{tikzpicture}[scale=1.2]
+    \draw [-latex,thick] (0,0) -- (2,0) coordinate (x_0) node [right] {$\xbf$} ;
+    \draw [thick] (0,0) coordinate (a) node [below,yshift=-1ex]{\center} ;
+    \draw [-latex,thick] (0,0) --  (1.8793852415718169,0.6840402866513374) coordinate (u) node [right] {$\xbt$};
+    \draw [-latex,thick] (0,0)  -- (0,2) coordinate (y_0) node [above] {$\ybf$};
+    \draw [-latex,thick] (0,0) --  (-0.6840402866513374,1.8793852415718169) coordinate (v) node [above] {$\ybt$};
+    \draw [-latex,thick] pic["$\angle$",draw=black,-latex,angle eccentricity=1.2,angle radius=1.7cm] {angle=x_0--a--u}
+                         pic["$\angle$",draw=black,-latex,angle eccentricity=1.2,angle radius=1.7cm] {angle=y_0--a--v};
+    \draw [thick] (0,0) circle (3pt) node [left,xshift=-1ex] {$\zbt=\zbf$};
+    \node at (5.5,1.2) {#10};
+\end{tikzpicture}}{}%
+}
+
+\endinput
+%%
+%% End of file `fig-planes.sty'.

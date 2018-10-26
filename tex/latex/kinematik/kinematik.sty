@@ -1,0 +1,149 @@
+% kinematik package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\RequirePackage{xargs}
+\RequirePackage{xparse}
+\RequirePackage{mymath}
+\RequirePackage{vecteurs}
+\ProvidesPackage{kinematik}
+  [2017/06/05 v0.01 LaTeX package commande pour la cinématique des solides;
+   2018/10/01 v1.0 LaTeX package commande pour la mécanique des solides]
+
+\def\hi{Ce paquet donne accès à un grand nombre de grandeur mathématique pour la mécanique des solides.}
+\let\myDate\date
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Mécanismes %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Solide
+\newcommandx*{\SO}[1][1=]{\mathcal{S}_{#1}}
+% bar Solide
+\newcommandx*{\bSO}[1][1=]{\overline{\mathcal{S}_{#1}}}
+% Liaison
+\newcommandx*{\LO}[2][1=]{\mathcal{L}^{#1}_{#2}}
+% Systeme Materiel
+\newcommand*{\bSigma}{\overline{\Sigma}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Cinématique %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Elements de reduction cinematique
+\newcommandx*{\Om}[2][1=]{\overrightarrow{\Omega^{#1}_{#2}}}
+% Vitesse
+\newcommandx*{\TCV}[5][1=,3=]{\overrightarrow{V^{#1}_{\mathrm{#2}_{#3}\in#4/#5}}}
+% Acceleration
+\newcommandx*{\TCA}[5][1=,3=]{\overrightarrow{\Gamma^{#1}_{\mathrm{#2}_{#3}\in#4/#5}}}
+% Torseur cinematique
+\newcommandx*{\torC}[4][1=,4=]{\Big\{\mathcal{V}^{#1}_{#2}\Big\}_{\mathrm{#3}_{#4}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Statique %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Actions Mécaniques
+\newcommandx*{\AM}[2]{#1\rightarrow#2}
+% Résultante
+\newcommandx*{\Rr}[3][1=]{\overrightarrow{R^{#1}_{#2\rightarrow#3}}}
+\newcommandx*{\Rp}[3][1=]{\overrightarrow{P^{#1}_{#2\rightarrow#3}}}
+% Moment
+\newcommandx*{\TAMM}[5][1=,3=]{\overrightarrow{M^{#1}_{\mathrm{#2}_{#3},#4\rightarrow#5}}}
+% Torseur des Actions Mécaniques
+\newcommandx*{\torAM}[5][1=,5=]{\Big\{\mathcal{F}^{#1}_{#2\rightarrow#3}\Big\}_{\mathrm{#4}_{#5}}}
+\newcommandx*{\torCM}[5][1=,5=]{\Big\{\mathcal{C}^{#1}_{m,#2\rightarrow#3}\Big\}_{\mathrm{#4}_{#5}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Cinétique %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Résultante
+\newcommand*{\Pk}[2]{\overrightarrow{P_{#1/#2}}}
+% Moment Cinétique
+\newcommandx*{\TKM}[5][1=,3=]{\overrightarrow{L^{#1}_{\mathrm{#2}_{#3},#4/#5}}}
+% Torseur Cinétique
+\newcommandx*{\torK}[5][1=,5=]{\Big\{\mathcal{C}^{#1}_{#2/#3}\Big\}_{\mathrm{#4}_{#5}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Dynamique %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Résultante
+\newcommand*{\Ad}[2]{\overrightarrow{A_{{#1}/{#2}}}}
+% Moment Dynamique
+\newcommandx*{\TDM}[5][1=,3=]{\overrightarrow{\delta^{#1}_{\mathrm{#2}_{#3},#4/#5}}}
+% Torseur Dynamique
+\newcommandx*{\torD}[5][1=,5=]{\Big\{\mathcal{D}^{#1}_{#2/#3}\Big\}_{\mathrm{#4}_{#5}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%% Puissance et Energie  %%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Puissance
+\newcommandx*{\Pp}[3][1=]{\mathcal{P}^{#1}_{#2\rightarrow#3}}
+% Puissance Inter-effort
+\newcommandx*{\Ppi}[3][1=]{\mathcal{P}^{#1}_{#2\leftrightarrow#3}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Divers %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Grandeurs
+\newcommand*{\CC}[1]{\overrightarrow{C_{\mathrm{#1}}}}                % couple
+\newcommand*{\FF}[1]{\overrightarrow{F_{\mathrm{#1}}}}                % force
+\newcommandx*{\MM}[3][2=]{\overrightarrow{M{_{\mathrm{#1}_{#2},#3}}}} % moment
+\newcommand*{\RR}[1]{\overrightarrow{R_{\mathrm{#1}}}}                 % resultante
+
+% Matrice d'Inertie
+\newcommandx*{\II}[3][2=]{\rttensor{I_{\mathrm{#1}_{#2}}(\boldsymbol{#3})}}
+
+% Repère
+\newcommandx*{\rep}[3][2=]{R_{#3}(\mathrm{#1}_{#2},\xx{#3},\yy{#3},\zz{#3})}
+% Repères
+\newcommandx*{\reps}[6][2=]{R_{#3}(\mathrm{#1}_{#2},\xx{#4},\yy{#5},\zz{#6})}
+% Bases
+\newcommand*{\bas}[1]{(\xx{#1},\yy{#1},\zz{#1})}
+% Axes
+\newcommandx*{\axe}[4][2=,4=]{(\mathrm{#1}_{#2},\ccvect{#3}[#4])}
+% Plan 
+\newcommandx*{\plan}[6][2=,4=,6=]{(\mathrm{#1}_{#2},\ccvect{#3}[#4],\ccvect{#5}[#6])}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Torseurs %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nul
+\newcommand{\tnull}{\Big\{\vnull\Big\}}
+% Génerique
+\newcommandx*{\tor}[3][3=]{
+\ifthenelse{\equal{#1}{}}{%
+\Big\{\mathcal{T}_{#1}\,\Big\}_{\mathrm{#2}_{#3}}
+}
+{\Big\{\mathcal{T}_{#1}\Big\}_{\mathrm{#2}_{#3}}}
+}
+%torseur ligne
+\newcommandx*{\torl}[4][4=]{\begin{Bmatrix}#1\\[0.5em]#2\end{Bmatrix}_{\mathrm{#3}_{#4}}}
+%torseur colonne 6 composantes
+\newcommandx*{\torc}[8][8=]{\begin{Bmatrix}#1&#4\\#2&#5\\#3&#6\end{Bmatrix}_{\mathrm{#7}_{#8}}}
+%Pivot
+%\newcommandx*{\torAMPivotx}[3][3=]{\torc{X_{#1}}{Y_{#1}}{Z_{#1}}{L_{#1}}{M_{#1}}{N_{#1}}{#2}{#3}}
+\newcommandx*{\torAMPivotx}[3][3=]{\torc{X_{#1}}{Y_{#1}}{Z_{#1}}{0}{M_{#1}}{N_{#1}}{#2}{#3}}
+\newcommandx*{\torAMPivoty}[3][3=]{\torc{X_{#1}}{Y_{#1}}{Z_{#1}}{L_{#1}}{0}{N_{#1}}{#2}{#3}}
+\newcommandx*{\torAMPivotz}[3][3=]{\torc{X_{#1}}{Y_{#1}}{Z_{#1}}{L_{#1}}{M_{#1}}{0}{#2}{#3}}
+%Glissière
+\newcommandx*{\torAMGlix}[3][3=]{\torc{0}{Y_{#1}}{Z_{#1}}{L_{#1}}{M_{#1}}{N_{#1}}{#2}{#3}}
+\newcommandx*{\torAMGliy}[3][3=]{\torc{X_{#1}}{0}{Z_{#1}}{L_{#1}}{M_{#1}}{N_{#1}}{#2}{#3}}
+\newcommandx*{\torAMGliz}[3][3=]{\torc{X_{#1}}{Y_{#1}}{0}{L_{#1}}{M_{#1}}{N_{#1}}{#2}{#3}}
+%Pivot glissant
+\newcommandx*{\torAMPivglix}[3][3=]{\torc{0}{Y_{#1}}{Z_{#1}}{0}{M_{#1}}{N_{#1}}{#2}{#3}}
+\newcommandx*{\torAMPivgliy}[3][3=]{\torc{X_{#1}}{0}{Z_{#1}}{L_{#1}}{0}{N_{#1}}{#2}{#3}}
+\newcommandx*{\torAMPivgliz}[3][3=]{\torc{X_{#1}}{Y_{#1}}{0}{L_{#1}}{M_{#1}}{0}{#2}{#3}}
+
+\endinput
+%%
+%% End of file `kinematik.sty'.

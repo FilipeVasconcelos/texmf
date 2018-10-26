@@ -1,0 +1,91 @@
+% vecteurs package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{vecteurs}
+  [2017/06/05 v0.01 LaTeX package pour le calcul vectoriel]
+\RequirePackage{ifthen}
+
+\def\hi{Ce paquet definit differents vecteurs.}
+\let\myDate\date
+
+
+%vecteurs
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+\newcommand*{\norme}[1]{\left\lVert#1\right\rVert}
+\newcommand*{\vct}[1]{\overrightarrow{#1}}
+\newcommand*{\uu}[1]{\overrightarrow{u{#1}}}
+%vecteur nul
+\newcommand{\vnull}{\overrightarrow{0}}
+%vecteurs de bases
+\newcommand*{\xx}[1]{\overrightarrow{\textsc{x}_{#1}}}
+\newcommand*{\yy}[1]{\overrightarrow{\textsc{y}_{#1}}}
+\newcommand*{\zz}[1]{\overrightarrow{\textsc{z}_{#1}}}
+%dérivée de vecteur
+\newcommand{\dvect}[2]{\left[\dfrac{\mathrm{d}#1}{\mathrm{d}t}\right]_{#2}}
+\newcommand{\ddvect}[2]{\left[\dfrac{\mathrm{d}^2#1}{\mathrm{d}t^2}\right]_#2}
+%\makeatletter
+\@ifpackageloaded{esvect}
+{
+\renewcommand*{\vv}[1]{\overrightarrow{v{#1}}}
+}
+{
+\newcommand*{\vv}[1]{\overrightarrow{v{#1}}}
+}
+%\makeatother
+\newcommand*{\ww}[1]{\overrightarrow{w{#1}}}
+\newcommand{\UU}{\overrightarrow{U}}
+\newcommand{\om}{\overrightarrow{\omega}}
+\newcommand{\ab}{\overrightarrow{\mathrm{AB}}}
+\newcommand{\ac}{\overrightarrow{\mathrm{AC}}}
+\newcommandx*{\ag}[2][1=,2=]{\overrightarrow{\mathrm{A}_{#1}\mathrm{G}_{#2}}}
+\newcommand{\ah}{\overrightarrow{\mathrm{AH}}}
+\newcommand{\ai}{\overrightarrow{\mathrm{AI}}}
+\newcommand{\ao}{\overrightarrow{\mathrm{AO}}}
+\newcommandx*{\ap}[2][1=,2=]{\overrightarrow{\mathrm{A}_{#1}\mathrm{P}_{#2}}}
+\newcommand{\am}[1]{\overrightarrow{AM#1}}
+\newcommand{\ba}{\overrightarrow{\mathrm{BA}}}
+\newcommand{\bo}{\overrightarrow{\mathrm{BO}}}
+\newcommand{\bc}{\overrightarrow{\mathrm{BC}}}
+\newcommand{\bd}{\overrightarrow{\mathrm{BD}}}
+\newcommand{\bg}[1]{\overrightarrow{BG#1}}
+\newcommand{\bM}[1]{\overrightarrow{BM#1}}
+\newcommand{\bp}{\overrightarrow{\mathrm{BP}}}
+\newcommand{\cd}{\overrightarrow{\mathrm{CD}}}
+\newcommand{\co}{\overrightarrow{\mathrm{CO}}}
+\newcommand{\de}{\overrightarrow{\mathrm{DE}}}
+\newcommand{\dg}{\overrightarrow{\mathrm{DG}}}
+\newcommand{\eg}{\overrightarrow{\mathrm{EG}}}
+\newcommand{\ia}{\overrightarrow{\mathrm{IA}}}
+\newcommand{\io}{\overrightarrow{\mathrm{IO}}}
+\newcommand{\vij}{\overrightarrow{\mathrm{IJ}}}
+\newcommand{\ji}{\overrightarrow{\mathrm{JI}}}
+\newcommand{\oi}{\overrightarrow{\mathrm{OI}}}
+\newcommand{\go}{\overrightarrow{\mathrm{GO}}}
+\newcommand{\gp}{\overrightarrow{\mathrm{GP}}}
+\newcommand{\nn}{\overrightarrow{n}}
+\newcommand{\oa}{\overrightarrow{\mathrm{OA}}}
+\newcommand{\ob}{\overrightarrow{\mathrm{OB}}}
+\newcommand{\oc}{\overrightarrow{\mathrm{OC}}}
+\newcommand{\od}{\overrightarrow{\mathrm{OD}}}
+\newcommandx*{\vog}[2][1=,2=]{\overrightarrow{\mathrm{O}_{#1}\mathrm{G}_{#2}}}
+\newcommand{\oM}{\overrightarrow{\mathrm{OM}}}
+\newcommand{\oq}{\overrightarrow{\mathrm{OQ}}}
+\newcommand{\qo}{\overrightarrow{\mathrm{QO}}}
+\newcommand{\qp}{\overrightarrow{\mathrm{QP}}}
+\newcommandx*{\oo}[2][1=,2=]{\overrightarrow{\mathrm{O}_{#1}\mathrm{O}_{#2}}}
+\newcommandx*{\op}[3][1=,2=]{\overrightarrow{\mathrm{O}_{#1}\mathrm{P}_{#2}#3}}
+\newcommand{\rr}{\overrightarrow{r}}
+\newcommand{\vrho}{\overrightarrow{\rho}}
+\newcommand{\ttt}{\overrightarrow{\theta}}
+\newcommand{\ppp}{\overrightarrow{\phi}}
+
+
+\endinput
+%%
+%% End of file `vecteur.sty'.
