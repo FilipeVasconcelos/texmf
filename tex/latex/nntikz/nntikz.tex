@@ -1,0 +1,483 @@
+\documentclass[a4paper,9pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+
+\usepackage{titling}
+\usepackage{tikz}
+\usepackage{xargs}
+\usepackage{gfluence}
+\usepackage{verbatim}
+
+\newcommand{\subtitle}[1]{%
+      \posttitle{%
+              \par\end{center}
+                  \begin{center}\large#1\end{center}
+                          \vskip0.5em}%
+                          }
+\newcommand{\mparagraph}[1]{\paragraph{#1}\mbox{}\\}
+
+\title{Réseau de neurones avec PGF/Tikz}
+\subtitle{nntikz version 1.0}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Macros tikz pour tracer des graphes de réseau de neurones. 
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Paquets nécessaires}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{verbatim}
+\usepackage{tikz}
+\usepackage{xargs}
+\usepackage{xparse}
+\usepackage{gfluence}
+\end{verbatim}
+Le paquet \verb?ifthen? est nécessaire mais 
+semble être charger par un autre paquet.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Utilisation des macros}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\mparagraph{Définition des noeuds d'entrée et de sortie}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfSortie{$S$}{E}{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfSortie{$S$}{E}{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\mparagraph{Simple lien entre les noeuds}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfSortie{$S$}{E}{S}
+    \gfRelier{E}{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfSortie{$S$}{E}{S}
+    \gfRelier{E}{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\mparagraph{Simple lien entre deux noeuds : options}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfSortie[12]{$S$}{E}{S}
+    \gfRelier[$H$]{E}{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfSortie[12]{$S$}{E}{S}
+    \gfRelier[$H$]{E}{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree[0][0][]{}{E}
+    \gfEntree[0][3][+]{$E_1$}{E1}
+    \gfEntree[0][-3][-]{$E_2$}{E2}
+    \gfSortie[8]{$S$}{E}{S}
+    \gfRelier[$H_1$][+][1.2]{E1}{S}
+    \gfRelier[$H_2$][-][1.2]{E2}{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree[0][0][]{}{E}
+    \gfEntree[0][3][+]{$E_1$}{E1}
+    \gfEntree[0][-3][-]{$E_2$}{E2}
+    \gfSortie[8]{$S$}{E}{S}
+    \gfRelier[$H_1$][+][1.2]{E1}{S}
+    \gfRelier[$H_2$][-][1.2]{E2}{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\mparagraph{Boucle élémentaire}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfSortie{$S$}{E}{S}
+    \gfRelier[$H$]{E}{S}
+    \gfBoucleE{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{E}{$E$}
+    \gfSortie{$S$}{E}{S}
+    \gfRelier[$H$]{E}{S}
+    \gfBoucleE{S}
+\end{tikzpicture}
+\end{verbatim}
+\newpage
+
+\mparagraph{Boucle élémentaire: options}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfSortie{$S$}[-]{E}{S}
+    \gfRelier[$H$]{E}{S}
+    \gfBoucleE[$G$][+]{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{E}{$E$}
+    \gfSortie{$S$}{E}{S}
+    \gfRelier[$H$]{E}{S}
+    \gfBoucleE[$G$][+]{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\mparagraph{Noeud supplémentaire}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}{E}{X1}
+    \gfSortie{$S$}{X1}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{S}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}{E}{X1}
+    \gfSortie{$S$}{X1}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{S}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\mparagraph{Noeud supplémentaire: options}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud[8]{$X_1$}[-][0.9]{E}{X1}
+    \gfSortie{$S$}{X1}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{S}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud[8]{$X_1$}[-][0.9]{E}{X1}
+    \gfSortie{$S$}{X1}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{S}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\mparagraph{Lien courbe}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}{E}{X1}
+    \gfNoeud{$X_2$}{X1}{X2}
+    \gfSortie{$S$}{X2}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{S}
+    \gfRelierB{X1}{X2}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}{E}{X1}
+    \gfNoeud{$X_2$}{X1}{X2}
+    \gfSortie{$S$}{X2}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{S}
+    \gfRelierB{X1}{X2}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\mparagraph{Lien courbe: options}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}[-]{E}{X1}
+    \gfNoeud{$X_2$}[-]{X1}{X2}
+    \gfSortie{$S$}{X2}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{S}
+    \gfRelierB[$G_1$][+]{X1}{X2}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}[-]{E}{X1}
+    \gfNoeud{$X_2$}[-]{X1}{X2}
+    \gfSortie{$S$}{X2}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{S}
+    \gfRelierB[$G_1$][+]{X1}{X2}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}[-]{E}{X1}
+    \gfNoeud{$X_2$}[-]{X1}{X2}
+    \gfSortie{$S$}{X2}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{S}
+    \gfRelierB[$G_1$][+]{X1}{X2}
+    \gfRelierB[$G_2$][+]{X1}{S}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}[-][-0.7]{E}{X1}
+    \gfNoeud{$X_2$}[-][0.7]{X1}{X2}
+    \gfSortie{$S$}{X2}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{S}
+    \gfRelierB[$G_1$][+]{X1}{X2}
+    \gfRelierB[$G_2$][+]{X1}{S}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{verbatim}
+
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}[-][-0.7]{E}{X1}
+    \gfNoeud{$X_2$}[-][0.7]{X1}{X2}
+    \gfSortie{$S$}{X2}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{S}
+    \gfRelierB[$G_1$][-]{X1}{X2}
+    \gfRelierB[$G_2$][+]{X1}{S}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}[-][-0.7]{E}{X1}
+    \gfNoeud{$X_2$}[-][0.7]{X1}{X2}
+    \gfSortie{$S$}{X2}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{S}
+    \gfRelierB[$G_1$][-]{X1}{X2}
+    \gfRelierB[$G_2$][+]{X1}{S}
+    \gfBoucleE[$G$]{S}
+\end{tikzpicture}
+\end{verbatim}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exemple de grande taille}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}[+][-0.7]{E}{X1}
+    \gfNoeud{$X_2$}[+][-0.7]{X1}{X2}
+    \gfNoeud{$X_3$}[-][0.7]{X2}{X3}
+    \gfNoeud{$X_4$}[-]{X3}{X4}
+    \gfSortie{$S$}{X4}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{X3}
+    \gfRelier[$H_4$]{X3}{X4}
+    \gfRelier[$H_5$]{X4}{S}
+    \gfRelierB[$G_1$][-]{X1}{X2}
+    \gfRelierB[$G_2$][+]{X2}{X4}
+    \gfRelierB[$G_2$][-]{X2}{X3}
+    \gfRelierB[$G_2$][+]{X1}{S}
+    \gfBoucleE[$G_1$]{S}
+    \gfBoucleE[$G_2$][-][-1.7]{X1}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+    \gfEntree{$E$}{E}
+    \gfNoeud{$X_1$}[+][-0.7]{E}{X1}
+    \gfNoeud{$X_2$}[+][-0.7]{X1}{X2}
+    \gfNoeud{$X_3$}[-][0.7]{X2}{X3}
+    \gfNoeud{$X_4$}[-][0.7]{X3}{X4}
+    \gfSortie{$S$}{X4}{S}
+    \gfRelier[$H_1$]{E}{X1}
+    \gfRelier[$H_2$]{X1}{X2}
+    \gfRelier[$H_3$]{X2}{X3}
+    \gfRelier[$H_4$]{X3}{X4}
+    \gfRelier[$H_5$]{X4}{S}
+    \gfRelierB[$G_1$][-]{X1}{X2}
+    \gfRelierB[$G_2$][+]{X2}{X4}
+    \gfRelierB[$G_2$][-]{X2}{X3}
+    \gfRelierB[$G_2$][+]{X1}{S}
+    \gfBoucleE[$G$]{S}
+    \gfBoucleE[$G$]{X1}
+\end{tikzpicture}
+\end{verbatim}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Code des macros}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{verbatim}
+\NeedsTeXFormat{LaTeX2e}[1999/01/01]
+\ProvidesPackage{gfluence}[2018/06/25]
+
+\RequirePackage{ifthen}
+\RequirePackage{xparse}
+\RequirePackage{tikz}
+\usetikzlibrary{calc,shapes,arrows}
+\usetikzlibrary{decorations.pathreplacing,decorations.markings}
+
+%macros dessin de graphe de fluence comme présenté dans Ostertag
+% version 1.0
+
+\tikzset{
+  % style to add an arrow in the middle of a path
+  mid arrow/.style={postaction={decorate,decoration={
+        markings,
+        mark=at position .5 with {\arrow[scale=1.8,#1]{stealth}}
+        }}},
+}
+
+%initialisation des styles
+\tikzstyle{gfStyleLien}=[thick,postaction={mid arrow=black}]
+\tikzstyle{gfStyleNoeud}=[thick,draw, circle,inner sep=2pt,minimum size=0.1em]
+
+\newcommand{\gfStyleLien}[1]{
+\tikzstyle{gfStyleLien}+=[#1]
+}
+
+\newcommand{\gfStyleNoeud}[1]{
+\tikzstyle{gfStyleNoeud}+=[#1]
+}
+
+% Commandes d'entrée et sortie
+\newcommandx{\gfEntree}[5][1=0,2=0,3=+]{
+    \node (#5O) at (0,#2em) {};
+    \node [right of=#5O, node distance=#1em,name=#5,coordinate] {};
+    \gfDecaleNoeudx[0]{#5}{#5}
+    \ifthenelse{\equal{#3}{}}{
+    }{
+        \node [gfStyleNoeud,name=#5] at (#5) {};
+    }
+    \ifthenelse{\equal{#3}{+}}{
+    \node [xshift=-0.8em,yshift=0.8em] at (#5) {#4};
+    }{
+    \node [xshift=-0.8em,yshift=-0.8em] at (#5) {#4};
+    }
+}
+\newcommandx{\gfSortie}[5][1=6,3=+]{
+    \node [gfStyleNoeud, right of=#4droite, node distance=#1em] (#5) {};
+    \ifthenelse{\equal{#3}{+}}{
+    \node [xshift=0.8em,yshift=0.8em] at (#5) {#2};
+    }{
+    \node [xshift=0.8em,yshift=-0.8em] at (#5) {#2};
+    }
+}
+
+\newcommandx{\gfNoeud}[6][1=6,3=+,4=0]{
+    \node [right of=#5droite, node distance=#1em,name=#6,coordinate] {};
+    \gfDecaleNoeudx[0]{#6}{#6}
+    \node [gfStyleNoeud,name=#2,right of=#5droite,node distance=#1em] (#6) {};
+    \ifthenelse{\equal{#3}{+}}{
+        \node [yshift=0.8em,xshift=#4em] at (#6) {#2};
+    }{
+        \node [yshift=-0.8em,xshift=#4em] at (#6) {#2};
+    }
+}
+%boucle élémentaire
+\newcommandx{\gfBoucleE}[5][1=,2=-,3=2.2,4=1]{
+    \ifthenelse{\equal{#2}{-}}{
+        \node [below of=#5, node distance=1.1em, minimum size=0em](NO) {};
+        \draw[gfStyleLien] (NO) +(75:0.4cm) arc(75:-255:0.4cm) 
+        node[xshift=#3em,yshift=-#4em] {#1};
+    }{
+        \node [above of=#5, node distance=1.1em, minimum size=0em](NO) {};
+        \draw[gfStyleLien] (NO) +(-75:0.4cm) arc(-75:255:0.4cm) 
+        node[xshift=#3em,yshift=#4em] {#1};
+    }
+}
+
+%\Commande de lien
+\newcommandx{\gfRelier}[5][1=,2=+,3=0.8]{
+\draw [gfStyleLien] (#4) -- node[yshift=#2#3em] {#1} (#5);
+}
+%\Commande de lien bend
+\newcommandx{\gfRelierB}[4][1=,2=-]{
+    \ifthenelse{\equal{#2}{+}}{
+        \draw [gfStyleLien] (#3) to[out=90,in=90] node[above] {#1} (#4);
+    }{
+        \draw [gfStyleLien] (#3) to[out=-90,in=-90] node[below] {#1} (#4);
+    }
+}
+
+%Commandes de décalage de noeud
+\newcommand{\gfDecaleNoeudy}[3][5]{
+\node [below of=#2, node distance=#1em, minimum size=0em](#3) {};
+\node (#3droite) at (#3){};
+\node (#3gauche) at (#3){};
+}
+\newcommand{\gfDecaleNoeudx}[3][5]{
+\node [right of=#2, node distance=#1em, minimum size=0em](#3) {};
+\node (#3droite) at (#3){};
+\node (#3gauche) at (#3){};
+}
+\end{verbatim}
+
+\bibliographystyle{plain}
+\bibliography{gfluence.bib}
+
+
+\end{document}
+
