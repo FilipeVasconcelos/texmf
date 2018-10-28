@@ -1,0 +1,120 @@
+\NeedsTeXFormat{LaTeX2e}[1999/01/01]
+\ProvidesPackage{gfluence}[2018/06/25]
+
+\RequirePackage{ifthen}
+\RequirePackage{xparse}
+\RequirePackage{xargs}
+\RequirePackage{tikz}
+\usetikzlibrary{calc,shapes,arrows}
+\usetikzlibrary{decorations.pathreplacing,decorations.markings}
+
+%macros dessin de graphe de fluence comme présenté dans Ostertag
+% version 1.0
+
+\tikzset{
+  % style to add an arrow in the middle of a path
+  mid arrow/.style={postaction={decorate,decoration={
+        markings,
+        mark=at position .5 with {\arrow[scale=1.8,#1]{stealth}}
+        }}},
+}
+
+\tikzset{
+    % style to add an arrow in the middle of a path (boucle élémentaire)
+  mid arrow BE/.style={postaction={decorate,decoration={
+        markings,
+        mark=at position .5 with {\arrow[scale=1.5,#1,rotate=10]{stealth}},
+        }}},
+}
+
+\tikzset{
+    % style to add an arrow in the middle of a path (boucle élémentaire)
+  mid arrow BE2/.style={postaction={decorate,decoration={
+        markings,
+        mark=at position .5 with {\arrow[scale=1.5,#1,rotate=-10]{stealth}},
+        }}},
+}
+%initialisation des styles
+\tikzstyle{gfStyleLien}=[thick,postaction={mid arrow=black}]
+\tikzstyle{gfStyleLienBE}=[thick,postaction={mid arrow BE=black}]
+\tikzstyle{gfStyleLienBE2}=[thick,postaction={mid arrow BE2=black}]
+\tikzstyle{gfStyleNoeud}=[thick,draw, circle,inner sep=2pt,minimum size=0.1em]
+
+\newcommand{\gfStyleLien}[1]{
+\tikzstyle{gfStyleLien}+=[#1]
+}
+
+\newcommand{\gfStyleNoeud}[1]{
+\tikzstyle{gfStyleNoeud}+=[#1]
+}
+
+% Commandes d'entrée et sortie
+\newcommandx{\gfEntree}[5][1=0,2=0,3=+]{
+    \node (#5O) at (0,#2em) {};
+    \node [right of=#5O, node distance=#1em,name=#5,coordinate] {};
+    \gfDecaleNoeudx[0]{#5}{#5}
+    \ifthenelse{\equal{#3}{}}{
+    }{
+        \node [gfStyleNoeud,name=#5] at (#5) {};
+    }
+    \ifthenelse{\equal{#3}{+}}{
+    \node [xshift=-0.8em,yshift=0.8em] at (#5) {#4};
+    }{
+    \node [xshift=-0.8em,yshift=-0.8em] at (#5) {#4};
+    }
+}
+\newcommandx{\gfSortie}[5][1=5,3=+]{
+    \node [gfStyleNoeud, right of=#4droite, node distance=#1em] (#5) {};
+    \ifthenelse{\equal{#3}{+}}{
+    \node [xshift=0.8em,yshift=0.8em] at (#5) {#2};
+    }{
+    \node [xshift=0.8em,yshift=-0.8em] at (#5) {#2};
+    }
+}
+
+\newcommandx{\gfNoeud}[6][1=5,3=+,4=0]{
+    \node [right of=#5droite, node distance=#1em,name=#6,coordinate] {};
+    \gfDecaleNoeudx[0]{#6}{#6}
+    \node [gfStyleNoeud,name=#2,right of=#5droite,node distance=#1em] (#6) {};
+    \ifthenelse{\equal{#3}{+}}{
+        \node [yshift=0.8em,xshift=#4em] at (#6) {#2};
+    }{
+        \node [yshift=-0.8em,xshift=#4em] at (#6) {#2};
+    }
+}
+%boucle élémentaire
+\newcommandx{\gfBoucleE}[5][1=,2=-,3=2.2,4=1]{
+    \ifthenelse{\equal{#2}{-}}{
+        \node [below of=#5, node distance=1.1em, minimum size=0em](NO) {};
+        \draw[gfStyleLienBE] (NO) +(75:0.4cm) arc(75:-255:0.4cm) node[xshift=#3em,yshift=-#4em] {#1};
+    }{
+        \node [above of=#5, node distance=1.1em, minimum size=0em](NO) {};
+        \draw[gfStyleLienBE2] (NO) +(-75:0.4cm) arc(-75:255:0.4cm) node[xshift=#3em,yshift=#4em] {#1};
+    }
+}
+
+%\Commande de lien
+\newcommandx{\gfRelier}[5][1=,2=+,3=0.8]{
+\draw [gfStyleLien] (#4) -- node[yshift=#2#3em] {#1} (#5);
+}
+%\Commande de lien bend
+\newcommandx{\gfRelierB}[8][1=,2=-,3=0,4=0,7=90,8=90]{
+    \ifthenelse{\equal{#2}{+}}{
+        \draw [gfStyleLien] (#5) to[out=#7,in=#8]   node[above,xshift=#3em,yshift=#4em] {#1} (#6);
+    }{
+        \draw [gfStyleLien] (#5) to[out=-#7,in=-#8] node[below,xshift=#3em,yshift=#4em] {#1} (#6);
+    }
+}
+
+%Commandes de décalage de noeud
+\newcommand{\gfDecaleNoeudy}[3][5]{
+\node [below of=#2, node distance=#1em, minimum size=0em](#3) {};
+\node (#3droite) at (#3){};
+\node (#3gauche) at (#3){};
+}
+\newcommand{\gfDecaleNoeudx}[3][5]{
+\node [right of=#2, node distance=#1em, minimum size=0em](#3) {};
+\node (#3droite) at (#3){};
+\node (#3gauche) at (#3){};
+}
+
