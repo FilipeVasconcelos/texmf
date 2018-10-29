@@ -38,23 +38,78 @@ Macros tikz pour tracer des graphes de réseau de neurones.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Utilisation des macros}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{center}
 \begin{tikzpicture}
-\nninput{I}[4]
-\nnhidden{H1}[3][1.5]
-\nnhidden{H2}[3][3]
-\nnhidden{H3}[4][4.5]
-\nnhidden{H4}[3][6]
-\nnoutput{O}[3][7.5]
-%\nnfull{I}{3}{H1}{4}
-\nnfull{I}{H1}
-\nnfull{H1}{H2}
-\nnfull{H2}{H3}
-\nnfull{H3}{H4}
-\nnfull{H4}{O}
+\gdef\yoff{1.5}
+\gdef\xoff{1.5}
+\neuron{minimum size=20pt}
+\nninput{nI}[2][label]
+\nnhidden{nH1}[2][1][label]
+\nnoutput{nO}[1][2][label]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nO}
 \end{tikzpicture}
 \end{center}
+\vspace{1cm}
+\begin{center}
+\begin{tikzpicture}
+\gdef\yoff{1}
+\gdef\xoff{1}
+\nninput{nI}[2]
+\nnhidden{nH1}[2][1]
+\nnoutput{nO}[1][2]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nO}
+\end{tikzpicture}
+\end{center}
+\vspace{1cm}
+\begin{center}
+\begin{tikzpicture}
+\gdef\yoff{1.5}
+\gdef\xoff{1.5}
+\neuron{minimum size=10pt,fill=orange!50}
+\nninput{nI}[2][label]
+\neuron{minimum size=15pt,fill=yellow!50}
+\nnhidden{nH1}[3][1]
+\neuron{minimum size=25pt,fill=gray!50}
+\nnoutput{nO}[1][2]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nO}
+\end{tikzpicture}
+\end{center}
+\vspace{1cm}
+\begin{center}
+\begin{tikzpicture}
+\gdef\yoff{1}
+\gdef\xoff{1.5}
+\neuron{minimum size=15pt}
+\nninput{nI}[4]
+\nnhidden{nH1}[2][1]
+\nnhidden{nH2}[6][2]
+\nnhidden{nH3}[1][3]
+\nnhidden{nH4}[2][4]
+\nnoutput{nO}[4][5]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nH2}
+\nnfull{nH2}{nH3}
+\nnfull{nH3}{nH4}
+\nnfull{nH4}{nO}
+\end{tikzpicture}
+\end{center}
+\vspace{1cm}
+\begin{center}
+\begin{tikzpicture}
+\gdef\yoff{0.25}
+\gdef\xoff{3}
+\nninput{nI}[32]
+\nnhidden{nH1}[10][1]
+\nnoutput{nO}[10][2]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nO}
+\end{tikzpicture}
+\end{center}
+
+
 
 \end{document}
 

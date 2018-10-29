@@ -11,73 +11,61 @@
 % macros tracers des graphes de réseau de neurones
 % version 1.0
 
-\def\yoff{1.5}
 
-\tikzstyle{neuron}=[thick,draw,circle,minimum size=20pt,inner sep=0pt]
+\tikzstyle{neuron}=[thick,draw,circle,minimum size=5pt,inner sep=0pt]
 \newcommand{\neuron}[1]{
 \tikzstyle{neuron}+=[#1]
 }
+\tikzstyle{neuron input}=[fill=green!50,neuron]
+\tikzstyle{neuron output}=[fill=red!50,neuron]
 
-\newcommandx{\nninput}[3][2=1,3=green]
+\newcommandx{\nninput}[3][2=1,3=]
 {
 	\def\dim{#2}
-	\def\dimd{\numexpr\dim-1}
-	\pgfmathtruncatemacro{\dimi}{\dim-1}
-	\node (#1) at (\dim,\dim) {#1};
-	\foreach \xn in {0,...,\dimi} {
+        \expandafter\newcommand\csname#1\endcsname{#2}
+        \foreach \xn in {1,...,\dim} {
 		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-		\node[neuron,fill=#3!50] (#1-\xn) at (0,\y) {$x_\xn$};
-		}
+                \ifthenelse{\equal{#3}{label}}{
+                    \node[minimum size=20pt,neuron input] (#1-\xn) at (0,\y) {$x_{\xn}$};
+                }{
+                    \node[neuron input] (#1-\xn) at (0,\y) {};
+                }
+	    }
 }
-\newcommandx{\nnoutput}[4][2=1,3=0,4=red]
+\newcommandx{\nnoutput}[4][2=1,3=0,4=]
 {
-	\def\xoff{#3}
+	%\def\xoff{#3}
 	\def\dim{#2}
-	\def\dimd{\numexpr\dim-1}
-	\node (#1) at (\dim,\dim) {#1};
-	\foreach \xn in {0,...,\dimd} {
+        \expandafter\newcommand\csname#1\endcsname{#2}
+	\foreach \xn in {1,...,\dim} {
 		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-		\node[neuron,fill=#4!50] (#1-\xn) at (\xoff,\y) {$y_\xn$};
-		}
+                \ifthenelse{\equal{#4}{label}}{
+                    \node[minimum size=20pt,neuron output] (#1-\xn) at (#3*\xoff,\y) {$y_{\xn}$};
+                }{
+                    \node[neuron output] (#1-\xn) at (#3*\xoff,\y) {};
+                }
+	    }
 }
-\newcommandx{\nnhidden}[4][2=1,3=,4=blue]
+\newcommandx{\nnhidden}[4][2=1,3=0,4=]
 {
-	\def\xoff{#3}
 	\def\dim{#2}
-	\node (#1) at (\dim pt,\dim pt ) {#1};
-	\def\dimd{\numexpr\dim-1}
-	\pgfmathsetmacro{\colo}{\xoff*10}
-	\foreach \xn in {0,...,\dimd} {
+	\pgfmathsetmacro{\colo}{#3*10}
+        \expandafter\newcommand\csname#1\endcsname{#2}
+	\foreach \xn in {1,...,\dim} {
 		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-		\node[neuron,fill=#4!\colo] (#1-\xn) at (\xoff,\y) {$h_\xn$};
-		}
-}
-
-
-\newcommand*{\getlength}[2]{\pgfmathsetmacro#1{round(3.51459804*#2)/100.0}}
-
-
-
-\newcommand{\gettikzxy}[3]{%
-	\tikz@scan@one@point\pgfutil@firstofone#1\relax
-	\edef#2{\the\pgf@x}%
-	\edef#3{\the\pgf@y}%
+                \ifthenelse{\equal{#4}{label}}{
+                    \node[minimum size=20pt,fill=blue!\colo,neuron] (#1-\xn) at (#3*\xoff,\y) {$h_{#3\xn}$};
+                }{
+                    \node[fill=blue!\colo,neuron] (#1-\xn) at (#3*\xoff,\y) {};
+                }
+	    }
 }
 
 \newcommandx{\nnfull}[2][]{%
-	\gettikzxy{(#1)}{\ddd}{\ddd}
-	\getlength{\dimu}{\ddd}
-	\node (#1) {\dimu};
-	\gettikzxy{(#2)}{\ddd}{\ddd}
-	\getlength{\dimd}{\ddd}
-	\node (#2) {\dimd};
-	\pgfmathtruncatemacro{\dimeu}{\dimu-1}
-	\pgfmathtruncatemacro{\dimed}{\dimd}
-	
-	\foreach \source in {0,...,2}{
-		\foreach \dest in {0,...,2}
+	\foreach \source in {1,...,\csname#1\endcsname}{
+		\foreach \dest in {1,...,\csname#2\endcsname}
 		{
-			\path (#1-\source) edge[thick] (#2-\dest);
+			\path (#1-\source) edge[-latex] (#2-\dest);
 		}
 	}
 }
