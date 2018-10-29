@@ -19,7 +19,7 @@
                           }
 \newcommand{\mparagraph}[1]{\paragraph{#1}\mbox{}\\}
 
-\title{Réseau de neurones avec PGF/Tikz}
+\title{Réseau de neurones artificiels avec PGF/Tikz}
 \subtitle{nntikz version 1.0}
 \author{F. M. Vasconcelos}
 \date{}
@@ -27,7 +27,7 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Macros tikz pour tracer des graphes de réseau de neurones. 
+Macros tikz pour tracer des graphes de réseau de neurones artificiels. 
 \end{abstract}
 
 
@@ -40,6 +40,56 @@ Macros tikz pour tracer des graphes de réseau de neurones.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{center}
 \begin{tikzpicture}
+\nninput{nI}[1]
+\nnoutput{nO}[1][1]
+\nnfull{nI}{nO}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+\nninput{nI}[1]
+\nnoutput{nO}[1][1]
+\nnfull{nI}{nO}
+\end{tikzpicture}
+\end{verbatim}
+
+\begin{center}
+\begin{tikzpicture}
+\nninput{nI}[3]
+\nnoutput{nO}[4][1]
+\nnfull{nI}{nO}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+\nninput{nI}[3]
+\nnoutput{nO}[4][1]
+\nnfull{nI}{nO}
+\end{tikzpicture}
+\end{verbatim}
+
+
+
+\begin{center}
+\begin{tikzpicture}
+\nninput{nI}[2]
+\nnhidden{nH1}[2][1]
+\nnoutput{nO}[1][2]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nO}
+\end{tikzpicture}
+\end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+\nninput{nI}[2]
+\nnhidden{nH1}[2][1]
+\nnoutput{nO}[1][2]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nO}
+\end{tikzpicture}
+\end{verbatim}
+\begin{center}
+\begin{tikzpicture}
 \gdef\yoff{1.5}
 \gdef\xoff{1.5}
 \neuron{minimum size=20pt}
@@ -50,6 +100,18 @@ Macros tikz pour tracer des graphes de réseau de neurones.
 \nnfull{nH1}{nO}
 \end{tikzpicture}
 \end{center}
+\begin{verbatim}
+\begin{tikzpicture}
+\gdef\yoff{1.5}
+\gdef\xoff{1.5}
+\neuron{minimum size=20pt}
+\nninput{nI}[2][label]
+\nnhidden{nH1}[2][1][label]
+\nnoutput{nO}[1][2][label]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nO}
+\end{tikzpicture}
+\end{verbatim}
 \vspace{1cm}
 \begin{center}
 \begin{tikzpicture}
@@ -78,6 +140,8 @@ Macros tikz pour tracer des graphes de réseau de neurones.
 \end{tikzpicture}
 \end{center}
 \vspace{1cm}
+
+
 \begin{center}
 \begin{tikzpicture}
 \gdef\yoff{1}
@@ -96,14 +160,44 @@ Macros tikz pour tracer des graphes de réseau de neurones.
 \nnfull{nH4}{nO}
 \end{tikzpicture}
 \end{center}
+
 \vspace{1cm}
+
 \begin{center}
 \begin{tikzpicture}
-\gdef\yoff{0.25}
-\gdef\xoff{3}
+\gdef\yoff{1}
+\gdef\xoff{1.5}
+\neuron{minimum size=15pt}
+\nninput{nI}[8]
+\nnhidden{nH1}[6][1]
+\nnhidden{nH2}[4][2]
+\nnhidden{nH3}[2][3]
+\nnhidden{nH4}[1][4]
+\nnhidden{nH5}[2][5]
+\nnhidden{nH6}[4][6]
+\nnhidden{nH7}[6][7]
+\nnoutput{nO}[8][8]
+\nnfull{nI}{nH1}
+\nnfull{nH1}{nH2}
+\nnfull{nH2}{nH3}
+\nnfull{nH3}{nH4}
+\nnfull{nH4}{nH5}
+\nnfull{nH5}{nH6}
+\nnfull{nH6}{nH7}
+\nnfull{nH7}{nO}
+\end{tikzpicture}
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+\begin{tikzpicture}
+\gdef\yoff{0.5}
+\gdef\xoff{2}
+\neuron{minimum size=5pt}
 \nninput{nI}[32]
-\nnhidden{nH1}[10][1]
-\nnoutput{nO}[10][2]
+\nnhidden{nH1}[10][2]
+\nnoutput{nO}[10][3]
 \nnfull{nI}{nH1}
 \nnfull{nH1}{nO}
 \end{tikzpicture}

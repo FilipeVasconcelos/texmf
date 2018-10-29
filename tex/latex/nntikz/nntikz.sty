@@ -11,8 +11,9 @@
 % macros tracers des graphes de réseau de neurones
 % version 1.0
 
-
-\tikzstyle{neuron}=[thick,draw,circle,minimum size=5pt,inner sep=0pt]
+\gdef\xoff{1}
+\gdef\yoff{1}
+\tikzstyle{neuron}=[thick,draw,circle,minimum size=10pt,inner sep=0pt]
 \newcommand{\neuron}[1]{
 \tikzstyle{neuron}+=[#1]
 }
@@ -34,7 +35,6 @@
 }
 \newcommandx{\nnoutput}[4][2=1,3=0,4=]
 {
-	%\def\xoff{#3}
 	\def\dim{#2}
         \expandafter\newcommand\csname#1\endcsname{#2}
 	\foreach \xn in {1,...,\dim} {
@@ -49,7 +49,7 @@
 \newcommandx{\nnhidden}[4][2=1,3=0,4=]
 {
 	\def\dim{#2}
-	\pgfmathsetmacro{\colo}{#3*10}
+	\pgfmathsetmacro{\colo}{#3*15}
         \expandafter\newcommand\csname#1\endcsname{#2}
 	\foreach \xn in {1,...,\dim} {
 		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
