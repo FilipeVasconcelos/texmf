@@ -1,6 +1,6 @@
 .SUFFIXES: .tex .aux .bib
 
-filename=exemple
+filename=bode_diagram
 
 pspdfd:	psd
 	ps2pdf -sPAPERSIZE=a4 ${filename}.ps

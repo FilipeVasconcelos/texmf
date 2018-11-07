@@ -12,6 +12,7 @@
 \RequirePackage{tikz}
 \RequirePackage{pgfplots}
 \RequirePackage{pgf}
+\RequirePackage{xargs}
 \RequirePackage{amsmath}
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
@@ -21,46 +22,46 @@
 \def\hi{Ce paquet permet de dessiner des diagrammes de Bode vierge}
 \let\myDate\date
 
-\newcommand*{\bode}[5]{%
-\def\xg{#1}
-\def\yg{#2}
-\def\xp{#3}
-\def\yp{#4}
-\def\hh{#5}
-\begin{tikzpicture}
+\newcommand*{\bodegain}[3]{%
+\def\xx{#1}
+\def\yy{#2}
+\def\hh{#3}
 \begin{axis}[
-    width=\textwidth,
+    name=axx,
+    width=0.9\textwidth,
     height=\hh\textheight,
     ylabel={Gain (dB)},
     yticklabels={},
     xticklabels={},
-    ytick={0,1,...,\yg}, 
+    ytick={0,1,...,\yy}, 
     xmode=log,ymode=normal,
-    xmin=1e0, xmax=1e\xg,
-    ymin=0, ymax=\yg,
+    xmin=1e0, xmax=1e\xx,
+    ymin=0, ymax=\yy,
     grid=both,
     major grid style={black!40}
 ]
 \end{axis}
-\end{tikzpicture}
-
-\begin{tikzpicture}
+}
+\newcommand*{\bodephase}[3]{%
+\def\xx{#1}
+\def\yy{#2}
+\def\hh{#3}
 \begin{axis}[
-    width=\textwidth,
+    at={(axx.below south west)},yshift=-0.01\textheight,anchor=north west,
+    width=0.9\textwidth,
     height=\hh\textheight,
     xlabel={Fréquence (rad/s)},
     ylabel={Phase (degré)},
     yticklabels={},
     xticklabels={},
-    ytick={0,1,...,\yp}, 
+    ytick={0,1,...,\yy}, 
     xmode=log,ymode=normal,
-    xmin=1e0, xmax=1e\xp,
-    ymin=0, ymax=\yp,
+    xmin=1e0, xmax=1e\xx,
+    ymin=0, ymax=\yy,
     grid=both,
     major grid style={black!40}
 ]
 \end{axis}
-\end{tikzpicture}
 }
 
 \endinput
