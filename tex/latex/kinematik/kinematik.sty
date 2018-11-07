@@ -118,13 +118,13 @@
 %%%%%%%%%% Torseurs %%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Nul
-\newcommand{\tnull}{\Big\{\vnull\Big\}}
+\newcommand{\tnull}{\big\{0\big\}}
 % Génerique
 \newcommandx*{\tor}[3][3=]{
 \ifthenelse{\equal{#1}{}}{%
-\Big\{\mathcal{T}_{#1}\,\Big\}_{\mathrm{#2}_{#3}}
+\big\{\mathcal{T}_{#1}\,\big\}_{\mathrm{#2}_{#3}}
 }
-{\Big\{\mathcal{T}_{#1}\Big\}_{\mathrm{#2}_{#3}}}
+{\big\{\mathcal{T}_{#1}\big\}_{\mathrm{#2}_{#3}}}
 }
 %torseur ligne
 \newcommandx*{\torl}[4][4=]{\begin{Bmatrix}#1\\[0.5em]#2\end{Bmatrix}_{\mathrm{#3}_{#4}}}
