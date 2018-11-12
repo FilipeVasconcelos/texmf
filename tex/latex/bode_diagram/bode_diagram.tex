@@ -1,0 +1,48 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[frenchb]{babel}
+\usepackage{lmodern}
+
+\usepackage{titling}
+\usepackage{xargs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{pgf, tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{bode_diagram}
+
+\newcommand{\subtitle}[1]{%
+      \posttitle{%
+      \par\end{center}
+      \begin{center}\large#1\end{center}
+      \vskip0.5em}%
+}
+\newcommand{\mparagraph}[1]{\paragraph{#1}\mbox{}\\}
+
+\title{Diagramme de bode avec PGF/Tikz}
+\subtitle{bode\_diagram version 1.0}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Macros tikz pour tracer des diagramme de Bode. 
+\end{abstract}
+\begin{center}
+\begin{tikzpicture}
+\bodegain{2}{1}{0.4}
+\bodephase{2}{1}{0.4}
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\bodegain{4}{2}{0.4}
+\bodephase{4}{2}{0.4}
+\end{tikzpicture}
+\end{center}
+\end{document}
