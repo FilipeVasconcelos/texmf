@@ -61,11 +61,11 @@
 	    }
 }
 
-\newcommandx{\nnfull}[2][]{%
+\newcommandx{\nnfull}[3][3=]{%
 	\foreach \source in {1,...,\csname#1\endcsname}{
 		\foreach \dest in {1,...,\csname#2\endcsname}
 		{
-			\path (#1-\source) edge[-latex] (#2-\dest);
+			\path (#1-\source) edge[-latex,#3] (#2-\dest);
 		}
 	}
 }
