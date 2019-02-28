@@ -23,7 +23,19 @@
 \noindent {\normalfont#1\bfseries Q\thenumques.\,}
 }
 
-\newcounter{numexos}
+\makeatletter
+\newcommand*\ifcounter[1]{%
+\ifcsname c@#1\endcsname
+    \expandafter\@firstoftwo
+\else
+    \expandafter\@secondoftwo
+\fi
+}
+\makeatother
+
+\ifcounter{chapter}{\newcounter{numexos}[chapter]}{\newcounter{numexos}}
+%\ifthenelse{\equal{\thechapter}{}}{\newcounter{numexos}}{\newcounter{numexos}[chapter]}
+%\newcounter{numexos}[chapter]
 \setcounter{numexos}{0}
 \newcommandx{\exercice}[3][2=\Large,3=]{
 \setcounter{numques}{0}
