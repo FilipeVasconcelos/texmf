@@ -1,58 +1,56 @@
-% gear_tikz package
-% 
-% (c) Filipe Vasconcelos
-%
-%% This program can be redistributed and/or modified under the terms
-%% of the LaTeX Project Public License Distributed from CTAN archives
-%% in directory macros/latex/base/lppl.txt.
-% 
-\NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{gear_tikz}
-  [2017/06/05 v0.01 LaTeX package dessiner des engrenage droit]
+\documentclass{article}
 
-\RequirePackage{tikz}
-\def\hi{Ce paquet dessine des engrenages en tikz.}
-\let\myDate\date
-
-\tikzset{pics/gear/.style n args={3}{
-    code={
-        \def\modu{#1}
-        \def\Zb{#2}
-        \def\AngleA{#3}
-
-        \pgfmathsetmacro{\Rpr}{\Zb*\modu/2}
-        \pgfmathsetmacro{\Rb}{\Rpr*cos(\AngleA)}
-        \pgfmathsetmacro{\Rt}{\Rpr+\modu}
-        \pgfmathsetmacro{\Rp}{\Rpr-1.25*\modu}
-        \pgfmathsetmacro{\AngleT}{pi/180*acos(\Rb/\Rt)}
-        \pgfmathsetmacro{\AnglePr}{pi/180*acos(\Rb/\Rpr)}
-        \pgfmathsetmacro{\demiAngle}{180/\Zb}
-        \pgfmathsetmacro{\Angledecal}{(\demiAngle-2*\AnglePr)/2}
-
-        \path[pic actions] foreach \zz in{1,...,\Zb}{
-            \ifnum\zz=1
-                % don't use a lineto in the first iteration
-                (\zz/\Zb*360-\Angledecal:\Rp)
-            \else
-                -- (\zz/\Zb*360-\Angledecal:\Rp)
-            \fi
-            to[bend right=\demiAngle]
-            (\zz/\Zb*360+\Angledecal:\Rp)
-            --
-            plot[domain=-0:\AngleT,smooth,variable=\t]
-                ({{180/pi*(-\t+tan(180/pi*\t)) +\zz/\Zb*360+\Angledecal}:\Rb/cos(180/pi*\t)})
-            %
-            to[bend right=\demiAngle]
-                ({{180/pi*(\AngleT+tan(180/pi*-\AngleT)) +(\zz+1)/\Zb*360-\Angledecal}:
-                \Rb/cos(180/pi*-\AngleT)})
-            --
-            plot[domain=-\AngleT:-0,smooth,variable=\t]
-            ({{180/pi*(-\t+tan(180/pi*\t)) +(\zz+1)/\Zb*360-\Angledecal}:\Rb/cos(180/pi*\t)})
-        } -- cycle;
-    }
-}}
+\usepackage{amsmath}
+\usepackage{pgf, tikz}
+\usepackage{pgfplots}
+\usepackage{tkz-euclide}
+\usepackage{tikz-3dplot}
+\usepackage{pst-3dplot}
+\usetikzlibrary{calc}
+\usetikzlibrary{quotes,angles}
+\usetikzlibrary{arrows.meta,bending,automata,positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{babel}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{matrix}
+\usetikzlibrary{intersections}
+\usetkzobj{all}
 
 
-\endinput
-%%
-%% End of file `gear_tikz'.
+\usepackage{gear_tikz}
+\usepackage[a4paper,headheight=30pt]{geometry}
+
+\begin{document}
+
+% \begin{tikzpicture}
+        % observations:
+        %
+        %  - param #1 and #3 must be equal for gears to mesh
+        %  - the required distance is (#2_1 + #2_2) * #1 / 2
+        %  - for odd numbers of teeth, gears on a horizontal axis fit without rotation
+
+     %\pic[draw=red,ultra thick,fill=red!60]                     at (0,0)   {gear={0.50}{17}{15}};
+     %\pic[draw=red,ultra thick,fill=red!60]                     at (6,0)   {gear={0.50}{ 7}{15}};
+     %\pic[draw=blue,ultra thick,fill=blue!15,rotate=-60 + 90/11] at (0,0)   {gear={0.25}{11}{20}};
+     %\pic[draw=blue,ultra thick,fill=blue!15,rotate=-60 - 90/29] at (-60:5) {gear={0.25}{29}{20}};
+
+     %   \foreach \p in {(0,0),(6,0),(-60:5)} \fill \p circle (3pt);
+%    \end{tikzpicture}
+
+ \begin{tikzpicture}
+        % observations:
+        %
+        %  - param #1 and #3 must be equal for gears to mesh
+        %  - the required distance is (#2_1 + #2_2) * #1 / 2
+        %  - for odd numbers of teeth, gears on a horizontal axis fit without rotation
+
+	\begin{scope}
+	  \clip (0,0) circle (8.5cm);
+%	  \fill[red] (0,0) circle (8.5cm);
+     	\pic[name path=B,draw=red,ultra thick,even odd rule]                     at (0,0)   {gear={0.50}{17}{15}};
+	\end{scope}
+%     \draw[name path=A,draw=red,ultra thick,fill=red!25,even odd rule]	  pic[] at (0,0)   {gear={0.50}{17}{15}}   (0,0)   circle (8.5cm) ;
+    \end{tikzpicture}
+
+
+\end{document}
