@@ -39,6 +39,11 @@
 }%style Sum default CC
 
 
+\newcommand{\sbPerturb}[2][0]{
+    \node (O) at (0,0) {};
+    \node [above of=O, node distance=#1em,coordinate, name=#2] {};
+\sbDecaleNoeudy[0]{#2}{#2}
+}
 % Commandes d'entrée et sortie
 \newcommand{\sbEntree}[2][0]{
     \node (O) at (0,0) {};
