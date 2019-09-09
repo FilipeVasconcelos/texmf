@@ -1,6 +1,6 @@
 .SUFFIXES: .tex .aux .bib
 
-filename=exemple
+filename=gear_tikz
 
 pspdfd:	psd
 	ps2pdf -sPAPERSIZE=a4 ${filename}.ps

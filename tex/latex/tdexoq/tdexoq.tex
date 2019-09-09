@@ -1,0 +1,39 @@
+\documentclass[a4paper,9pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{titling}
+
+
+\usepackage{tdexoq}
+
+\newcommand{\subtitle}[1]{%                          
+\posttitle{%                                   
+\par\end{center}%
+\begin{center}\large#1\end{center}%
+\vskip0.5em}%              
+}
+
+
+\title{Macros pour l'écriture de TD (Exercice, questions)}
+\subtitle{\texttt{tdexoq} version 1.0}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+    Macros pour définir les commandes exercice et question.
+\end{abstract}
+
+\section{Usage}
+\exercice{}
+\question
+\question
+\question
+\exercice{Titre d'exercice}
+\question
+\question
+\question
+\end{document}

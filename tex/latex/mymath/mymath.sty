@@ -43,13 +43,15 @@
 % j omega
 \newcommand*{\jw}{j\omega}
 \newcommand*{\jtw}{j\tau\omega}
+\newcommand*{\tw}{\tau\omega}
 
-\renewcommand*{\Re}{\mathrm{Re}}
-\renewcommand*{\Im}{\mathrm{Im}}
+\renewcommand{\Re}[1]{\mathrm{Re}[#1]}
+\renewcommand{\Im}[1]{\mathrm{Im}[#1]}
 
 % d droit dérivée
 \newcommand*{\dd}[1]{\mathrm{d}{#1}}
-\newcommand*{\devi}[2]{\frac{\mathrm{d}^{#2}{#1}}{\dd{t^{#2}}}}
+\newcommand*{\devi}[2]{\dfrac{\mathrm{d}^{#2}{#1}}{\dd{t^{#2}}}}
+\newcommand*{\deviV}[3]{\left[\devi{#1}{#2}\right]_{#3}}
 
 % dot angle
 \newcommand*{\dlambda}{\dot{\lambda}}

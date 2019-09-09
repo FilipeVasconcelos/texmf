@@ -6,9 +6,9 @@
 
 \usepackage{titling}
 \usepackage{xargs}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
+%\usepackage{amsmath}
+%\usepackage{amsthm}
+%\usepackage{amssymb}
 \usepackage{pgf, tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
@@ -32,17 +32,35 @@
 \begin{abstract}
 Macros tikz pour tracer des diagramme de Bode. 
 \end{abstract}
+
+
+
 \begin{center}
 \begin{tikzpicture}
-\bodegain{2}{1}{0.4}
-\bodephase{2}{1}{0.4}
+\bodegain{2}{1}{0.25}
+\bodephase{2}{1}{0.25}
 \end{tikzpicture}
 \end{center}
 
 \begin{center}
 \begin{tikzpicture}
-\bodegain{4}{2}{0.4}
-\bodephase{4}{2}{0.4}
+\bodegain{4}{2}{0.25}
+\bodephase{4}{2}{0.25}
 \end{tikzpicture}
 \end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\bodegain{6}{4}{0.25}
+\bodephase{6}{4}{0.25}
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\bodegain{10}{8}{0.25}
+\bodephase{10}{8}{0.25}
+\end{tikzpicture}
+\end{center}
+
 \end{document}

@@ -1,12 +1,12 @@
 .SUFFIXES: .tex .aux .bib
 
-filename=bode_diagram
+filename=tdexoq
 
 pspdfd:	psd
 	ps2pdf -sPAPERSIZE=a4 ${filename}.ps
 
 pspdf:	ps 
-	ps2pdf -sPAPERSIZE=a4 -dAutoRotatePages=/None ${filename}.ps
+	ps2pdf -sPAPERSIZE=a4 ${filename}.ps
 
 pdfd: 
 	pdflatex -draftmode ${filename}
@@ -25,7 +25,7 @@ pdf:
 	pdflatex ${filename}
 
 pdf-print: ps
-	ps2pdf -sPAPERSIZE=a4 -dAutoRotatePages=/None -dColorConversionStrategy=/LeaveColorUnchanged -dPDFSETTINGS=/printer ${filename}.ps
+	ps2pdf -sPAPERSIZE=a4 -dColorConversionStrategy=/LeaveColorUnchanged -dPDFSETTINGS=/printer ${filename}.ps
 
 text: html
 	html2text -width 100 -style pretty ${filename}/${filename}.html | sed -n '/./,$$p' | head -n-2 >${filename}.txt

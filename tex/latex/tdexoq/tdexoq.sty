@@ -1,0 +1,59 @@
+% tdexoq package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{tdexoq}
+  [2017/06/05 v0.01 LaTeX package commande pour la création d'exercices et de questions]
+
+\def\hi{Ce paquet permet de définir les commandes exercice et question.}
+\let\myDate\date
+
+\RequirePackage{xargs}
+\RequirePackage{ifthen}
+
+\newcounter{numques}
+\setcounter{numques}{0}
+\newcommandx{\question}[1][1=]{
+\addtocounter{numques}{1}
+\noindent {\normalfont#1\bfseries Q\thenumques.\,}
+}
+
+\makeatletter
+\newcommand*\ifcounter[1]{%
+\ifcsname c@#1\endcsname
+    \expandafter\@firstoftwo
+\else
+    \expandafter\@secondoftwo
+\fi
+}
+\makeatother
+
+\ifcounter{chapter}{\newcounter{numexos}[chapter]}{\newcounter{numexos}}
+%\ifthenelse{\equal{\thechapter}{}}{\newcounter{numexos}}{\newcounter{numexos}[chapter]}
+%\newcounter{numexos}[chapter]
+\setcounter{numexos}{0}
+\newcommandx{\exercice}[3][2=\Large,3=]{
+\setcounter{numques}{0}
+\addtocounter{numexos}{1}
+\ifthenelse{\equal{\thenumexos}{1}}{%
+    \ifthenelse{\equal{#1}{}}{%
+    \noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,\newline}}
+    {
+    \noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1\newline}
+    }{}
+}{%
+    \ifthenelse{\equal{#1}{}}{%
+    \noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,\newline}}
+    {
+    \noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1\newline}
+    }{}
+}{}
+}
+\endinput
+%%
+%% End of file `tdexoq.sty'.

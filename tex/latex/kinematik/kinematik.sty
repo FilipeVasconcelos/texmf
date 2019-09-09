@@ -37,6 +37,8 @@
 
 % Elements de reduction cinematique
 \newcommandx*{\Om}[2][1=]{\overrightarrow{\Omega^{#1}_{#2}}}
+% Vitesse point géométrique
+\newcommandx*{\TV}[4][1=,3=]{\overrightarrow{V^{#1}_{\mathrm{#2}_{#3}/#4}}}
 % Vitesse
 \newcommandx*{\TCV}[5][1=,3=]{\overrightarrow{V^{#1}_{\mathrm{#2}_{#3}\in#4/#5}}}
 % Acceleration
@@ -95,11 +97,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Grandeurs
+\newcommand*{\pp}[1]{\overrightarrow{p_{\mathrm{#1}}}}                % qte de mvt
 \newcommand*{\CC}[1]{\overrightarrow{C_{\mathrm{#1}}}}                % couple
 \newcommand*{\FF}[1]{\overrightarrow{F_{\mathrm{#1}}}}                % force
+\newcommand*{\LL}[1]{\overrightarrow{L_{\mathrm{#1}}}}                % moment cinétique
+\newcommand*{\PP}[1]{\overrightarrow{P_{\mathrm{#1}}}}                % poids
 \newcommandx*{\MM}[3][2=]{\overrightarrow{M{_{\mathrm{#1}_{#2},#3}}}} % moment
 \newcommand*{\RR}[1]{\overrightarrow{R_{\mathrm{#1}}}}                 % resultante
 
+% Moment d'inertie
+\newcommandx*{\Ia}[4][3=]{I_{\axe{#1}{#2}[#3]}(#4)}
 % Matrice d'Inertie
 \newcommandx*{\II}[3][2=]{\rttensor{I_{\mathrm{#1}_{#2}}(\boldsymbol{#3})}}
 
@@ -109,6 +116,8 @@
 \newcommandx*{\reps}[6][2=]{R_{#3}(\mathrm{#1}_{#2},\xx{#4},\yy{#5},\zz{#6})}
 % Bases
 \newcommand*{\bas}[1]{(\xx{#1},\yy{#1},\zz{#1})}
+% Bases
+\newcommand*{\bass}[3]{(\xx{#1},\yy{#2},\zz{#3})}
 % Axes
 \newcommandx*{\axe}[4][2=,4=]{(\mathrm{#1}_{#2},\ccvect{#3}[#4])}
 % Plan 

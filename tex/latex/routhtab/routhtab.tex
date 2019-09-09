@@ -1,0 +1,94 @@
+\documentclass[a4paper,9pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{titling}
+
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{external}
+\usepackage{routhtab}
+
+\newcommand{\subtitle}[1]{%                          
+\posttitle{%                                   
+\par\end{center}%
+\begin{center}\large#1\end{center}%
+\vskip0.5em}%              
+}
+
+\title{Macros pour la création de tableau de Routh}
+\subtitle{\texttt{routhtab} version 1.0}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+    Macros pour la création de tableau de Routh.
+\end{abstract}
+
+\section{Usage}
+
+\[
+\begin{matrix}
+    p^3 \\
+    p^2 \\
+   % \hline
+    p^1 \\
+    p^0 \\
+\end{matrix}
+\begin{vmatrix}
+    1\DoTikzmark{-1ex}{1ex}{n3}     & 3  \\
+    1\DoTikzmark{-1ex}{-6ex}{n4}     & K  \\
+   % \hline
+    3-K                      & 0  \\
+    K                        & 0    
+    \end{vmatrix}
+\]
+\colrow[green,opacity=.2]{n3}{n4}
+
+\[
+\begin{matrix}
+    p^3 \\
+    p^2 \\
+   % \hline
+    p^1 \\
+    p^0 \\
+\end{matrix}
+\begin{vmatrix}
+    1\DoTikzmark{-1ex}{1ex}{n3}     & 3  \\
+    1\DoTikzmark{-1ex}{-6ex}{n4}     & K  \\
+   % \hline
+    3-K                      & 0  \\
+    K                        & 0    
+    \end{vmatrix}
+\]
+\colrow[green,opacity=.2]{n3}{n4}
+
+\[
+\begin{matrix}
+    p^n    \\
+    p^{n-1}\\
+    p^{n-2}\\
+    p^{n-3}\\
+    \vdots \\
+    p^1    \\
+    p^0    \\
+\end{matrix}
+\begin{vmatrix}
+    b_n\DoTikzmark{-1.1ex}{1.75ex}{n1}  & b_{n-2}    & b_{n-4}    & \cdots & b_2        & b_0         \\
+    b_{n-1}                 & b_{n-3}    & b_{n-5}    & \cdots & b_1        & 0           \\
+    A_{31}                  & A_{32}     & A_{33}     & \cdots & A_{3(k-1)} & 0           \\
+    A_{41}                  & A_{42}     & A_{43}     & \cdots & 0          & 0           \\
+    \vdots                  & \vdots     & \vdots     & \vdots & \vdots     & 0           \\
+    A_{(n-1)1}              & A_{(n-1)2} & 0          & \cdots & 0          & 0           \\
+    b_0\DoTikzmark{-1.1ex}{-1ex}{n2}  & 0          & 0          & \cdots & 0          & 0
+\end{vmatrix}
+\]
+\colrow[green,opacity=.2]{n1}{n2}
+
+
+
+\end{document}
