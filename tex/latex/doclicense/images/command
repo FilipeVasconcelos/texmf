@@ -1,0 +1,1 @@
+for file in *.pdf;do ./pdf2eps 1 doclicense-CC-zero.pdf;done
