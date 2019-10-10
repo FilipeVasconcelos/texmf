@@ -26,4 +26,5 @@
 *.sls
 *.toc
 
-
+tlpkg/
+tex/latex/doclicense/images/index.html
