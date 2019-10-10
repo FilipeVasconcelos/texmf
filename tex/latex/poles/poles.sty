@@ -1,0 +1,29 @@
+% routhtab package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{routhtab}
+  [2017/06/05 v0.01 LaTeX package pour la création de tableau de routh]
+\def\hi{Ce paquet permet de creer un tableau de routh.}
+\let\myDate\date
+
+\RequirePackage{xargs}
+\RequirePackage{tikz}
+\usetikzlibrary{external}
+
+
+\newcommand*{\DoTikzmark}[3]{%
+\tikzset{external/export next=false}
+\tikz[remember picture] \coordinate[shift={(#1,#2)}](#3);%
+}
+\newcommandx*{\colrow}[4][1=,4=30pt]{%
+\tikzset{external/export next=false}
+  \tikz[overlay,remember picture, line width=#4]
+  \draw[shorten >=-.5em, shorten <=-.5em, #1] (#2.north)--(#3.north);%
+}
+%%
+%% End of file `routhtab.sty'.
