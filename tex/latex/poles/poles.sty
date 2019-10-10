@@ -1,4 +1,4 @@
-% routhtab package
+% poles package
 % 
 % (c) Filipe Vasconcelos
 %
@@ -6,24 +6,48 @@
 %% of the LaTeX Project Public License Distributed from CTAN archives
 %% in directory macros/latex/base/lppl.txt.
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{routhtab}
-  [2017/06/05 v0.01 LaTeX package pour la création de tableau de routh]
-\def\hi{Ce paquet permet de creer un tableau de routh.}
+\ProvidesPackage{poles}
+  [2019/10/19 v0.1 LaTeX package pour la création de carte de pôles et zéros.]
+\def\hi{Ce paquet permet de creer une carte de pôles et zéros.}
 \let\myDate\date
 
 \RequirePackage{xargs}
+\RequirePackage{ifthen} 
 \RequirePackage{tikz}
 \usetikzlibrary{external}
+\usetikzlibrary{trees}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations}
 
+\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},               
+%default radius will be 1pt.                                                                                          
+cross/.default={1pt}}
+\tikzset{circ/.style={circle, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},               
+%default radius will be 1pt.                                                                                          
+circ/.default={1pt}}
 
-\newcommand*{\DoTikzmark}[3]{%
-\tikzset{external/export next=false}
-\tikz[remember picture] \coordinate[shift={(#1,#2)}](#3);%
+\newcommandx{\dpole}[4][3=,4=blue]{
+    \node at (#1,#2) [thick,cross=5pt,#4]       {};
+    \node at (#1,#2) [#4,below,yshift=-0.5em]   {$p_#3$};
 }
-\newcommandx*{\colrow}[4][1=,4=30pt]{%
-\tikzset{external/export next=false}
-  \tikz[overlay,remember picture, line width=#4]
-  \draw[shorten >=-.5em, shorten <=-.5em, #1] (#2.north)--(#3.north);%
+\newcommandx{\dzero}[4][3=,4=red]{
+    \node at (#1,#2) [thick,circ=5pt,#4]        {};
+    \node at (#1,#2) [#4,below,yshift=-0.5em]   {$z_#3$};
 }
+
+\newcommandx{\carte}[1][1=l]{
+    \def\mode{#1}
+    \draw[very thick,-latex]     (0,-1.5) -- (0,2.0) node[left]  {Im\{p\}};
+    \ifthenelse{\equal{\mode}{l}}{%left
+        \draw[very thick,-latex] (-2.5,0) -- (1.0,0) node[below] {Re\{p\}};
+}{}
+    \ifthenelse{\equal{\mode}{c}}{%center
+        \draw[very thick,-latex] (-1.5,0) -- (2.0,0) node[below] {Re\{p\}};
+}{}
+    \ifthenelse{\equal{\mode}{r}}{%rignt
+        \draw[very thick,-latex] (-1.0,0) -- (2.5,0) node[below] {Re\{p\}};
+}{}
+}
+\endinput
 %%
-%% End of file `routhtab.sty'.
+%% End of file `poles.sty'.
