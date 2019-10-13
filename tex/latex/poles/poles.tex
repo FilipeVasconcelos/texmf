@@ -1,0 +1,61 @@
+\documentclass[a4paper,9pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{titling}
+
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{external}
+\usepackage{poles}
+
+\newcommand{\subtitle}[1]{%                          
+\posttitle{%                                   
+\par\end{center}%
+\begin{center}\large#1\end{center}%
+\vskip0.5em}%              
+}
+
+\title{Macros pour la création de cartes de pôles et zéros}
+\subtitle{\texttt{poles} version 1.0}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+    Macros pour la création de cartes de pôles et zéros sous PGF/TikZ.
+\end{abstract}
+
+\section{Usage}
+
+
+\begin{tikzpicture}
+        \carte[l][2.0]
+        \dpole{-0.5}{1}[1][green]
+        \dpole{-0.5}{-1}[2][green]
+        \dzero{-0.5}{0}[1][magenta]
+        \dzero{-1.5}{-1}[2][magenta]
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \carte[c][1.0]
+        \dpole{-0.5}{1}[1][green]
+        \dpole{-0.5}{-1}[2][green]
+        \dzero{-0.5}{0}[1][magenta]
+        \dzero{-1.5}{-1}[2][magenta]
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \carte[r][0.0]
+        \dpole{1.5}{1}[1][blue]
+        \dpole{1.5}{-1}[2][blue]
+        \dzero{-0.5}{0}[1][red]
+        \dzero{1.0}{0}[2][red]
+\end{tikzpicture}
+
+
+
+\end{document}
