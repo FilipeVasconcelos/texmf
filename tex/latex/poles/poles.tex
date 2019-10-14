@@ -31,31 +31,83 @@
 
 \section{Usage}
 
-
-\begin{tikzpicture}
-        \carte[l][2.0]
-        \dpole{-0.5}{1}[1][green]
-        \dpole{-0.5}{-1}[2][green]
-        \dzero{-0.5}{0}[1][magenta]
-        \dzero{-1.5}{-1}[2][magenta]
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    \carte[l]
+    \dpole{-1.5}{1}{1}[orange]
+    \dpole{-1.5}{-1}{2}[orange]
+    \dzero{0}{0}{1}[cyan]
+    \dzero{-1}{0}{2}[cyan]
 \end{tikzpicture}
+\end{center}
 
-\begin{tikzpicture}
-    \carte[c][1.0]
-        \dpole{-0.5}{1}[1][green]
-        \dpole{-0.5}{-1}[2][green]
-        \dzero{-0.5}{0}[1][magenta]
-        \dzero{-1.5}{-1}[2][magenta]
+Commande:
+\begin{verbatim}
+\begin{tikzpicture}[scale=1.2]
+    %axis  l=left
+    \carte[l]
+    %        x   y index color
+    \dpole{-1.5}{1}[1][orange]
+    \dpole{-1.5}{-1}[2][orange]
+    \dzero{0}{0}[1][cyan]
+    \dzero{-1}{0}[2][cyan]
 \end{tikzpicture}
+\end{verbatim}
 
-\begin{tikzpicture}
-    \carte[r][0.0]
-        \dpole{1.5}{1}[1][blue]
-        \dpole{1.5}{-1}[2][blue]
-        \dzero{-0.5}{0}[1][red]
-        \dzero{1.0}{0}[2][red]
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    \carte[c]
+    \dpole{0.0}{1}{1}[green][left] 
+    \dpole{0.0}{-1}{2}[green][left]
+    \dzero{-0.5}{0}{1}[magenta][above]
+    \dzero{1.0}{0}{2}[magenta][above]
 \end{tikzpicture}
+\end{center}
 
+Commande:
+\begin{verbatim}
+\begin{tikzpicture}[scale=1.2]
+    % axis c=centered
+    \carte[c]
+    %        x  y index color pos
+    \dpole{0.0}{1}[1][green][left] 
+    \dpole{0.0}{-1}[2][green][left]
+    \dzero{-0.5}{0}[1][magenta][above]
+    \dzero{1.0}{0}[2][magenta][above]
+\end{tikzpicture}
+\end{verbatim}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    \carte[r]
+    \dpole{1.5}{1}{1}[blue][right]
+    \dpole{1.5}{-1}{2}[blue][right]
+    \dzero{-0.5}{0}{1}[red]
+    \dzero{1.0}{0}{2}[red]
+\end{tikzpicture}
+\end{center}
+
+Commande:
+\begin{verbatim}
+\begin{tikzpicture}[scale=1.2]
+    %axis  r=right
+    \carte[r]
+    \dpole{1.5}{1}[1][blue][right]
+    \dpole{1.5}{-1}[2][blue][right]
+    \dzero{-0.5}{0}[1][red]
+    \dzero{1.0}{0}[2][red]
+\end{tikzpicture}
+\end{verbatim}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+    \carte[l][-5][5][-2][2][3.0]
+    \dpole{-1.5}{1}{1}[orange]
+    \dpole{-1.5}{-1}{2}[orange]
+    \dzero{0}{0}{1}[cyan]
+    \dzero{-1}{0}{2}[cyan]
+\end{tikzpicture}
+\end{center}
 
 
 \end{document}
