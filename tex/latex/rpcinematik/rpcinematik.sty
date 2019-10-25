@@ -61,7 +61,7 @@
 \newcommand{\scBati}[3][0]{
 \coordinate (#2) at (#3);
 \begin{scope}[rotate=#1,transform shape]
-\node[rectangle,minimum height=1.5em,minimum width=3em,thick] (#2) at (#2) {};
+\node[rectangle,minimum height=1.5em,minimum width=2em,thick] (#2) at (#2) {};
 \draw[scStylesolideext,snake=border,segment angle=-45, segment length=0.6em,segment amplitude=1em,thin] (#2.north west) -- (#2.north east);
 \draw[scStylesolideext] (#2.north west) -- (#2.north east);
 \end{scope}
