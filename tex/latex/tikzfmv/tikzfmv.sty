@@ -1,0 +1,41 @@
+% tikzfmv package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{fig-planes}
+  [2019/10/21 v0.01 LaTeX package de macros tikz variées]
+
+\RequirePackage{tikz}
+\def\hi{Ce paquet regroupe des macros tikz utiles pour fmv.}
+\let\myDate\date
+
+\tikzset{%
+  % use: dblarw={color}{totalouterwidth}{outlineinsidewidth}
+  dblarw/.style n args={3}{%,
+    -latex,
+    line width=#2,
+    draw=#1,  % this draw and color could
+    color=#1, % be an additional style arg
+    opacity=0.9,
+    % note: just color=#1 makes all black!
+    % fill=#1 makes insides (in an open! curve) filled too!
+    % draw=#1,color=#1, seems to work, though
+    postaction={
+      draw=#1,
+      color=#1,
+      line width=#2-#3,
+      shorten >=2*#3,
+      shorten <=#3,
+    },
+    dblarw/.default={gray}{5pt}{1pt},
+    dblarw/.initial={gray}{5pt}{1pt},
+  }
+}
+\endinput
+%%
+%% End of file `tikzfmv.sty'.
