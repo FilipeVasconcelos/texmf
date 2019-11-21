@@ -27,7 +27,7 @@
 \def\yy{#2}
 \def\hh{#3}
 \begin{axis}[
-    name=axx,
+    name=bodegain,
     width=0.9\textwidth,
     height=\hh\textheight,
     ylabel={Gain (dB)},
@@ -48,7 +48,8 @@
 \def\yy{#2}
 \def\hh{#3}
 \begin{axis}[
-    at={(axx.below south west)},yshift=-0.005\textheight,anchor=north west,
+    name=bodephase,
+    at={(bodegain.below south west)},yshift=-0.005\textheight,anchor=north west,
     width=0.9\textwidth,
     height=\hh\textheight,
     xlabel={Pulsation (rad/s)},
