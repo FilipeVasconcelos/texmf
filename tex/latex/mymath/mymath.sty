@@ -53,8 +53,13 @@
 \newcommand*{\devi}[2]{\dfrac{\mathrm{d}^{#2}{#1}}{\dd{t^{#2}}}}
 \newcommand*{\deviV}[3]{\left[\devi{#1}{#2}\right]_{#3}}
 
+% cos/sin
+\newcommandx{\cosa}[1][1=]{\cos\alpha_{#1}}
+\newcommandx{\cosb}[1][1=]{\cos\alpha_{#1}}
+\newcommandx{\sina}[1][1=]{\sin\alpha_{#1}}
+\newcommandx{\sinb}[1][1=]{\sin\alpha_{#1}}
+
 % dot angle
-\newcommand*{\dlambda}{\dot{\lambda}}
 \newcommand*{\dalpha}{\dot{\alpha}}
 \newcommand*{\dtheta}{\dot{\theta}}
 \newcommand*{\dphi}{\dot{\phi}}
@@ -66,6 +71,11 @@
 \newcommand*{\ddphi}{\ddot{\phi}}
 \newcommand*{\ddbeta}{\ddot{\beta}}
 %\newcommand*{\ddpsi}{\ddot{\psi}}
+
+% dot longueur
+\newcommand*{\dlambda}{\dot{\lambda}}
+
+
 
 %creer un vecteur du type \xx{_1}
 \newcommandx{\ccvect}[2][2=]{%
