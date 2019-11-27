@@ -1,0 +1,103 @@
+% fig-planes package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{gliaison}
+  [2019/11/27 v0.01 LaTeX package dessiner des graphes de liaisons]
+
+%\RequirePackage{xargs}
+%\RequirePackage{xparse}
+%\RequirePackage{ifthen}
+%\RequirePackage{mymath}
+%\RequirePackage{tikz}
+%\usetikzlibrary{calc,quotes,angles}
+%\RequirePackage{amsmath}
+%\RequirePackage{kinematik}
+\def\hi{Ce paquet dessine des graphes de liaisons pour l'\'etude des m\'ecanismes.}
+\let\myDate\date
+
+\newcommandx{\gliaison}[8][1=n]{ 
+\def\mode{#1}
+\def\angle{\cang{#2}{#3}}
+\def\rt{#4}
+\def\ct{#5} % color
+\def\rf{#6}
+\def\cf{#7} % color
+\fplanescontinue#8
+}
+
+\newcommandx{\fplanescontinue}[5][1=x,2=y,3=z,4=O,5=,usedefault]{ 
+\def\xbt{\ccvect{#1}[\rt]}
+\def\xbf{\ccvect{#1}[\rf]}
+\def\ybt{\ccvect{#2}[\rt]}
+\def\ybf{\ccvect{#2}[\rf]}
+\def\zbt{\ccvect{#3}[\rt]}
+\def\zbf{\ccvect{#3}[\rf]}
+\def\origine{\ccent{#4}{#5}}
+\def\originem{\ccentm{#4}{#5}}
+
+\ifthenelse{\equal{\mode}{h}}{%
+
+\texttt{\textbackslash fplanes[mode][a][a\_i][r\_t][col\_t][r\_f][col\_t]\{[axe1][axe2][axe3][c][c\_i]\}}\\
+
+\begin{itemize}
+    \item \texttt{mode} $=$ h, r, b (défault : \texttt{vide})
+        \begin{itemize}
+            \item \texttt{h} : afficher cette aide
+            \item \texttt{vide} : figure plane
+            \item \texttt{r} : figure plane $+$ vecteur rotation
+            \item \texttt{b} : figure plane $+$ vecteur rotation $+$ vecteur vitesse
+        \end{itemize}
+    \item \texttt{a} : lettre grec de l'angle (défault : \texttt{alpha})
+    \item \texttt{a\_i} : indice de l'angle (défault : \texttt{vide})
+    \item \texttt{r\_t} : indice du repère tournant (défault : \texttt{1})
+    \item \texttt{c\_t} : couleur du repère tournant (défault : \texttt{black})
+    \item \texttt{r\_f} : indice du repère fixe (défault : \texttt{0})
+    \item \texttt{c\_f} : couleur du repère fixe (défault : \texttt{black})
+    \item \texttt{axe1} : l'axe pointant vers la droite (défault : \texttt{x})
+    \item \texttt{axe2} : l'axe pointant vers le haut (défault : \texttt{y})
+    \item \texttt{axe3} : l'axe sortant (défault : \texttt{z})
+    \item \texttt{c} : origine des répères (défault : \texttt{O})
+    \item \texttt{c\_i} : indice de l'origine (défault : \texttt{vide})
+\end{itemize}
+Remarques : 
+\texttt{axe1,axe2,axe3} doivent être direct ! \texttt{xyz yzx zxy} !!
+}{
+    \coordinate (a) at (0,0);
+    \coordinate (x0) at (1,0);
+    \coordinate (y0) at (0,1);
+%    \coordinate (x1) at (1.8793852415718169,0.6840402866513374);
+%    \coordinate (y1) at (-0.6840402866513374,1.8793852415718169);
+    \coordinate (x1) at (0.93969256961929659, 0.34202028390474665);
+    \coordinate (y1) at (-0.34202028390474665, 0.93969256961929659);
+
+    \draw [-latex,thick,color=\cf] (a) -- ($(a)+2.4*(x0)$) node [right] {$\xbf$} ;
+    \draw [-latex,thick,color=\ct] (a) -- ($(a)+2.4*(x1)$) node [right] {$\xbt$};
+    \draw [-latex,thick,color=\cf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\ybf$};
+    \draw [-latex,thick,color=\ct] (a) -- ($(a)+2.4*(y1)$) node [above] {$\ybt$};
+    \draw [-latex,thick] 
+    pic["$\angle$",draw=black,-latex,
+    angle eccentricity=1.2,angle radius=1.7cm] {angle=x0--a--x1}
+    pic["$\angle$",draw=black,-latex,
+    angle eccentricity=1.2,angle radius=1.7cm] {angle=y0--a--y1};
+    \coordinate (z) at ($(a)+(-1,0.3)$);
+    \draw [thick,fill=black] (a) circle (1pt)   node [below,yshift=-0.5ex]{\origine};
+    \draw [thick] (z) circle (3pt)              node [\cf,below] {$\hphantom{\zbt}=\zbf$};
+    \draw [thick,fill=black] (z) circle (0.5pt) node [\ct,below] {$\zbt\hphantom{=\zbf}$};
+\ifthenelse{\equal{\mode}{r}}{%
+    \node at (0.9,-1.0) {$\Om{\rt/\rf}=\dot{\angle}\zbf$};
+}{}
+\ifthenelse{\equal{\mode}{b}}{%
+    \node at (0.9,-1.2) {$\begin{aligned}\Om{\rt/\rf}&=\dot{\angle}\zbf\\\TCV{\originem}{\rt}{\rf}&=\vnull
+        \end{aligned}$};
+}{}
+}
+}
+\endinput
+%%
+%% End of file `fig-planes.sty'.
