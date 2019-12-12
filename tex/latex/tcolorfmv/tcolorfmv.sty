@@ -1,0 +1,28 @@
+% tcolorfmv package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{tcolorfmv}
+  [2019/10/21 v0.01 LaTeX package de macros tcolorbox variées]
+
+\RequirePackage{tcolorbox}
+\def\hi{Ce paquet regroupe des macros tcolorbox utiles pour fmv.}
+\let\myDate\date
+
+\newtcolorbox{bequation}[1][]{%
+  enhanced,
+  width=\textwidth,
+  sharpish corners,
+  colframe=white,
+  colback=gray!20,
+  after=,
+  #1
+}
+\endinput
+%%
+%% End of file `tcolorfmv.sty'.

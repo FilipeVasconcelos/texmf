@@ -15,7 +15,7 @@
   [2017/06/05 v0.01 LaTeX package commande pour la cinématique des solides;
    2018/10/01 v1.0 LaTeX package commande pour la mécanique des solides]
 
-\def\hi{Ce paquet donne accès à un grand nombre de grandeur mathématique pour la mécanique des solides.}
+\def\hi{Ce paquet donne acc\`es à un grand nombre de grandeur math\'ematique pour la m\'ecanique des solides.}
 \let\myDate\date
 
 
@@ -34,6 +34,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% Cinématique %%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Trajectoire
+\newcommandx*{\traj}[5][1=,3=]{T^{#1}_{\mathrm{#2}_{#3}\in#4/#5}}
 
 % Elements de reduction cinematique
 \newcommandx*{\Om}[2][1=]{\overrightarrow{\Omega^{#1}_{#2}}}
@@ -110,13 +112,13 @@
 % Matrice d'Inertie
 \newcommandx*{\II}[3][2=]{\rttensor{I_{\mathrm{#1}_{#2}}(\boldsymbol{#3})}}
 
-% Repère
+% Repère Ri,..,xi,yi,zi
 \newcommandx*{\rep}[3][2=]{R_{#3}(\mathrm{#1}_{#2},\xx{#3},\yy{#3},\zz{#3})}
-% Repères
+% Repères R,..,xi,yj,zk
 \newcommandx*{\reps}[6][2=]{R_{#3}(\mathrm{#1}_{#2},\xx{#4},\yy{#5},\zz{#6})}
-% Bases
+% Bases xi,yi,zi
 \newcommand*{\bas}[1]{(\xx{#1},\yy{#1},\zz{#1})}
-% Bases
+% Bases xi,yj,zk
 \newcommand*{\bass}[3]{(\xx{#1},\yy{#2},\zz{#3})}
 % Axes
 \newcommandx*{\axe}[4][2=,4=]{(\mathrm{#1}_{#2},\ccvect{#3}[#4])}

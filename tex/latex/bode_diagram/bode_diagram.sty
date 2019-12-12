@@ -27,7 +27,7 @@
 \def\yy{#2}
 \def\hh{#3}
 \begin{axis}[
-    name=axx,
+    name=bodegain,
     width=0.9\textwidth,
     height=\hh\textheight,
     ylabel={Gain (dB)},
@@ -38,7 +38,7 @@
     xmin=1e0, xmax=1e\xx,
     ymin=0, ymax=\yy,
     grid=both,
-    major grid style={black!40}
+    major grid style={black!50}
 ]
 %\addplot[ultra thick, blue,domain=1e1:1e4, samples=201] {#6};
 \end{axis}
@@ -48,7 +48,8 @@
 \def\yy{#2}
 \def\hh{#3}
 \begin{axis}[
-    at={(axx.below south west)},yshift=-0.005\textheight,anchor=north west,
+    name=bodephase,
+    at={(bodegain.below south west)},yshift=-0.005\textheight,anchor=north west,
     width=0.9\textwidth,
     height=\hh\textheight,
     xlabel={Pulsation (rad/s)},
@@ -60,7 +61,7 @@
     xmin=1e0, xmax=1e\xx,
     ymin=0, ymax=\yy,
     grid=both,
-    major grid style={black!40}
+    major grid style={black!50}
 ]
 %\addplot[ultra thick, blue,domain=1e:1e4, samples=201] {#6};
 \end{axis}
