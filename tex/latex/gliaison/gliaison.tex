@@ -1,0 +1,62 @@
+\documentclass[a4paper,9pt]{article} 
+\usepackage[utf8]{inputenc}          
+\usepackage[T1]{fontenc}             
+\usepackage[francais]{babel}         
+\usepackage{lmodern}                 
+
+\usepackage{geometry}                                                                                                         
+\geometry{hmargin=2.5cm,vmargin=2.6cm}
+
+\usepackage{mymath}
+\usepackage{amsmath}
+\usepackage{titling}
+\usepackage{tikz,pgf}
+\usepackage{gliaison}
+\usepackage{verbatim}
+
+\newcommand{\subtitle}[1]{%                          
+\posttitle{%                                   
+\par\end{center}%
+\begin{center}\large#1\end{center}%
+\vskip0.5em}%              
+}                          
+\newcommand{\mparagraph}[1]{\paragraph{#1}\mbox{}\\} 
+\title{Graphe de liaisons avec PGF/Tikz}
+\subtitle{gliaison version 0.1}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Macros tikz pour tracer des graphes de liaisons
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\section{Paquets nécessaires}                                                         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\begin{verbatim}                                                                      
+\usepackage{tikz}
+\usepackage{ifthen}
+\end{verbatim} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\section{Utilisation des macros}                                                         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+
+\subsection*{Figure par défaut}
+
+\begin{center}
+    \begin{tikzpicture}
+        \gliaison
+    \end{tikzpicture}
+\end{center}
+
+Commande:
+\begin{verbatim}
+\begin{tikzpicture}
+    \gliaison
+\end{tikzpicture}
+\end{verbatim}
+
+\end{document}
