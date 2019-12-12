@@ -21,17 +21,8 @@
 
 \begin{document}
 
-\begin{center}
-    \figplanes[n]{alpha}{}{1}{0}{x}{y}{z}{A}
-\end{center}
-\begin{center}
-    \figplanes[n]{alpha}{1}{1}{0}{x}{y}{z}{O}
-\end{center}
-\begin{center}
-    \figplanes[r]{alpha}{1}{1}{0}{x}{y}{z}{O}
-\end{center}
-\begin{center}
-    \figplanes[b]{alpha}{1}{1}{0}{x}{y}{z}{O_1}
-\end{center}
+\begin{tikzpicture}
+    \figplanes[t][theta][2][3][red][2][blue]{[x][y][z][A][6]}
+\end{tikzpicture}
 
 \end{document}
