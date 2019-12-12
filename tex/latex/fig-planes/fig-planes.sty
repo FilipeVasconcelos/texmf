@@ -102,7 +102,8 @@ Remarques :
         \draw [thick,fill=black] (z) circle (0.5pt) node [\ct,below] {$\zbt\hphantom{=\zbf}$};
         \draw [-latex,thick] ($(a)+1.7*(y0)$) -- node[above] {$\angle$} ($(b)+1.7*(y0)$);
         \ifthenelse{\equal{\mode}{tv}}{%
-            \node at (0.9,-1.0) {$\TCV{\originedm}{\rt}{\rf}=\dot{\angle}\xbt$};
+        \node at (0.9,-1.4) {$\begin{aligned}\Om{\rt/\rf}&=\vnull\\\TCV{\originedm}{\rt}{\rf}
+                                                         &=\dot{\angle}\xbf\end{aligned}$};
         }{}
     }{
         \coordinate (a) at (0,0);
@@ -129,7 +130,7 @@ Remarques :
             \node at (0.9,-1.0) {$\Om{\rt/\rf}=\dot{\angle}\zbf$};}
         {}
         \ifthenelse{\equal{\mode}{b}}{%
-        \node at (0.9,-1.2) {$\begin{aligned}\Om{\rt/\rf}&=\dot{\angle}\zbf\\\TCV{\originem}{\rt}{\rf}&=\vnull\end{aligned}$};
+        \node at (0.9,-1.4) {$\begin{aligned}\Om{\rt/\rf}&=\dot{\angle}\zbf\\\TCV{\originem}{\rt}{\rf}&=\vnull\end{aligned}$};
         }{}
     }
 }
