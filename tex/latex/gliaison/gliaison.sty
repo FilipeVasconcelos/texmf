@@ -28,17 +28,19 @@
 \def\typeC{o}
 \def\nbsolides{5}
 \def\liaison{contact}
+\def\color{red}
 \scSolideExt[bati]{black,ultra thick}
 \scSolides{bati}{bati}\scBati[-90]{B}{-1.5,0}
-\node[state,black,line width=1.5pt] (S0) {\tbf{0}};
+\node[state,black,line width=1.5pt] (S0) at (1,0) {\tbf{0}};
 \draw[bati] (B) -- (S0);
 \pgfmathsetmacro{\nm}{0};
 \foreach \n in {1,...,\nbsolides}
 {
-    \pgfmathsetmacro{\d}{\n};
-    \node[state,red,line width=1.5pt,right=\n cm of S0 ] (S\n) {\tbf{\n}};
-%    \draw[bati] (S\nm) -- node[below,midway,yshift=-1em] {\liaison} (S\n);
+    \node[state,\color,line width=1.5pt,right=2*\n of S0.west] (S\n) {\tbf{\n}};
+    \pgfmathtruncatemacro\result{\n-1}
+    \draw[bati] (S\result) -- node[below,midway,yshift=-1em] {\liaison} (S\n);
 }
+%\draw[fill=blue] (S2) circle (3pt);
 %\draw[dblarwR={blue}{4pt}{4pt}] (S1) -- + ($1.5*(1,1)$) node[above] {$\torAM{g}{1}{}$} ;
 %\draw[very thick,dashed,green] (S1) circle (11pt);
 }
