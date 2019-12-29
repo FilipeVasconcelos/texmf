@@ -11,7 +11,8 @@
 \def\hi{Ce paquet permet de creer une carte de pôles et zéros.}
 \let\myDate\date
 
-\RequirePackage{mymath}
+\RequirePackage{tikzfmv}
+\RequirePackage{mathfmv}
 \RequirePackage{xargs}
 \RequirePackage{ifthen} 
 \RequirePackage{tikz}
@@ -21,12 +22,6 @@
 \usetikzlibrary{shapes}
 \usetikzlibrary{decorations}
 
-\tikzset{cross/.style={cross out, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},               
-%default radius will be 1pt.                                                                                          
-cross/.default={1pt}}
-\tikzset{circ/.style={circle, draw=black, minimum size=2*(#1-\pgflinewidth), inner sep=0pt, outer sep=0pt},               
-%default radius will be 1pt.                                                                                          
-circ/.default={1pt}}
 
 \newcommandx{\dpole}[5][4=blue,5=below]{
     \def\xx{#1}
