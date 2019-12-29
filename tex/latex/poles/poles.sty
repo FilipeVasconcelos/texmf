@@ -11,6 +11,7 @@
 \def\hi{Ce paquet permet de creer une carte de pôles et zéros.}
 \let\myDate\date
 
+\RequirePackage{mymath}
 \RequirePackage{xargs}
 \RequirePackage{ifthen} 
 \RequirePackage{tikz}
@@ -75,18 +76,18 @@ circ/.default={1pt}}
     \def\txs{#6}
     \ifthenelse{\equal{\mode}{l}}{%left
         \pgfmathsetmacro{\xs}{\txs};
-        \draw[very thick,-latex] (\xs,\ymin) -- (\xs,\ymax) node[left]  {\textbf{Im\{p\}}};
-        \draw[very thick,-latex] (\xmin,0) -- (\xmax,0) node[below] {\textbf{Re\{p\}}};
+		\draw[very thick,-latex] (\xs,\ymin) -- (\xs,\ymax) node[left]  {$\boldsymbol{\Im{p}}$};
+		\draw[very thick,-latex] (\xmin,0) -- (\xmax,0) node[below]     {$\boldsymbol{\Re{p}}$};
 }{}
     \ifthenelse{\equal{\mode}{c}}{%center
         \pgfmathsetmacro{\xs}{0}
-        \draw[very thick,-latex] (\xs,\ymin) -- (\xs,\ymax) node[left]  {\textbf{Im\{p\}}};
-        \draw[very thick,-latex] (\xmin,0) -- (\xmax,0) node[below] {\textbf{Re\{p\}}};
+        \draw[very thick,-latex] (\xs,\ymin) -- (\xs,\ymax) node[left]  {$\boldsymbol{\Im{p}}$};
+        \draw[very thick,-latex] (\xmin,0) -- (\xmax,0) node[below]     {$\boldsymbol{\Re{p}}$};
 }{}
     \ifthenelse{\equal{\mode}{r}}{%right
         \pgfmathsetmacro{\xs}{-\txs}
-        \draw[very thick,-latex] (\xs,\ymin) -- (\xs,\ymax) node[left]  {\textbf{Im\{p\}}};
-        \draw[very thick,-latex] (\xmin,0) -- (\xmax,0) node[below] {\textbf{Re\{p\}}};
+        \draw[very thick,-latex] (\xs,\ymin) -- (\xs,\ymax) node[left]  {$\boldsymbol{\Im{p}}$};
+        \draw[very thick,-latex] (\xmin,0) -- (\xmax,0) node[below]     {$\boldsymbol{\Re{p}}$};
 }{}
 }
 \endinput
