@@ -13,6 +13,15 @@
 \RequirePackage{tcolorbox}
 \def\hi{Ce paquet regroupe des macros tcolorbox utiles pour fmv.}
 \let\myDate\date
+\tcbuselibrary{skins}
+\tcbset{shield externalize,
+                pccstyle/.style={,
+        enhanced,flushleft upper,
+        boxrule=1.6pt,
+        colback=white,colframe=black!50!yellow,
+        drop fuzzy midday shadow=black!50!yellow
+    }
+}
 
 \newtcolorbox{tips}[2][]{%
   enhanced,
