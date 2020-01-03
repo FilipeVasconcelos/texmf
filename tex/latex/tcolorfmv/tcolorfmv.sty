@@ -44,31 +44,33 @@
   #1
 }
 \newtcolorbox{theorem}[2][]{%
-  enhanced,
-  breakable,
-  width=\linewidth ,
-  fonttitle=\bfseries,
-  fonttitle=\bfseries\color{black},
-  %sharpish corners,
-  colframe=gray!50,
-  colback=gray!10,
-  title={#2},
-	#1
+    enhanced,
+    breakable,
+    width=\linewidth ,
+    fonttitle=\bfseries,
+    fonttitle=\bfseries\color{black},
+    colframe=gray!50,
+    colback=gray!10,
+    title={#2},
+    #1
 }
 \newtcolorbox{code}[1][]{%
-enhanced,
-breakable,
-width=\linewidth,
-colback=blue!8,
-#1
+    enhanced,
+    breakable,
+    sharpish corners,
+    width=0.9\linewidth,
+    colframe=white,
+    colback=blue!8,
+    #1
 }
 \newtcolorbox{doc}[1][]{%
-enhanced,
-breakable,
-width=\linewidth,
-colframe=red!60,
-colback=red!8,
-#1
+    enhanced,
+    breakable,
+    sharpish corners,
+    width=0.9\linewidth,
+    colframe=white,
+    colback=red!8,
+    #1
 }
 \newtcolorbox{bequation}[1][]{%
   enhanced,
