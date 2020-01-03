@@ -11,13 +11,14 @@
   [2019/10/21 v0.01 LaTeX package de déclarations d'unités siunitx]
 
 \RequirePackage{siunitx}
-\def\hi{Ce paquet regroupe des définitions d'unités pour pour fmv.}
+\def\hi{Ce paquet regroupe des définitions d'unités pour fmv.}
 \let\myDate\date
 
 \sisetup{inter-unit-product=\ensuremath{{}\cdot{}}}
 \DeclareSIUnit{\tour}{tr}
 \DeclareSIUnit\dec{décade}
 \DeclareSIUnit\dB{\decibel}
+\newcommand*{\degree}{\si{\degree}}
 \endinput
 %%
 %% End of file `siunitxfmv.sty'.
