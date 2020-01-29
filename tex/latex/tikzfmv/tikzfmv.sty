@@ -11,6 +11,7 @@
   [2019/10/21 v0.01 LaTeX package de macros tikz variées]
 
 \RequirePackage{tikz}
+\RequirePackage{xspace}
 \def\hi{Ce paquet regroupe des macros tikz utiles pour fmv.}
 \let\myDate\date
 
@@ -65,6 +66,19 @@ cross/.default={1pt}}
 circ/.default={1pt}}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%not working yet
+\newcommand{\tenpow}[1]{%
+10$^{#1}$%
+}
+\def\loglabels#1#2{\tenpow{\number#1}
+\ifnum#1<#2,
+\expandafter\loglabels
+\expandafter{\number\numexpr#1+1\expandafter}%
+\expandafter{#2\expandafter}%
+\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \tikzstyle{solid}=                   [dash pattern=]
 \tikzstyle{dotted}=                  [dash pattern=on \pgflinewidth off 2pt]
 \tikzstyle{densely dotted}=          [dash pattern=on \pgflinewidth off 1pt]
@@ -80,6 +94,18 @@ circ/.default={1pt}}
 \tikzset{SignePlus/.style  =   {above left,opacity=0.8,circle,inner sep=0.5pt,fill=#1!50}}
 \tikzset{SigneMoins/.style =   {above right,opacity=0.8,circle,inner sep=0.5pt,fill=#1!50}}
 \tikzset{node style ge/.style={circle,font=\bfseries}}
+
+\tikzstyle{signalr}=[very thick,red,samples=201]
+\tikzstyle{signalg}=[very thick,green,samples=201]
+\tikzstyle{signalb}=[very thick,blue,samples=201]
+\tikzstyle{signalc}=[very thick,cyan,samples=201]
+\tikzstyle{signalm}=[very thick,magenta,samples=201]
+\tikzstyle{signaly}=[very thick,yellow,samples=201]
+\tikzstyle{signaln}=[very thick,black,samples=201]
+\tikzstyle{envelop}=[very thick,black,samples=201,dotted]
+\tikzstyle{signaljump}=[dashed,very thick,blue]
+\tikzstyle{utr}=[ultra thick,red]
+\tikzstyle{utb}=[ultra thick,blue]
 \endinput
 %%
 %% End of file `tikzfmv.sty'.
