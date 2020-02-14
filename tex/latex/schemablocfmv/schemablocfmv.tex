@@ -1,0 +1,164 @@
+\documentclass[a4paper,9pt]{article} 
+\usepackage[utf8]{inputenc}          
+\usepackage[T1]{fontenc}             
+\usepackage[francais]{babel}         
+\usepackage{lmodern}                 
+
+\usepackage{geometry}                                                                                                         
+\geometry{hmargin=2.5cm,vmargin=2.6cm}
+
+%\usepackage{schemabloc}
+\usepackage{schemablocfmv}
+\usepackage{mathfmv}
+\usepackage{amsmath}
+\usepackage{titling}
+\usepackage{tikz,pgf}
+\usepackage{verbatim}
+\usetikzlibrary{calc}
+
+\newcommand{\subtitle}[1]{%                          
+\posttitle{%                                   
+\par\end{center}%
+\begin{center}\large#1\end{center}%
+\vskip0.5em}%              
+}                          
+\newcommand{\mparagraph}[1]{\paragraph{#1}\mbox{}\\} 
+\title{Extension de \texttt{schemabloc} avec PGF/Tikz}
+\subtitle{schemablocfmv version 0.1}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\maketitle
+Ce paquet définit des macros à partir du paquet \texttt{schemabloc}
+de R. Papanicola.
+\begin{abstract}
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\section{Paquets nécessaires}                                                         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\begin{verbatim}                                                                      
+\usepackage{schemabloc}
+\usepackage{schemablocfmv}
+\end{verbatim} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\section{Utilisation des macros}                                                         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+
+Commande \textbf{b}loc \textbf{s}imple: \verb?\bs? 
+\begin{center}
+    \begin{tikzpicture}
+        \bs
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{b}loc \textbf{s}imple (étendue) : \verb?\bs[a][b][c][d]?
+\begin{center}
+    \begin{tikzpicture}
+        \bs[a][b][c][d]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple : \verb?\compbs?
+\begin{center}
+    \begin{tikzpicture}
+        \compbs
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple (étendue) : \verb?\compbs[a][b][c][d][e][f]?
+\begin{center}
+    \begin{tikzpicture}
+        \compbs[a][b][c][d][e][f]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+\clearpage
+
+Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire: \verb?\bruni?
+\begin{center}
+    \begin{tikzpicture}
+        \bruni
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) : \verb?\bruni[a][b][c][d][e]?
+\begin{center}
+    \begin{tikzpicture}
+        \bruni[a][b][c][d][e]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour : \verb?\bbr?
+\begin{center}
+    \begin{tikzpicture}
+        \bbr
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour (étendue) : \verb?\bbr[a][b][c][d][e][f][g]?
+\begin{center}
+    \begin{tikzpicture}
+        \bbr[a][b][c][d][e][f][g][h]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
+Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}taire : \verb?\corrbruni?
+\begin{center}
+    \begin{tikzpicture}
+        \corrbruni
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) : \verb?\corrbruni[a][b][c][d][e][f][g][h]?
+\begin{center}
+    \begin{tikzpicture}
+        \corrbruni[a][b][c][d][e][f][g][h]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
+Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{b}loc \textbf{r}etour : \verb?\corrbbr{}?
+\begin{center}
+    \begin{tikzpicture}
+        \corrbbr{}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) : \verb?\corrbbr[a][b][c][d][e][f][g][h]{[i][j][k]}?
+\begin{center}
+    \begin{tikzpicture}
+        \corrbbr[a][b][c][d][e][f][g][h]{[i][j][k]}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
+
+
+\end{document}

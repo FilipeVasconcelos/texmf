@@ -69,13 +69,17 @@ circ/.default={1pt}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %not working yet
 \newcommand{\tenpow}[1]{%
-10$^{#1}$%
+$10^{#1}$%
 }
-\def\loglabels#1#2{\tenpow{\number#1}
-\ifnum#1<#2,
-\expandafter\loglabels
-\expandafter{\number\numexpr#1+1\expandafter}%
-\expandafter{#2\expandafter}%
+\newcounter{tpcounter}
+\newcommand{\tp}[1][]{
+\def\tmp{#1}%
+\ifx\tmp\empty
+\stepcounter{tpcounter}
+\tenpow{\thetpcounter}
+\else
+\setcounter{tpcounter}{\number#1}
+\tenpow{\thetpcounter}
 \fi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

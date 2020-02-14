@@ -1,0 +1,128 @@
+% schemablocfmv package
+% 
+% (c) Filipe Vasconcelos
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{schemablocfmv}
+  [2019/10/21 v0.01 LaTeX package de macros tikz variées]
+\RequirePackage{xargs}
+\RequirePackage{tikz}
+\RequirePackage{schemabloc}
+\def\hi{Ce paquet regroupe des macros schemabloc utiles pour fmv.}
+\let\myDate\date
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% bs : bloc simple
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx{\bs}[4][1=$E(p)$,2=$H(p)$,3=,4=$S(p)$]{
+\sbEntree{E1}
+\sbBloc[4]{B1}{#2}{E1}
+\sbRelier[#1]{E1}{B1}
+\sbSortie[4]{S1}{B1}
+\sbRelier[#4]{B1}{S1}
+\node[yshift=-0.5em] at (B1.south) {#3};
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% compbs : comp + bloc simple
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx{\compbs}[6][1=$E_1(p)$,2=$E_2(p)$,3=$\epsilon(p)$,4=$H(p)$,5=,6=$S(p)$]{
+\sbEntree{E1}
+\sbComp[4.5]{comp}{E1}
+\sbRelier[#1]{E1}{comp}
+\sbBloc[3]{B1}{#4}{comp}
+\sbRelier[#3]{comp}{B1}
+\sbSortie[4]{S1}{B1}
+\sbRelier[#6]{B1}{S1}
+\node[yshift=-0.5em] at (B1.south) {#5};
+\draw[-latex](comp|-0,-1.5)--(comp.south) node[midway,left]{#2};
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% bru : bloc + retour unitaire
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx{\bruni}[5][1=$E(p)$,2=$\epsilon(p)$,3=$H(p)$,4=,5=$S(p)$]{
+\sbEntree{E1}
+\sbComp[4.5]{comp}{E1}
+\sbRelier[#1]{E1}{comp}
+\sbBloc[3]{B1}{#3}{comp}
+\sbRelier[#2]{comp}{B1}
+\sbSortie[6]{S1}{B1}
+\sbRelier[#5]{B1}{S1}
+\sbRenvoi{B1-S1}{comp}{}
+\node[yshift=-0.5em] at (B1.south) {#4};
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%corrbru : correcteur + bloc + retour unitaire
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx{\corrbruni}[8][1=$E(p)$,2=$\epsilon(p)$,3=$C(p)$,4=,5=$U(p)$,6=$H(p)$,7=,8=$S(p)$]{
+\sbEntree{E1}
+\sbComp[4.5]{comp}{E1}
+\sbRelier[#1]{E1}{comp}
+\sbBloc[3]{C1}{#3}{comp}
+\sbRelier[#2]{comp}{C1}
+\sbBloc[3]{B1}{#6}{C1}
+\sbRelier[#5]{C1}{B1}
+\sbSortie[6]{S1}{B1}
+\sbRelier[#8]{B1}{S1}
+\sbRenvoi{B1-S1}{comp}{}
+\node[yshift=-0.5em] at (C1.south) {#4};
+\node[yshift=-0.5em] at (B1.south) {#7};
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% bbr : bloc + bloc retour 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx{\bbr}[8][1=$E(p)$,2=$\epsilon(p)$,3=$H(p)$,4=,5=$S(p)$,6=$R(p)$,7=,8=$M(p)$]{
+\sbEntree{E1}
+\sbComp[4.5]{comp}{E1}
+\sbRelier[#1]{E1}{comp}
+\sbBloc[3]{B1}{#3}{comp}
+\sbRelier[#2]{comp}{B1}
+\sbSortie[6]{S1}{B1}
+\sbRelier[#5]{B1}{S1}
+\sbDecaleNoeudy{B1}{R}
+\sbBlocr[-1.5]{R1}{#6}{R}
+\sbRelieryx{B1-S1}{R1}
+\sbRelierxy[#8]{R1}{comp}
+\node[yshift=-0.5em] at (B1.south) {#4};
+\node[yshift=-0.5em] at (R1.south) {#7};
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% corrbbr : correcteur + bloc + bloc retour 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx{\corrbbr}[9][1=$E(p)$,2=$\epsilon(p)$,3=$C(p)$,4=,5=$U(p)$,6=$H(p)$,7=,8=$S(p)$,usedefault]{
+\def\one{#1}
+\def\two{#2}
+\def\three{#3}
+\def\four{#4}
+\def\five{#5}
+\def\six{#6}
+\def\seven{#7}
+\def\eight{#8}
+\corrbbrcontinue#9
+}
+
+\newcommandx{\corrbbrcontinue}[3][1=$R(p)$,2=,3=$M(p)$]{
+\sbEntree{E1}
+\sbComp[4.5]{comp}{E1}
+\sbRelier[\one]{E1}{comp}
+\sbBloc[3]{C1}{\three}{comp}
+\sbRelier[\two]{comp}{C1}
+\sbBloc[3]{B1}{\six}{C1}
+\sbRelier[\five]{C1}{B1}
+\sbSortie[6]{S1}{B1}
+\sbRelier[\eight]{B1}{S1}
+\sbDecaleNoeudy{B1}{R}
+\sbBlocr[1.5]{R1}{#1}{R}
+\sbRelieryx{B1-S1}{R1}
+\sbRelierxy[#3]{R1}{comp}
+\node[yshift=-0.5em] at (C1.south) {\four};
+\node[yshift=-0.5em] at (B1.south) {\seven};
+\node[yshift=-0.5em] at (R1.south) {#2};
+}
+\endinput
+%%
+%% End of file `schemablocfmv.sty'.
