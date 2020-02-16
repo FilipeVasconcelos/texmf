@@ -8,7 +8,7 @@
 % 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{schemablocfmv}
-  [2019/10/21 v0.01 LaTeX package de macros tikz variées]
+[2019/10/21 v0.01 LaTeX package de macros tikz variées]
 \RequirePackage{xargs}
 \RequirePackage{tikz}
 \RequirePackage{schemabloc}
@@ -18,7 +18,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % bs : bloc simple
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommandx{\bs}[4][1=$E(p)$,2=$H(p)$,3=,4=$S(p)$]{
+\newcommandx{\bs}[4]
+[1=$E(p)$,2=$H(p)$,3=,4=$S(p)$,usedefault]
+{
 \sbEntree{E1}
 \sbBloc[4]{B1}{#2}{E1}
 \sbRelier[#1]{E1}{B1}
@@ -29,7 +31,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % compbs : comp + bloc simple
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommandx{\compbs}[6][1=$E_1(p)$,2=$E_2(p)$,3=$\epsilon(p)$,4=$H(p)$,5=,6=$S(p)$]{
+\newcommandx{\compbs}[6]
+[1=$E_1(p)$,2=$E_2(p)$,3=$\epsilon(p)$,4=$H(p)$,5=,6=$S(p)$,usedefault]
+{%
 \sbEntree{E1}
 \sbComp[4.5]{comp}{E1}
 \sbRelier[#1]{E1}{comp}
@@ -43,7 +47,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % bru : bloc + retour unitaire
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommandx{\bruni}[5][1=$E(p)$,2=$\epsilon(p)$,3=$H(p)$,4=,5=$S(p)$]{
+\newcommandx{\bruni}[5]
+[1=$E(p)$,2=$\epsilon(p)$,3=$H(p)$,4=,5=$S(p)$,usedefault]
+{%
 \sbEntree{E1}
 \sbComp[4.5]{comp}{E1}
 \sbRelier[#1]{E1}{comp}
@@ -57,7 +63,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %corrbru : correcteur + bloc + retour unitaire
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommandx{\corrbruni}[8][1=$E(p)$,2=$\epsilon(p)$,3=$C(p)$,4=,5=$U(p)$,6=$H(p)$,7=,8=$S(p)$]{
+\newcommandx{\corrbruni}[8]
+[1=$E(p)$,2=$\epsilon(p)$,3=$C(p)$,4=,5=$U(p)$,6=$H(p)$,7=,8=$S(p)$,usedefault]
+{
 \sbEntree{E1}
 \sbComp[4.5]{comp}{E1}
 \sbRelier[#1]{E1}{comp}
@@ -74,7 +82,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % bbr : bloc + bloc retour 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommandx{\bbr}[8][1=$E(p)$,2=$\epsilon(p)$,3=$H(p)$,4=,5=$S(p)$,6=$R(p)$,7=,8=$M(p)$]{
+\newcommandx{\bbr}[8]
+[1=$E(p)$,2=$\epsilon(p)$,3=$H(p)$,4=,5=$S(p)$,6=$R(p)$,7=,8=$M(p)$,usedefault]
+{
 \sbEntree{E1}
 \sbComp[4.5]{comp}{E1}
 \sbRelier[#1]{E1}{comp}
@@ -93,7 +103,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % corrbbr : correcteur + bloc + bloc retour 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommandx{\corrbbr}[9][1=$E(p)$,2=$\epsilon(p)$,3=$C(p)$,4=,5=$U(p)$,6=$H(p)$,7=,8=$S(p)$,usedefault]{
+\newcommandx{\corrbbr}[9]
+[1=$E(p)$,2=$\epsilon(p)$,3=$C(p)$,4=,5=$U(p)$,6=$H(p)$,7=,8=$S(p)$,usedefault]
+{
 \def\one{#1}
 \def\two{#2}
 \def\three{#3}
@@ -105,7 +117,9 @@
 \corrbbrcontinue#9
 }
 
-\newcommandx{\corrbbrcontinue}[3][1=$R(p)$,2=,3=$M(p)$]{
+\newcommandx{\corrbbrcontinue}[3]
+[1=$R(p)$,2=,3=$M(p)$,usedefault]
+{
 \sbEntree{E1}
 \sbComp[4.5]{comp}{E1}
 \sbRelier[\one]{E1}{comp}
@@ -122,6 +136,71 @@
 \node[yshift=-0.5em] at (C1.south) {\four};
 \node[yshift=-0.5em] at (B1.south) {\seven};
 \node[yshift=-0.5em] at (R1.south) {#2};
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% cpbruni : correcteur + pertubation +  bloc + retour unitaire
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx{\cpbruni}[9]
+[1=$E(p)$,2=$\epsilon(p)$,
+ 3=$C(p)$,4=,5=$U(p)$,6=$P(p)$,7=$H(p)$,8=,9=$S(p)$,usedefault]
+{
+\sbEntree{E1}
+\sbComp[4.5]{comp}{E1}
+\sbRelier[#1]{E1}{comp}
+\sbBloc[3]{C1}{#3}{comp}
+\sbRelier[#2]{comp}{C1}
+\sbCompSum[5.0]{pert}{C1}{+}{}{+}{}
+\sbRelier[#5]{C1}{pert}
+\sbBloc[3]{B1}{#7}{pert}
+\sbRelier{pert}{B1}
+\sbSortie[6]{S1}{B1}
+\sbRelier[#9]{B1}{S1}
+\sbRenvoi{B1-S1}{comp}{}
+\node[yshift=-0.5em] at (C1.south) {#4};
+\node[yshift=-0.5em] at (B1.south) {#8};
+\draw[-latex](pert|-0,1.5)--(pert.north) node[midway,left]{#6};
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% cpbruni : correcteur + pertubation +  bloc + bloc retour
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx{\cpbbr}[9]
+[1=$E(p)$,2=$\epsilon(p)$,3=$C(p)$,4=,5=$U(p)$,6=$P(p)$,7=$H(p)$,8=,usedefault]
+{
+\def\one{#1}
+\def\two{#2}
+\def\three{#3}
+\def\four{#4}
+\def\five{#5}
+\def\six{#6}
+\def\seven{#7}
+\def\eight{#8}
+\cpbbrcontinue#9
+}
+
+\newcommandx{\cpbbrcontinue}[4]
+[1=$S(p)$,2=$R(p)$,3=,4=$M(p)$,usedefault]
+{
+\sbEntree{E1}
+\sbComp[4.5]{comp}{E1}
+\sbRelier[\one]{E1}{comp}
+\sbBloc[3]{C1}{\three}{comp}
+\sbRelier[\two]{comp}{C1}
+\sbCompSum[5.0]{pert}{C1}{+}{}{+}{}
+\sbRelier[\five]{C1}{pert}
+\sbBloc[3]{B1}{\seven}{pert}
+\sbRelier{pert}{B1}
+\sbSortie[6]{S1}{B1}
+\sbRelier[#1]{B1}{S1}
+\sbDecaleNoeudy{pert}{R}
+\sbBlocr[-1.5]{R1}{#2}{R}
+\sbRelieryx{B1-S1}{R1}
+\sbRelierxy[#4]{R1}{comp}
+\node[yshift=-0.5em] at (C1.south) {\four};
+\node[yshift=-0.5em] at (B1.south) {\eight};
+\node[yshift=-0.5em] at (R1.south) {#3};
+\draw[-latex](pert|-0,1.5)--(pert.north) node[midway,left]{\six};
 }
 \endinput
 %%

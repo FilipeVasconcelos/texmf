@@ -1,4 +1,4 @@
-\documentclass[a4paper,9pt]{article} 
+\documentclass[a4paper,10pt]{article} 
 \usepackage[utf8]{inputenc}          
 \usepackage[T1]{fontenc}             
 \usepackage[francais]{babel}         
@@ -35,19 +35,26 @@ Ce paquet définit des macros à partir du paquet \texttt{schemabloc}
 de R. Papanicola.
 \end{abstract}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
-\section{Paquets nécessaires}                                                         
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
-\begin{verbatim}                                                                      
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Paquets nécessaires}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{verbatim}
+\usepackage{tikz}
 \usepackage{schemabloc}
 \usepackage{schemablocfmv}
 \end{verbatim} 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
-\section{Utilisation des macros}                                                         
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Utilisation des macros}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Bloc simple}
-Commande \textbf{b}loc \textbf{s}imple: \verb?\bs? 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande \textbf{b}loc \textbf{s}imple: 
+
+\verb?\bs?
 \begin{center}
     \begin{tikzpicture}
         \bs
@@ -56,7 +63,9 @@ Commande \textbf{b}loc \textbf{s}imple: \verb?\bs?
 \hrule
 \vspace{0.5cm}
 
-Commande \textbf{b}loc \textbf{s}imple (étendue) : \verb?\bs[a][b][c][d]?
+Commande \textbf{b}loc \textbf{s}imple (étendue) : 
+
+\verb?\bs[a][b][c][d]?
 \begin{center}
     \begin{tikzpicture}
         \bs[a][b][c][d]
@@ -64,9 +73,13 @@ Commande \textbf{b}loc \textbf{s}imple (étendue) : \verb?\bs[a][b][c][d]?
 \end{center}
 \hrule
 \vspace{0.5cm}
-
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Comparateur}
-Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple : \verb?\compbs?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple : 
+
+\verb?\compbs?
 \begin{center}
     \begin{tikzpicture}
         \compbs
@@ -75,7 +88,9 @@ Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple : \verb?\compbs?
 \hrule
 \vspace{0.5cm}
 
-Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple (étendue) : \verb?\compbs[a][b][c][d][e][f]?
+Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple (étendue) : 
+
+\verb?\compbs[a][b][c][d][e][f]?
 \begin{center}
     \begin{tikzpicture}
         \compbs[a][b][c][d][e][f]
@@ -84,10 +99,12 @@ Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple (étendue) : \verb
 \hrule
 \vspace{0.5cm}
 
-\clearpage
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Boucle retour unitaire}
-Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire: \verb?\bruni?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire: 
+
+\verb?\bruni?
 \begin{center}
     \begin{tikzpicture}
         \bruni
@@ -96,7 +113,9 @@ Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire: \verb?\bruni?
 \hrule
 \vspace{0.5cm}
 
-Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) : \verb?\bruni[a][b][c][d][e]?
+Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) : 
+
+\verb?\bruni[a][b][c][d][e]?
 \begin{center}
     \begin{tikzpicture}
         \bruni[a][b][c][d][e]
@@ -105,8 +124,12 @@ Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) : \verb?\b
 \hrule
 \vspace{0.5cm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Boucle de retour}
-Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour : \verb?\bbr?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour : 
+
+\verb?\bbr?
 \begin{center}
     \begin{tikzpicture}
         \bbr
@@ -115,7 +138,9 @@ Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour : \verb?\bbr?
 \hrule
 \vspace{0.5cm}
 
-Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour (étendue) : \verb?\bbr[a][b][c][d][e][f][g]?
+Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour (étendue) : 
+
+\verb?\bbr[a][b][c][d][e][f][g]?
 \begin{center}
     \begin{tikzpicture}
         \bbr[a][b][c][d][e][f][g][h]
@@ -125,8 +150,13 @@ Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour (étendue) : \verb?\bbr[a
 \vspace{0.5cm}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Correcteur}
-Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}taire : \verb?\corrbruni?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande : \textbf{corr}ecteur + \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire : 
+
+\verb?\corrbruni?
 \begin{center}
     \begin{tikzpicture}
         \corrbruni
@@ -135,7 +165,10 @@ Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}tai
 \hrule
 \vspace{0.5cm}
 
-Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) : \verb?\corrbruni[a][b][c][d][e][f][g][h]?
+Commande : \textbf{corr}ecteur + \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire (étendue) : 
+
+\verb?\corrbruni[a][b][c][d][e][f][g][h]?
 \begin{center}
     \begin{tikzpicture}
         \corrbruni[a][b][c][d][e][f][g][h]
@@ -145,7 +178,8 @@ Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}tai
 \vspace{0.5cm}
 
 
-Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{b}loc \textbf{r}etour : \verb?\corrbbr{}?
+Commande :\textbf{corr}ecteur + \textbf{b}loc + \textbf{b}loc \textbf{r}etour: 
+\verb?\corrbbr{}?
 \begin{center}
     \begin{tikzpicture}
         \corrbbr{}
@@ -154,7 +188,10 @@ Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{b}loc \textbf{r}etour :
 \hrule
 \vspace{0.5cm}
 
-Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) : \verb?\corrbbr[a][b][c][d][e][f][g][h]{[i][j][k]}?
+Commande : \textbf{corr}ecteur + \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire (étendue) :
+
+\verb?\corrbbr[a][b][c][d][e][f][g][h]{[i][j][k]}?
 \begin{center}
     \begin{tikzpicture}
         \corrbbr[a][b][c][d][e][f][g][h]{[i][j][k]}
@@ -162,8 +199,63 @@ Commande : \textbf{corr}ecteur + \textbf{b}loc + \textbf{r}etour \textbf{uni}tai
 \end{center}
 \hrule
 \vspace{0.5cm}
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Pertubation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Commande : \textbf{c}orrecteur + \textbf{p}erturbation + 
+           \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire: 
+
+\verb?\cpbruni?
+\begin{center}
+    \begin{tikzpicture}
+        \cpbruni
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
 
 
+Commande : \textbf{c}orrecteur + \textbf{p}erturbation + 
+           \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire (étendue) : 
 
+\verb?\cpbruni[a][b][c][d][e][f][g][h][i]?
+\begin{center}
+    \begin{tikzpicture}
+        \cpbruni[a][b][c][d][e][f][g][h][i]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande : \textbf{c}orrecteur + \textbf{p}erturbation + 
+           \textbf{b}loc + 
+           \textbf{b}loc \textbf{r}etour : 
+
+\verb?\cpbbr{}?
+\begin{center}
+    \begin{tikzpicture}
+        \cpbbr{}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
+Commande : \textbf{c}orrecteur + \textbf{p}erturbation + 
+           \textbf{b}loc + 
+           \textbf{b}loc \textbf{r}etour (étendue) : 
+
+\verb?\cpbbr[a][b][c][d][e][f][g][h]{[i][j][k][l]}?
+\begin{center}
+    \begin{tikzpicture}
+        \cpbbr[a][b][c][d][e][f][g][h]{[i][j][k][l]}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
 
 \end{document}
