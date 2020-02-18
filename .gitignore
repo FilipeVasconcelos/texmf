@@ -28,3 +28,5 @@
 
 tlpkg/
 tex/latex/doclicense/images/index.html
+#database
+ls-R
