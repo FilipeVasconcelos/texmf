@@ -26,7 +26,7 @@
 \sbRelier[#1]{E1}{B1}
 \sbSortie[4]{S1}{B1}
 \sbRelier[#4]{B1}{S1}
-\node[yshift=-0.5em] at (B1.south) {#3};
+\node[yshift=-0.8em] at (B1.south) {\small #3};
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % compbs : comp + bloc simple
@@ -41,8 +41,8 @@
 \sbRelier[#3]{comp}{B1}
 \sbSortie[4]{S1}{B1}
 \sbRelier[#6]{B1}{S1}
-\node[yshift=-0.5em] at (B1.south) {#5};
-\draw[-latex](comp|-0,-1.5)--(comp.south) node[midway,left]{#2};
+\node[yshift=-0.8em] at (B1.south) {\small #5};
+\draw[-latex](comp|-0,-1.5)--(comp.south) node[midway,left] {\small #2};
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % bru : bloc + retour unitaire
@@ -57,8 +57,8 @@
 \sbRelier[#2]{comp}{B1}
 \sbSortie[6]{S1}{B1}
 \sbRelier[#5]{B1}{S1}
-\sbRenvoi{B1-S1}{comp}{}
-\node[yshift=-0.5em] at (B1.south) {#4};
+\sbRenvoi[5]{B1-S1}{comp}{}
+\node[yshift=-0.8em] at (B1.south) {\small #4};
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %corrbru : correcteur + bloc + retour unitaire
@@ -75,9 +75,9 @@
 \sbRelier[#5]{C1}{B1}
 \sbSortie[6]{S1}{B1}
 \sbRelier[#8]{B1}{S1}
-\sbRenvoi{B1-S1}{comp}{}
-\node[yshift=-0.5em] at (C1.south) {#4};
-\node[yshift=-0.5em] at (B1.south) {#7};
+\sbRenvoi[5]{B1-S1}{comp}{}
+\node[yshift=-0.8em] at (C1.south) {\small #4};
+\node[yshift=-0.8em] at (B1.south) {\small #7};
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % bbr : bloc + bloc retour 
@@ -96,8 +96,8 @@
 \sbBlocr[-1.5]{R1}{#6}{R}
 \sbRelieryx{B1-S1}{R1}
 \sbRelierxy[#8]{R1}{comp}
-\node[yshift=-0.5em] at (B1.south) {#4};
-\node[yshift=-0.5em] at (R1.south) {#7};
+\node[yshift=-0.8em] at (B1.south) {\small #4};
+\node[yshift=-0.8em] at (R1.south) {\small #7};
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,9 +133,9 @@
 \sbBlocr[1.5]{R1}{#1}{R}
 \sbRelieryx{B1-S1}{R1}
 \sbRelierxy[#3]{R1}{comp}
-\node[yshift=-0.5em] at (C1.south) {\four};
-\node[yshift=-0.5em] at (B1.south) {\seven};
-\node[yshift=-0.5em] at (R1.south) {#2};
+\node[yshift=-0.8em] at (C1.south) {\small \four};
+\node[yshift=-0.8em] at (B1.south) {\small \seven};
+\node[yshift=-0.8em] at (R1.south) {\small #2};
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,14 +156,14 @@
 \sbRelier{pert}{B1}
 \sbSortie[6]{S1}{B1}
 \sbRelier[#9]{B1}{S1}
-\sbRenvoi{B1-S1}{comp}{}
-\node[yshift=-0.5em] at (C1.south) {#4};
-\node[yshift=-0.5em] at (B1.south) {#8};
-\draw[-latex](pert|-0,1.5)--(pert.north) node[midway,left]{#6};
+\sbRenvoi[5]{B1-S1}{comp}{}
+\node[yshift=-0.8em] at (C1.south) {\small #4};
+\node[yshift=-0.8em] at (B1.south) {\small #8};
+\draw[-latex](pert|-0,1.5)--(pert.north) node[midway,left]{\small #6};
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% cpbruni : correcteur + pertubation +  bloc + bloc retour
+% cpbbr : correcteur + pertubation +  bloc + bloc retour
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommandx{\cpbbr}[9]
 [1=$E(p)$,2=$\epsilon(p)$,3=$C(p)$,4=,5=$U(p)$,6=$P(p)$,7=$H(p)$,8=,usedefault]
@@ -180,7 +180,7 @@
 }
 
 \newcommandx{\cpbbrcontinue}[4]
-[1=$S(p)$,2=$R(p)$,3=,4=$M(p)$,usedefault]
+[1=$S(p)$,2=$G(p)$,3=,4=$M(p)$,usedefault]
 {
 \sbEntree{E1}
 \sbComp[4.5]{comp}{E1}
@@ -197,10 +197,10 @@
 \sbBlocr[-1.5]{R1}{#2}{R}
 \sbRelieryx{B1-S1}{R1}
 \sbRelierxy[#4]{R1}{comp}
-\node[yshift=-0.5em] at (C1.south) {\four};
-\node[yshift=-0.5em] at (B1.south) {\eight};
-\node[yshift=-0.5em] at (R1.south) {#3};
-\draw[-latex](pert|-0,1.5)--(pert.north) node[midway,left]{\six};
+\node[yshift=-0.8em] at (C1.south) {\small \four};
+\node[yshift=-0.8em] at (B1.south) {\small \eight};
+\node[yshift=-0.8em] at (R1.south) {\small #3};
+\draw[-latex](pert|-0,1.5)--(pert.north) node[midway,right]{\small \six};
 }
 \endinput
 %%
