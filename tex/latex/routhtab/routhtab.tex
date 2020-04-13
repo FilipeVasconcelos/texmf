@@ -7,7 +7,8 @@
 
 
 \usepackage{amsmath}
-\usepackage{tikz}
+\usepackage{pgf,tikz,pgfplots}
+\usepackage{tikzfmv}
 \usetikzlibrary{external}
 \usepackage{routhtab}
 
@@ -40,14 +41,15 @@
     p^0 \\
 \end{matrix}
 \begin{vmatrix}
-    1\DoTikzmark{-1ex}{1ex}{n3}     & 3  \\
-    1\DoTikzmark{-1ex}{-6ex}{n4}     & K  \\
+    1\DoTikzmark{-1ex}{1ex}{n1}      & 3\DoTikzmark{1ex}{1ex}{n3}  \\
+    1\DoTikzmark{-1ex}{-6ex}{n2}     & K  \\
    % \hline
-    3-K                      & 0  \\
+    3-K                      & 0\DoTikzmark{1ex}{-3.5ex}{n4}  \\
     K                        & 0    
     \end{vmatrix}
 \]
-\colrow[green,opacity=.2]{n3}{n4}
+\colrow[green,opacity=.2]{n1}{n2}
+\colrow[col1,opacity=.2]{n3}{n4}[40]
 
 \[
 \begin{matrix}
