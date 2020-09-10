@@ -8,9 +8,11 @@
 % 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{schemablocfmv}
-[2019/10/21 v0.01 LaTeX package de macros tikz variées]
+%[2019/10/21 v0.01 LaTeX package de macros tikz variées]
+[2020/04/13 v0.02 LaTeX package de macros schemabloc (tikz)]
 \RequirePackage{xargs}
-\RequirePackage{tikz}
+\RequirePackage{tikz,pgfplots}
+\RequirePackage{tikzfmv}
 \RequirePackage{schemabloc}
 \def\hi{Ce paquet regroupe des macros schemabloc utiles pour fmv.}
 \let\myDate\date
@@ -42,7 +44,7 @@
 \sbSortie[4]{S1}{B1}
 \sbRelier[#6]{B1}{S1}
 \node[yshift=-0.8em] at (B1.south) {\small #5};
-\draw[-latex](comp|-0,-1.5)--(comp.south) node[midway,left] {\small #2};
+\draw[sbStyleLien](comp|-0,-1.5)--(comp.south) node[midway,left] {\small #2};
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % bru : bloc + retour unitaire
@@ -159,7 +161,7 @@
 \sbRenvoi[5]{B1-S1}{comp}{}
 \node[yshift=-0.8em] at (C1.south) {\small #4};
 \node[yshift=-0.8em] at (B1.south) {\small #8};
-\draw[-latex](pert|-0,1.5)--(pert.north) node[midway,left]{\small #6};
+\draw[sbStyleLien](pert|-0,1.5)--(pert.north) node[midway,left]{\small #6};
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -200,7 +202,7 @@
 \node[yshift=-0.8em] at (C1.south) {\small \four};
 \node[yshift=-0.8em] at (B1.south) {\small \eight};
 \node[yshift=-0.8em] at (R1.south) {\small #3};
-\draw[-latex](pert|-0,1.5)--(pert.north) node[midway,right]{\small \six};
+\draw[sbStyleLien](pert|-0,1.5)--(pert.north) node[midway,right]{\small \six};
 }
 \endinput
 %%

@@ -108,7 +108,7 @@ node distance=#1em, sbStyleBloc,left] (#2) {#3};
 }
 
 \newcommand{\sbRelieryx}[2]{
-\draw[fill=black] (#1.south) circle[radius=2.0pt];
+\draw[sbStyleLien,fill] (#1.south) circle[radius=1.75pt];
 \draw [sbStyleLien] (#1.south)  |-   (#2)  ;
 }
 \newcommand{\sbRelierxy}[3][]{
@@ -116,13 +116,12 @@ node distance=#1em, sbStyleBloc,left] (#2) {#3};
 }
 
 \newcommand{\sbRenvoi}[4][4]{
-\draw [fill=black] (#2.south) circle[radius=2.0pt];
+\draw [sbStyleLien,fill] (#2.south) circle[radius=1.75pt];
 \node [below of=#2, node distance=#1em, minimum size=0em](retour#2) {};
 \draw [sbStyleLien] (#2.south)--(retour#2.south)   -|   node[name=#2-#3,near end,right] {#4} (#3) ;
 }
 
 \newcommand{\sbRenvoiF}[4][4]{
-%\draw[fill=black] (#2.south) circle[radius=2.0pt];
 \node [below of=#2, node distance=#1em, minimum size=0em](retour#2) {};
 \draw [sbStyleLien] (#2.south)--(retour#2.south)   -|   node[name=#2-#3,near end,right] {#4} (#3) ;
 }
@@ -130,13 +129,14 @@ node distance=#1em, sbStyleBloc,left] (#2) {#3};
 \newcommand{\sbNomLien}[3][0.4]{
 \node[above of=#2, node distance=#1em] (#2nom) at (#2) {#3};
 }
+
 %Commande comparateurs et sommateurs
 
 \newcommand*{\sbCompSum}{\@ifstar\sbCompSumNorm\sbCompSumUsuel}
 
 \newcommand{\sbCompSumUsuel}[7][4]{
-    \node [draw, circle,minimum size=2em, right of=#3,node distance=#1em,thick,sbStyleSum] (#2) {};
-    \node [draw, cross out,minimum size=1.414em,right of=#3,node distance=#1em,thick,sbStyleSum] {};
+    \node [draw, circle,minimum size=2em, right of=#3,node distance=#1em,sbStyleSum] (#2) {};
+    \node [draw, cross out,minimum size=1.35em,right of=#3,node distance=#1em,sbStyleSum] {};
     \node [above of=#2,node distance=0.6em,sbStyleSum] {$#4$};
     \node [below of=#2,node distance=0.6em,sbStyleSum] {$#5$};
     \node [left of=#2,node distance=0.6em,sbStyleSum] {$#6$};

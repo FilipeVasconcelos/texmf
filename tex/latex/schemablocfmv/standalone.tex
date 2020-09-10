@@ -1,0 +1,35 @@
+\documentclass{standalone} 
+\usepackage[utf8]{inputenc}          
+\usepackage[T1]{fontenc}             
+\usepackage[francais]{babel}         
+\usepackage{lmodern}                 
+
+\usepackage{geometry}                                                                                                         
+\geometry{hmargin=2.5cm,vmargin=2.6cm}
+
+\usepackage{tikz,pgf,pgfplots}
+\usepackage{tikzfmv}
+\usepackage{schemablocfmv}
+\usepackage{mathfmv}
+\usepackage{amsmath}
+\usepackage{titling}
+\usepackage{verbatim}
+\usetikzlibrary{calc}
+
+\newcommand{\subtitle}[1]{%                          
+\posttitle{%                                   
+\par\end{center}%
+\begin{center}\large#1\end{center}%
+\vskip0.5em}%              
+}                          
+\newcommand{\mparagraph}[1]{\paragraph{#1}\mbox{}\\} 
+\title{Extension de \texttt{schemabloc} avec PGF/Tikz}
+\subtitle{schemablocfmv version 0.1}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\begin{tikzpicture}
+    \corrbbr[$E_c(p)$][$\epsilon$][$K$][][ ][$\dfrac{1}{p(p+1)}$][][]{[$\dfrac{1}{p+5}$][][ ]}
+\end{tikzpicture}
+\end{document}
