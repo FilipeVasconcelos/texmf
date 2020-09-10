@@ -7,12 +7,12 @@
 \usepackage{geometry}                                                                                                         
 \geometry{hmargin=2.5cm,vmargin=2.6cm}
 
-%\usepackage{schemabloc}
+\usepackage{tikz,pgf,pgfplots}
+\usepackage{tikzfmv}
 \usepackage{schemablocfmv}
 \usepackage{mathfmv}
 \usepackage{amsmath}
 \usepackage{titling}
-\usepackage{tikz,pgf}
 \usepackage{verbatim}
 \usetikzlibrary{calc}
 
@@ -189,7 +189,7 @@ Commande :\textbf{corr}ecteur + \textbf{b}loc + \textbf{b}loc \textbf{r}etour:
 \vspace{0.5cm}
 
 Commande : \textbf{corr}ecteur + \textbf{b}loc + 
-           \textbf{r}etour \textbf{uni}taire (étendue) :
+          \textbf{b}loc \textbf{r}etour (étendue) :
 
 \verb?\corrbbr[a][b][c][d][e][f][g][h]{[i][j][k]}?
 \begin{center}
@@ -257,5 +257,46 @@ Commande : \textbf{c}orrecteur + \textbf{p}erturbation +
 \end{center}
 \hrule
 \vspace{0.5cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Options de styles de \texttt{schemabloc}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\sbStyleBloc{thick}
+\sbStyleLien{thick}
+\sbStyleSum{thick}
+
+\begin{verbatim}
+\sbStyleBloc{thick}
+\sbStyleLien{thick}
+\sbStyleSum{thick}
+\end{verbatim}
+\begin{center}
+    \begin{tikzpicture}
+        \cpbbr[a][b][c][d][e][f][g][h]{[i][j][k][l]}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+\sbStyleBloc{ultra thick,col3}
+\sbStyleLien{ultra thick,col4}
+\sbStyleSum{ultra thick,col1}
+
+\begin{verbatim}
+\sbStyleBloc{ultra thick,col3}
+\sbStyleLien{ultra thick,col4}
+\sbStyleSum{ultra thick,col1}
+\end{verbatim}
+\begin{center}
+    \begin{tikzpicture}
+        \cpbbr[a][b][c][d][e][f][g][h]{[i][j][k][l]}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
 
 \end{document}
