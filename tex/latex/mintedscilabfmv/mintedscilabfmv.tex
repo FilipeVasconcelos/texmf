@@ -1,0 +1,59 @@
+\documentclass[a4paper,9pt]{article} 
+\usepackage[utf8]{inputenc}          
+\usepackage[T1]{fontenc}             
+\usepackage[francais]{babel}         
+\usepackage{lmodern}                 
+
+\usepackage{geometry}                                                                                                         
+\geometry{hmargin=2.5cm,vmargin=2.6cm}
+
+\usepackage{minted}
+\usepackage[many,skins,breakable]{tcolorbox}
+\usepackage{mintedscilabfmv}
+\usepackage{amsmath}
+\usepackage{titling}
+\usepackage{tikz,pgf}
+\usepackage{fig-planes}
+\usepackage{verbatim}
+
+\newcommand{\subtitle}[1]{%                          
+\posttitle{%                                   
+\par\end{center}%
+\begin{center}\large#1\end{center}%
+\vskip0.5em}%              
+}                          
+\newcommand{\mparagraph}[1]{\paragraph{#1}\mbox{}\\} 
+\title{Scilab code avec Minted}
+\subtitle{mintedscilabfmv version 1.0}
+\author{F. M. Vasconcelos}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\section{Paquets nécessaires}                                                         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\begin{verbatim}                                                                      
+\usepackage{minted}
+\end{verbatim} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+\section{Utilisation des macros}                                                         
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%     
+%\usemintedstyle[scilab]{vim}
+\begin{Scilabcode}
+    function u=f(a)
+    endfunction
+\end{Scilabcode}
+\begin{tcolorbox}[enhanced,
+                  breakable,
+                  sharpish corners,
+                  width=\linewidth,
+                  colframe=white,
+                  colback=blue!8]
+\scilabcode{premier_ordre.sce}
+\end{tcolorbox}
+
+\end{document}
