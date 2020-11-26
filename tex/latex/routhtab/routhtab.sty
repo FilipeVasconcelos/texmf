@@ -15,15 +15,7 @@
 \RequirePackage{tikz}
 \usetikzlibrary{external}
 
-
-\newcommand*{\DoTikzmark}[3]{%
-\tikzset{external/export next=false}
-\tikz[remember picture] \coordinate[shift={(#1,#2)}](#3);%
-}
-\newcommandx*{\colrow}[4][1=,4=30pt]{%
-\tikzset{external/export next=false}
-  \tikz[overlay,remember picture, line width=#4]
-  \draw[shorten >=-.5em, shorten <=-.5em, #1] (#2.north)--(#3.north);%
-}
+\newcommand*{\DoTikzmark}[3]{\tikzset{external/export next=false}\begin{tikzpicture}[remember picture] \coordinate [shift={(#1,#2)}](#3);\end{tikzpicture}}
+\newcommandx*{\colrow}[4][1=,4=30pt]{\tikzset{external/export next=false}\begin{tikzpicture}[overlay,remember picture, line width=#4]\draw[shorten >=-.5em, shorten <=-.5em, #1] (#2.north)--(#3.north);;\end{tikzpicture}}
 %%
 %% End of file `routhtab.sty'.

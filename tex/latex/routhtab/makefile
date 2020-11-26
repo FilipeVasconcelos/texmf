@@ -41,10 +41,10 @@ psd: dvid
 	dvips -t a4 ${filename}.dvi
 
 dvi:
-	latex ${filename}
+	latex -shell-escape ${filename}
 	bibtex ${filename} ||true
-	latex ${filename}
-	latex ${filename}
+	latex -shell-escape ${filename}
+	latex -shell-escape ${filename}
 
 dvid:
 	latex -draftmode ${filename}

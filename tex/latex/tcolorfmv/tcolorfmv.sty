@@ -23,7 +23,6 @@
         drop fuzzy midday shadow=black!50!yellow
     }
 }
-
 \newtcolorbox{tips}[2][]{%
   enhanced,
   width=\textwidth,
@@ -68,24 +67,35 @@
     enhanced,
     breakable,
     sharpish corners,
-    width=\textwidth,
+    width=\linewidth,
     colframe=white,
     colback=red!8,
     #1
 }
 \newtcolorbox{bequation}[1][]{%
   enhanced,
-  width=\textwidth,
+  width=\linewidth,
   sharpish corners,
   colframe=white,
-  colback=gray!40,
+  colback=gray!30,
+  %after={\par\baselineskip},
+  #1
+}
+\newtcolorbox{bequationm}[1][]{%
+  enhanced,
+  width=50mm,
+  sharpish corners,
+  colframe=white,
+  colback=gray!30,
   after=,
+  fontlower=\small,
   #1
 }
 
+
 \newtcolorbox{definition}[2][]{%
   enhanced,
-  width=\textwidth,
+  width=\linewidth,
   fonttitle=\bfseries,
   fonttitle=\bfseries\color{white},
   colframe=Black,

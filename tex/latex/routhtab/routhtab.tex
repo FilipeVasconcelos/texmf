@@ -5,10 +5,15 @@
 \usepackage{lmodern}
 \usepackage{titling}
 
-
 \usepackage{amsmath}
 \usepackage{pgf,tikz,pgfplots}
 \usepackage{tikzfmv}
+\usetikzlibrary{external}
+\tikzset{external/system call={pdflatex -shell-escape
+-halt-on-error -interaction=batchmode -jobname "\image" "\texsource";
+pdf2eps 1 "\image"
+}}
+\tikzexternalize[prefix=./figtikz/]
 \usetikzlibrary{external}
 \usepackage{routhtab}
 
@@ -32,65 +37,49 @@
 
 \section{Usage}
 
+\tikzsetnextfilename{routh-test}
+\begin{tikzpicture}
+    \draw[ultra thick] (0,0) -- (10,10);
+\end{tikzpicture}
+
+
 \[
 \begin{matrix}
     p^3 \\
     p^2 \\
-   % \hline
     p^1 \\
     p^0 \\
 \end{matrix}
 \begin{vmatrix}
-    1\DoTikzmark{-1ex}{1ex}{n1}      & 3\DoTikzmark{1ex}{1ex}{n3}  \\
+    1\DoTikzmark{-1ex}{1ex}{n1} & 3\DoTikzmark{1ex}{1ex}{n3}  \\
     1\DoTikzmark{-1ex}{-6ex}{n2}     & K  \\
-   % \hline
-    3-K                      & 0\DoTikzmark{1ex}{-3.5ex}{n4}  \\
-    K                        & 0    
+    3-K                              & 0\DoTikzmark{1ex}{-3.5ex}{n4}  \\
+    K                                & 0    
     \end{vmatrix}
 \]
 \colrow[green,opacity=.2]{n1}{n2}
 \colrow[col1,opacity=.2]{n3}{n4}[40]
 
 \[
-\begin{matrix}
-    p^3 \\
-    p^2 \\
-   % \hline
-    p^1 \\
-    p^0 \\
-\end{matrix}
-\begin{vmatrix}
-    1\DoTikzmark{-1ex}{1ex}{n3}     & 3  \\
-    1\DoTikzmark{-1ex}{-6ex}{n4}     & K  \\
-   % \hline
-    3-K                      & 0  \\
-    K                        & 0    
+    \begin{matrix}
+            p^n    \\
+            p^{n-1}\\
+            p^{n-2}\\
+            p^{n-3}\\
+            \vdots \\
+            p^1    \\
+            p^0    \\
+    \end{matrix}
+    \begin{vmatrix}
+            b_n\DoTikzmark{-1.1ex}{1.75ex}{n1}  & b_{n-2}    & b_{n-4}    & \cdots & b_2        & b_0         \\
+            b_{n-1}                 & b_{n-3}    & b_{n-5}    & \cdots & b_1        & 0           \\
+            A_{31}                  & A_{32}     & A_{33}     & \cdots & A_{3(k-1)} & 0           \\
+            A_{41}                  & A_{42}     & A_{43}     & \cdots & 0          & 0           \\
+            \vdots                  & \vdots     & \vdots     & \vdots & \vdots     & 0           \\
+            A_{(n-1)1}              & A_{(n-1)2} & 0          & \cdots & 0          & 0           \\
+            b_0\DoTikzmark{-1.1ex}{-1ex}{n2}  & 0          & 0          & \cdots & 0          & 0
     \end{vmatrix}
-\]
-\colrow[green,opacity=.2]{n3}{n4}
-
-\[
-\begin{matrix}
-    p^n    \\
-    p^{n-1}\\
-    p^{n-2}\\
-    p^{n-3}\\
-    \vdots \\
-    p^1    \\
-    p^0    \\
-\end{matrix}
-\begin{vmatrix}
-    b_n\DoTikzmark{-1.1ex}{1.75ex}{n1}  & b_{n-2}    & b_{n-4}    & \cdots & b_2        & b_0         \\
-    b_{n-1}                 & b_{n-3}    & b_{n-5}    & \cdots & b_1        & 0           \\
-    A_{31}                  & A_{32}     & A_{33}     & \cdots & A_{3(k-1)} & 0           \\
-    A_{41}                  & A_{42}     & A_{43}     & \cdots & 0          & 0           \\
-    \vdots                  & \vdots     & \vdots     & \vdots & \vdots     & 0           \\
-    A_{(n-1)1}              & A_{(n-1)2} & 0          & \cdots & 0          & 0           \\
-    b_0\DoTikzmark{-1.1ex}{-1ex}{n2}  & 0          & 0          & \cdots & 0          & 0
-\end{vmatrix}
-\]
+    \]
 \colrow[green,opacity=.2]{n1}{n2}
-
-
 
 \end{document}

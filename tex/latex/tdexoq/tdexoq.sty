@@ -18,9 +18,9 @@
 
 \newcounter{numques}
 \setcounter{numques}{0}
-\newcommandx{\question}[1][1=]{
+\newcommandx{\question}[2][1=]{
 \addtocounter{numques}{1}
-\noindent {\normalfont#1\bfseries Q\thenumques.\,}
+\hfill\break\noindent{\normalfont#1\bfseries Q\thenumques.\xspace\normalfont\normalcolor#2}
 }
 
 \makeatletter
@@ -34,25 +34,19 @@
 \makeatother
 
 \ifcounter{chapter}{\newcounter{numexos}[chapter]}{\newcounter{numexos}}
-%\ifthenelse{\equal{\thechapter}{}}{\newcounter{numexos}}{\newcounter{numexos}[chapter]}
-%\newcounter{numexos}[chapter]
-\setcounter{numexos}{0}
+%\setcounter{numexos}{0}
 \newcommandx{\exercice}[3][2=\Large,3=]{
-\setcounter{numques}{0}
-\addtocounter{numexos}{1}
-\ifthenelse{\equal{\thenumexos}{1}}{%
-    \ifthenelse{\equal{#1}{}}{%
-    \noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,\newline}}
-    {
-    \noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1\newline}
-    }{}
-}{%
-    \ifthenelse{\equal{#1}{}}{%
-    \noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,\newline}}
-    {
-    \noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1\newline}
-    }{}
-}{}
+    \setcounter{numques}{0}
+    \addtocounter{numexos}{1}
+    \ifthenelse{\equal{\thenumexos}{1}}{%
+        \ifthenelse{\equal{#1}{}}%
+        {\noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,}\\[0.2cm]}
+        {\noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1}\\[0.2cm]}
+    }{%
+        \ifthenelse{\equal{#1}{}}%
+        {\noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,}\\[0.2cm]}
+        {\noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1}\\[0.2cm]}
+    }
 }
 \endinput
 %%

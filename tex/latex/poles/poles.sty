@@ -28,7 +28,7 @@
     \def\yp{#2}
     \pgfmathsetmacro{\xp}{\xx+\xs};
     \def\pos{#5}
-    \node at (\xp,\yp) [thick,cross=5pt,#4]       {};
+    \node (p#3) at (\xp,\yp) [thick,cross=5pt,#4]       {};
     \ifthenelse{\equal{\pos}{left}}{%left
         \node at (\xp,\yp) [#4,#5,xshift=-0.5em]  {$\boldsymbol{p_{#3}}$};
     }{}
