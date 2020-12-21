@@ -15,6 +15,7 @@
 
 \RequirePackage{xargs}
 \RequirePackage{ifthen}
+\RequirePackage{MnSymbol}
 
 \newcounter{numques}
 \setcounter{numques}{0}
@@ -22,6 +23,21 @@
 \addtocounter{numques}{1}
 \hfill\break\noindent{\normalfont#1\bfseries Q\thenumques.\xspace\normalfont\normalcolor#2}
 }
+
+\newcommand{\mystar}{{\color{col1}$\filledstar$}}
+\newcommand{\myestar}{{\color{col1}$\smallstar$}}
+\newcommand{\facile}{\mystar\myestar\myestar}
+\newcommand{\moyen}{\mystar\mystar\myestar}
+\newcommand{\difficile}{\mystar\mystar\mystar}
+\newcommand{\tresdifficile}{\mystar\mystar\mystar\mystar}
+\newcommand{\mpfacile}{\marginpar{\mystar}}
+\newcommand{\mpmoyen}{\marginpar{\mystar\mystar}}
+\newcommand{\mpdifficile}{\marginpar{\mystar\mystar\mystar}}
+\newcommand{\mptresdifficile}{\marginpar{\mystar\mystar\mystar\mystar}}
+\newcommand{\mprfacile}{\marginpar{\hfill\mystar}}
+\newcommand{\mprmoyen}{\marginpar{\hfill\mystar\mystar}}
+\newcommand{\mprdifficile}{\marginpar{\hfill\mystar\mystar\mystar}}
+\newcommand{\mprtresdifficile}{\marginpar{\hfill\mystar\mystar\mystar\mystar}}
 
 \makeatletter
 \newcommand*\ifcounter[1]{%
