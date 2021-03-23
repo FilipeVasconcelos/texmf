@@ -26,8 +26,9 @@
 \sbEntree{E1}
 \sbBloc[4]{B1}{#2}{E1}
 \sbRelier[#1]{E1}{B1}
-\sbSortie[4]{S1}{B1}
-\sbRelier[#4]{B1}{S1}
+\sbSortie[3]{S1}{B1}
+\sbRelier{B1}{S1}
+\sbNomLien[0.8]{S1}{#4}
 \node[yshift=-0.8em] at (B1.south) {\small #3};
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,8 +42,9 @@
 \sbRelier[#1]{E1}{comp}
 \sbBloc[3]{B1}{#4}{comp}
 \sbRelier[#3]{comp}{B1}
-\sbSortie[4]{S1}{B1}
-\sbRelier[#6]{B1}{S1}
+\sbSortie[3]{S1}{B1}
+\sbRelier{B1}{S1}
+\sbNomLien[0.8]{S1}{#6}
 \node[yshift=-0.8em] at (B1.south) {\small #5};
 \draw[sbStyleLien](comp|-0,-1.5)--(comp.south) node[midway,left] {\small #2};
 }
@@ -58,7 +60,8 @@
 \sbBloc[3]{B1}{#3}{comp}
 \sbRelier[#2]{comp}{B1}
 \sbSortie[6]{S1}{B1}
-\sbRelier[#5]{B1}{S1}
+\sbRelier{B1}{S1}
+\sbNomLien[0.8]{S1}{#5}
 \sbRenvoi[5]{B1-S1}{comp}{}
 \node[yshift=-0.8em] at (B1.south) {\small #4};
 }
@@ -76,7 +79,8 @@
 \sbBloc[3]{B1}{#6}{C1}
 \sbRelier[#5]{C1}{B1}
 \sbSortie[6]{S1}{B1}
-\sbRelier[#8]{B1}{S1}
+\sbRelier{B1}{S1}
+\sbNomLien[0.8]{S1}{#8}
 \sbRenvoi[5]{B1-S1}{comp}{}
 \node[yshift=-0.8em] at (C1.south) {\small #4};
 \node[yshift=-0.8em] at (B1.south) {\small #7};
@@ -93,7 +97,8 @@
 \sbBloc[3]{B1}{#3}{comp}
 \sbRelier[#2]{comp}{B1}
 \sbSortie[6]{S1}{B1}
-\sbRelier[#5]{B1}{S1}
+\sbRelier{B1}{S1}
+\sbNomLien[0.8]{S1}{#5}
 \sbDecaleNoeudy{B1}{R}
 \sbBlocr[-1.75]{R1}{#6}{R}
 \sbRelieryx{B1-S1}{R1}
@@ -130,7 +135,8 @@
 \sbBloc[3]{B1}{\six}{C1}
 \sbRelier[\five]{C1}{B1}
 \sbSortie[6]{S1}{B1}
-\sbRelier[\eight]{B1}{S1}
+\sbRelier{B1}{S1}
+\sbNomLien[0.8]{S1}{\eight}
 \sbDecaleNoeudy{B1}{R}
 \sbBlocr[1.5]{R1}{#1}{R}
 \sbRelieryx{B1-S1}{R1}
@@ -157,7 +163,8 @@
 \sbBloc[3]{B1}{#7}{pert}
 \sbRelier{pert}{B1}
 \sbSortie[6]{S1}{B1}
-\sbRelier[#9]{B1}{S1}
+\sbRelier{B1}{S1}
+\sbNomLien[0.8]{S1}{#9}
 \sbRenvoi[5]{B1-S1}{comp}{}
 \node[yshift=-0.8em] at (C1.south) {\small #4};
 \node[yshift=-0.8em] at (B1.south) {\small #8};
@@ -194,7 +201,8 @@
 \sbBloc[3]{B1}{\seven}{pert}
 \sbRelier{pert}{B1}
 \sbSortie[6]{S1}{B1}
-\sbRelier[#1]{B1}{S1}
+\sbRelier{B1}{S1}
+\sbNomLien[0.8]{S1}{#1}
 \sbDecaleNoeudy{pert}{R}
 \sbBlocr[-1.5]{R1}{#2}{R}
 \sbRelieryx{B1-S1}{R1}
