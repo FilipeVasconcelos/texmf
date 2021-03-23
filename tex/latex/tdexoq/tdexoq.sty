@@ -15,7 +15,8 @@
 
 \RequirePackage{xargs}
 \RequirePackage{ifthen}
-\RequirePackage{MnSymbol}
+%\RequirePackage{MnSymbol}
+\RequirePackage{bbding}
 
 \newcounter{numques}
 \setcounter{numques}{0}
@@ -24,8 +25,8 @@
 \hfill\break\noindent{\normalfont#1\bfseries Q\thenumques.\xspace\normalfont\normalcolor#2}
 }
 
-\newcommand{\mystar}{{\color{col1}$\filledstar$}}
-\newcommand{\myestar}{{\color{col1}$\smallstar$}}
+\newcommand{\mystar}{{\color{col1}\mbox{\footnotesize\FiveStar}}}
+\newcommand{\myestar}{{\color{col1}\mbox{\footnotesize\FiveStarOpen}}}
 \newcommand{\facile}{\mystar\myestar\myestar}
 \newcommand{\moyen}{\mystar\mystar\myestar}
 \newcommand{\difficile}{\mystar\mystar\mystar}
