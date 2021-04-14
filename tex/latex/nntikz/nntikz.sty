@@ -8,8 +8,8 @@
 \usetikzlibrary{calc,shapes,arrows}
 \usetikzlibrary{decorations.pathreplacing,decorations.markings}
 
-% macros tracers des graphes de réseau de neurones
-% version 1.0
+% macros tracers des graphes de rÃ©seau de neurones
+% version 1.1
 
 \gdef\xoff{1}
 \gdef\yoff{1}
@@ -26,10 +26,10 @@
         \expandafter\newcommand\csname#1\endcsname{#2}
         \foreach \xn in {1,...,\dim} {
 		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-                \ifthenelse{\equal{#3}{label}}{
-                    \node[minimum size=20pt,neuron input] (#1-\xn) at (0,\y) {$x_{\xn}$};
-                }{
+                \ifthenelse{\equal{#3}{}}{
                     \node[neuron input] (#1-\xn) at (0,\y) {};
+                }{
+                    \node[minimum size=20pt,neuron input] (#1-\xn) at (0,\y) {$#3_{\xn}$};
                 }
 	    }
 }
@@ -39,10 +39,10 @@
         \expandafter\newcommand\csname#1\endcsname{#2}
 	\foreach \xn in {1,...,\dim} {
 		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-                \ifthenelse{\equal{#4}{label}}{
-                    \node[minimum size=20pt,neuron output] (#1-\xn) at (#3*\xoff,\y) {$y_{\xn}$};
-                }{
+                \ifthenelse{\equal{#4}{}}{
                     \node[neuron output] (#1-\xn) at (#3*\xoff,\y) {};
+                }{
+                    \node[minimum size=20pt,neuron output] (#1-\xn) at (#3*\xoff,\y) {$#4_{\xn}$};
                 }
 	    }
 }
@@ -53,10 +53,10 @@
         \expandafter\newcommand\csname#1\endcsname{#2}
 	\foreach \xn in {1,...,\dim} {
 		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-                \ifthenelse{\equal{#4}{label}}{
-                    \node[minimum size=20pt,fill=blue!\colo,neuron] (#1-\xn) at (#3*\xoff,\y) {$h_{#3\xn}$};
-                }{
+                \ifthenelse{\equal{#4}{}}{
                     \node[fill=blue!\colo,neuron] (#1-\xn) at (#3*\xoff,\y) {};
+                }{
+                    \node[minimum size=20pt,fill=blue!\colo,neuron] (#1-\xn) at (#3*\xoff,\y) {$#4_{#3\xn}$};
                 }
 	    }
 }
