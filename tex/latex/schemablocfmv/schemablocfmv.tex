@@ -24,7 +24,7 @@
 }                          
 \newcommand{\mparagraph}[1]{\paragraph{#1}\mbox{}\\} 
 \title{Extension de \texttt{schemabloc} avec PGF/Tikz}
-\subtitle{schemablocfmv version 0.1}
+\subtitle{schemablocfmv version 0.2}
 \author{F. M. Vasconcelos}
 \date{}
 
@@ -98,7 +98,31 @@ Commande \textbf{comp}arateur + \textbf{b}loc \textbf{s}imple (étendue) :
 \end{center}
 \hrule
 \vspace{0.5cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Sommateur}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande \textbf{som}ateur + \textbf{b}loc \textbf{s}imple : 
 
+\verb?\sombs?
+\begin{center}
+    \begin{tikzpicture}
+        \sombs
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{som}arateur + \textbf{b}loc \textbf{s}imple (étendue) : 
+
+\verb?\sombs[a][b][c][d][e][f]?
+\begin{center}
+    \begin{tikzpicture}
+        \sombs[a][b][c][d][e][f]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Boucle retour unitaire}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -258,11 +282,167 @@ Commande : \textbf{c}orrecteur + \textbf{p}erturbation +
 \hrule
 \vspace{0.5cm}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Boucle retour unitaire (retour positif)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire + \textbf{p}ositif : 
 
+\verb?\brunip?
+\begin{center}
+    \begin{tikzpicture}
+        \brunip
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{b}loc + \textbf{r}etour \textbf{uni}taire (étendue) + \textbf{p}ositif : 
+
+\verb?\brunip[a][b][c][d][e]?
+\begin{center}
+    \begin{tikzpicture}
+        \brunip[a][b][c][d][e]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Boucle de retour (retour positif)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour + \textbf{p}ositif : 
+
+\verb?\bbrp?
+\begin{center}
+    \begin{tikzpicture}
+        \bbrp
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour + \textbf{p}ositif (étendue) : 
+
+\verb?\bbrp[a][b][c][d][e][f][g]?
+\begin{center}
+    \begin{tikzpicture}
+        \bbrp[a][b][c][d][e][f][g][h]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Correcteur (retour positif) }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Commande : \textbf{corr}ecteur + \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire + \textbf{p}ositif : 
+
+\verb?\corrbrunip?
+\begin{center}
+    \begin{tikzpicture}
+        \corrbrunip
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande : \textbf{corr}ecteur + \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire + \textbf{p}ositif (étendue) : 
+
+\verb?\corrbrunip[a][b][c][d][e][f][g][h]?
+\begin{center}
+    \begin{tikzpicture}
+        \corrbrunip[a][b][c][d][e][f][g][h]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
+Commande :\textbf{corr}ecteur + \textbf{b}loc + \textbf{b}loc \textbf{r}etour + \textbf{p}ositif: 
+\verb?\corrbbrp{}?
+\begin{center}
+    \begin{tikzpicture}
+        \corrbbrp{}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande : \textbf{corr}ecteur + \textbf{b}loc + 
+          \textbf{b}loc \textbf{r}etour + \textbf{p}ositif (étendue) :
+
+\verb?\corrbbrp[a][b][c][d][e][f][g][h]{[i][j][k]}?
+\begin{center}
+    \begin{tikzpicture}
+        \corrbbrp[a][b][c][d][e][f][g][h]{[i][j][k]}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Pertubation (retour positif) }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Commande : \textbf{c}orrecteur + \textbf{p}erturbation + 
+           \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire + \textbf{p}ositif : 
+
+\verb?\cpbrunip?
+\begin{center}
+    \begin{tikzpicture}
+        \cpbrunip
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
+Commande : \textbf{c}orrecteur + \textbf{p}erturbation + 
+           \textbf{b}loc + 
+           \textbf{r}etour \textbf{uni}taire + \textbf{p}ositif (étendue) : 
+
+\verb?\cpbrunip[a][b][c][d][e][f][g][h][i]?
+\begin{center}
+    \begin{tikzpicture}
+        \cpbrunip[a][b][c][d][e][f][g][h][i]
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+Commande : \textbf{c}orrecteur + \textbf{p}erturbation + 
+           \textbf{b}loc + 
+           \textbf{b}loc \textbf{r}etour  + \textbf{p}ositif : 
+
+\verb?\cpbbrp{}?
+\begin{center}
+    \begin{tikzpicture}
+        \cpbbrp{}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+
+
+Commande : \textbf{c}orrecteur + \textbf{p}erturbation + 
+           \textbf{b}loc + 
+           \textbf{b}loc \textbf{r}etour  + \textbf{p}ositif (étendue) : 
+
+\verb?\cpbbrp[a][b][c][d][e][f][g][h]{[i][j][k][l]}?
+\begin{center}
+    \begin{tikzpicture}
+        \cpbbrp[a][b][c][d][e][f][g][h]{[i][j][k][l]}
+    \end{tikzpicture}
+\end{center}
+\hrule
+\vspace{0.5cm}
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Options de styles de \texttt{schemabloc}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \sbStyleBloc{thick}
 \sbStyleLien{thick}
 \sbStyleSum{thick}
