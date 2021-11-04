@@ -7,7 +7,8 @@
 %% in directory macros/latex/base/lppl.txt.
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{poles}
-  [2019/10/19 v0.1 LaTeX package pour la création de carte de pôles et zéros.]
+%[2019/10/19 v0.1 LaTeX package pour la création de carte de pôles et zéros.]
+[2021/11/04 v0.2 LaTeX package pour la création de carte de pôles et zéros]
 \def\hi{Ce paquet permet de creer une carte de pôles et zéros.}
 \let\myDate\date
 
@@ -22,13 +23,23 @@
 \usetikzlibrary{shapes}
 \usetikzlibrary{decorations}
 
+\newcommandx{\tics}[2][2=p]{
+    \ifthenelse{\equal{\xx}{0}}{%Re different de zero
+    }{
+    \draw[thin] (#2#1|-0,0)   node[below] {\footnotesize \xx} -- ++ (0,0.1);
+    }
+    \ifthenelse{\equal{\yp}{0}}{%Im different de zero
+    }{
+    \draw[thin] (#2#1-|\xs,0) node[left]  {\footnotesize \yp} -- ++ (0.1,0);
+    }
+}
 
 \newcommandx{\dpole}[5][4=blue,5=below]{
     \def\xx{#1}
     \def\yp{#2}
     \pgfmathsetmacro{\xp}{\xx+\xs};
     \def\pos{#5}
-    \node (p#3) at (\xp,\yp) [thick,cross=5pt,#4]       {};
+    \node (p#3) at (\xp,\yp) [thick,cross=4pt,#4]       {};
     \ifthenelse{\equal{\pos}{left}}{%left
         \node at (\xp,\yp) [#4,#5,xshift=-0.5em]  {$\boldsymbol{p_{#3}}$};
     }{}
@@ -42,12 +53,12 @@
         \node at (\xp,\yp) [#4,#5,yshift=0.5em]   {$\boldsymbol{p_{#3}}$};
     }{}
 }
-\newcommandx{\dzero}[5][4=red,5=below]{
+\newcommandx{\dzero}[5][4=red,5=above]{
     \def\xx{#1}
     \def\yp{#2}
     \pgfmathsetmacro{\xp}{\xx+\xs};
     \def\pos{#5}
-    \node at (\xp,\yp) [thick,circ=5pt,#4]        {};
+    \node (z#3) at (\xp,\yp) [thick,circ=4pt,#4]        {};
     \ifthenelse{\equal{\pos}{left}}{%left
         \node at (\xp,\yp) [#4,#5,yshift=-0.5em]  {$\boldsymbol{z_{#3}}$};
     }{}

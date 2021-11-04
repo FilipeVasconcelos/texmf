@@ -9,6 +9,7 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usetikzlibrary{external}
+\usetikzlibrary{calc}
 \usepackage{poles}
 
 \newcommand{\subtitle}[1]{%                          
@@ -19,7 +20,7 @@
 }
 
 \title{Macros pour la création de cartes de pôles et zéros}
-\subtitle{\texttt{poles} version 1.0}
+\subtitle{\texttt{poles} version 2.0}
 \author{F. M. Vasconcelos}
 \date{}
 
@@ -81,9 +82,13 @@ Commande:
 \begin{tikzpicture}[scale=1.2]
     \carte[r]
     \dpole{1.5}{1}{1}[blue][right]
+    \tics{1}[p]
     \dpole{1.5}{-1}{2}[blue][right]
+    \tics{2}[p]
     \dzero{-0.5}{0}{1}[red]
+    \tics{1}[z]
     \dzero{1.0}{0}{2}[red]
+    \tics{2}[z]
 \end{tikzpicture}
 \end{center}
 
@@ -93,9 +98,13 @@ Commande:
     %axis  r=right
     \carte[r]
     \dpole{1.5}{1}[1][blue][right]
+    \tics{1}[p]
     \dpole{1.5}{-1}[2][blue][right]
+    \tics{2}[p]
     \dzero{-0.5}{0}[1][red]
+    \tics{1}[z]
     \dzero{1.0}{0}[2][red]
+    \tics{2}[z]
 \end{tikzpicture}
 \end{verbatim}
 
@@ -103,11 +112,29 @@ Commande:
 \begin{tikzpicture}[scale=1.2]
     \carte[l][-5][5][-2][2][3.0]
     \dpole{-1.5}{1}{1}[orange]
+    \tics{1}[p]
     \dpole{-1.5}{-1}{2}[orange]
-    \dzero{0}{0}{1}[cyan]
-    \dzero{-1}{0}{2}[cyan]
+    \tics{2}[p]
+    \dzero{0}{0}{1}[cyan][above]
+    \tics{1}[z]
+    \dzero{-1}{0}{2}[cyan][above]
+    \tics{2}[z]
 \end{tikzpicture}
 \end{center}
 
+Commande:
+\begin{verbatim}
+\begin{tikzpicture}[scale=1.2]
+    \carte[l][-5][5][-2][2][3.0]
+    \dpole{-1.5}{1}{1}[orange]
+    \tics{1}[p]
+    \dpole{-1.5}{-1}{2}[orange]
+    \tics{2}[p]
+    \dzero{0}{0}{1}[cyan]
+    \tics{1}[z]
+    \dzero{-1}{0}{2}[cyan]
+    \tics{2}[z]
+\end{tikzpicture}
+\end{verbatim}
 
 \end{document}
