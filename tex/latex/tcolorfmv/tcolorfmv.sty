@@ -108,7 +108,35 @@
   title={#2},
   #1
 }
-
+\newtcolorbox{bbox}[1][]{%
+  enhanced,
+  width=\linewidth,
+  sharpish corners,
+  colframe=col1,
+  colback=white,
+  %after={\par\baselineskip},
+  #1
+}
+\newtcolorbox{ttheorem}[2][]{%
+    enhanced,
+    breakable,
+    width=\linewidth ,
+    fonttitle=\bfseries\color{white},
+    colframe=col1,
+    colback=white,
+    title={#2},
+    #1
+}
+\newtcolorbox{rrappel}[2][]{%
+    enhanced,
+    breakable,
+    width=\linewidth ,
+    fonttitle=\bfseries\color{white},
+    colframe=col2,
+    colback=white,
+    title={#2},
+    #1
+}
 
 \endinput
 %%
