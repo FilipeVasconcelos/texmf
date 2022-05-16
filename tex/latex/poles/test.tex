@@ -1,0 +1,50 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{tikzfmv}
+\usetikzlibrary{external}
+\usetikzlibrary{calc}
+\usepackage{poles}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.2]
+    \carte[l]
+    \node[right] at (\xmin,\ymax) {$k=1$};
+    \dpole{-1.5}{1}{1}[col1]
+    \tics{1}[p]
+    \dpole{-1.5}{-1}{2}[col1]
+    \tics{2}[p]
+    \dzero{-1}{0}{1}[col4]
+    \tics{1}[z]
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=1.2]
+    \carte[l][-3][3]
+    \node[right] at (\xmin,\ymax) {$k=2$};
+    \dpole{-2}{0}{1}[col1][above]
+    \tics{1}[p]
+    \dpole{-3}{0}{2}[col1][above]
+    \tics{2}[p]
+    \dzero{1}{0}{1}[col4]
+    \tics{1}[z]
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=1.2]
+    \carte[l][-3][3]
+    \node[right] at (\xmin,\ymax) {$k=1$};
+    \dpole{-2}{0}{1}[col1][above]
+    \tics{1}[p]
+    \dpole{-1.5}{1}{2}[col1][above]
+    \tics{2}[p]
+    \dpole{-1.5}{-1}{3}[col1][above]
+    \dzero{1}{0}{1}[col4]
+    \tics{1}[z]
+    \dzero{-3}{0}{2}[col4]
+    \tics{2}[z]
+\end{tikzpicture}
+
+\end{document}
