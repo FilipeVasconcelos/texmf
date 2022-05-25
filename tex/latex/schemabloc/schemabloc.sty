@@ -13,6 +13,7 @@
 \tikzstyle{sbStyleLien}=[-latex]
 \tikzstyle{sbStyleBloc}=[draw, rectangle,]
 \tikzstyle{sbStyleBlocPatate}=[]
+\tikzstyle{sbStyleBlocT}=[]
 \tikzstyle{sbStyleSum}=[]%style Sum CC
 % Commandes de changement de style
 \newcommand{\sbStyleLienDefaut}{
@@ -23,6 +24,9 @@
 \tikzstyle{sbStyleLien}+=[#1]
 }
 
+\newcommand{\sbStyleBlocT}[1]{
+\tikzstyle{sbStyleBlocT}+=[#1]
+}
 \newcommand{\sbStyleBloc}[1]{
 \tikzstyle{sbStyleBloc}+=[#1]
 }
@@ -34,9 +38,9 @@
 \tikzstyle{sbStyleSum}+=[#1]
 }
 
-%\newcommand{\sbStyleSumDefaut}{
-%\tikzstyle{sbStyleBloc}=[draw, circle,]
-%}%style Sum default CC
+\newcommand{\sbStyleSumDefaut}{
+\tikzstyle{sbStyleSum}=[]
+}%style Sum default CC
 
 
 \newcommand{\sbPerturb}[2][0]{
@@ -192,7 +196,6 @@ label=175:$#4$,label=-85:$#5$,label=85:$#6$,sbStyleSum] (#2) {};
 \newcommand{\sbSumbNorm}[3][4]{
 \sbCompSum*[#1]{#2}{#3}{}{+}{+}{}
 }
-
 
 %Commandes de décalage de noeud
 

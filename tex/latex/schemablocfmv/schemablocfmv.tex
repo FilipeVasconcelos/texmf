@@ -8,13 +8,16 @@
 \geometry{hmargin=2.5cm,vmargin=2.6cm}
 
 \usepackage{tikz,pgf,pgfplots}
+\pgfplotsset{compat=newest}
 \usepackage{tikzfmv}
 \usepackage{schemablocfmv}
 \usepackage{mathfmv}
 \usepackage{amsmath}
+\usepackage{nccmath}
 \usepackage{titling}
 \usepackage{verbatim}
 \usetikzlibrary{calc}
+\usetikzlibrary{shapes.geometric}
 
 \newcommand{\subtitle}[1]{%                          
 \posttitle{%                                   
@@ -164,7 +167,7 @@ Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour :
 
 Commande \textbf{b}loc + \textbf{b}loc \textbf{r}etour (étendue) : 
 
-\verb?\bbr[a][b][c][d][e][f][g]?
+\verb?\bbr[a][b][c][d][e][f][g][h]?
 \begin{center}
     \begin{tikzpicture}
         \bbr[a][b][c][d][e][f][g][h]
@@ -477,6 +480,30 @@ Commande : \textbf{c}orrecteur + \textbf{p}erturbation +
 \hrule
 \vspace{0.5cm}
 
+\section*{Schémas-bloc dans le domaine temporel}
 
+L'opérateur intégral $\mathcal{I}$ appliqué à un signal 
+continu $x(t)$ permet de générer un signal $y(t)$ correspondant 
+à l'intégral en tous points de $x(t)$.
+
+\[
+    y(t)=\mathcal{I} x(t)=\int_{-\infty}^t x(\tau)\dd{\tau}
+\]
+
+\sbStyleBlocDefaut
+\sbStyleLienDefaut
+\sbStyleSumDefaut
+\begin{tikzpicture}
+    \sbEntree{E1}
+    \sbCompSum[5.0]{comp}{E1}{}{+}{+}{}
+    \sbRelier[$x(t)$]{E1}{comp}
+    \sbInt[3]{B1}{comp}
+    \sbRelier[$\dfrac{\dot{y}(t)}{p}$]{comp}{B1}
+    \sbBlocT[3]{T}{B1}
+    \sbRelier[$\dfrac{y(t)}{p}$]{B1}{T}
+    \sbSortie[6]{S1}{T}
+    \sbRelier[$y(t)$]{T}{S1}
+    \sbRenvoi[5]{T-S1}{comp}{}
+\end{tikzpicture}
 
 \end{document}

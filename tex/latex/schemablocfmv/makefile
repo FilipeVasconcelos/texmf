@@ -11,16 +11,12 @@ pspdf:	ps
 pdfd: 
 	pdflatex -draftmode ${filename}
 	bibtex ${filename} ||true
-	makeindex ${filename}.idx
-	makeindex ${filename}.gls 
 	pdflatex -draftmode ${filename}
 	pdflatex ${filename}
 	
 pdf: 
 	pdflatex ${filename}
 	bibtex ${filename} ||true
-	makeindex ${filename}.idx
-	makeindex ${filename}.gls 
 	pdflatex ${filename}
 	pdflatex ${filename}
 
