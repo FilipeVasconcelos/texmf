@@ -3,22 +3,18 @@
 \usepackage[T1]{fontenc}             
 \usepackage[francais]{babel}         
 \usepackage{lmodern}                 
-
-\usepackage{geometry}                                                                                                         
+\usepackage{geometry}
 \geometry{hmargin=2.5cm,vmargin=2.6cm}
-
 \usepackage{tikz,pgf,pgfplots}
 \pgfplotsset{compat=newest}
 \usepackage{tikzfmv}
 \usepackage{schemablocfmv}
 \usepackage{mathfmv}
 \usepackage{amsmath}
-\usepackage{nccmath}
 \usepackage{titling}
 \usepackage{verbatim}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes.geometric}
-
 \newcommand{\subtitle}[1]{%                          
 \posttitle{%                                   
 \par\end{center}%
@@ -30,24 +26,20 @@
 \subtitle{schemablocfmv version 0.2}
 \author{F. M. Vasconcelos}
 \date{}
-
 \begin{document}
 \maketitle
 \begin{abstract}
 Ce paquet définit des macros à partir du paquet \texttt{schemabloc}
 de R. Papanicola.
 \end{abstract}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Paquets nécessaires}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \begin{verbatim}
 \usepackage{tikz}
 \usepackage{schemabloc}
 \usepackage{schemablocfmv}
 \end{verbatim} 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Utilisation des macros}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -480,7 +472,9 @@ Commande : \textbf{c}orrecteur + \textbf{p}erturbation +
 \hrule
 \vspace{0.5cm}
 
-\section*{Schémas-bloc dans le domaine temporel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Schémas-bloc dans le domaine temporel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 L'opérateur intégral $\mathcal{I}$ appliqué à un signal 
 continu $x(t)$ permet de générer un signal $y(t)$ correspondant 
@@ -489,14 +483,70 @@ continu $x(t)$ permet de générer un signal $y(t)$ correspondant
 \[
     y(t)=\mathcal{I} x(t)=\int_{-\infty}^t x(\tau)\dd{\tau}
 \]
+sous forme d'opérateur on écrira $Y=\mathcal{I}X$ de façon équivalente.
 
 \sbStyleBlocDefaut
 \sbStyleLienDefaut
 \sbStyleSumDefaut
+\sbStyleBlocT{ultra thick,col3}
 \begin{center}
+    \begin{tikzpicture}
+        \sbEntree{E1}
+        \sbInt[3]{I1}{E1}
+        \sbRelier[$x(t)$]{E1}{I1}
+        \sbSortie[3]{S1}{I1}
+        \sbRelier[$y(t)$]{I1}{S1}
+    \end{tikzpicture}
+\end{center}
+Nous representons le produit par un simple scalaire (c.-à-d. un gain) $s$ par 
+le triangle de la façon suivante:
 
+\begin{center}
+\begin{tikzpicture}
+    \sbEntree{E1}
+    \sbBlocT[3]{T}{E1}
+    \sbRelier[$x(t)$]{E1}{T}
+    \sbSortie[3]{S1}{T}
+    \sbRelier[$y(t)$]{T}{S1}
+\end{tikzpicture}
+\end{center}
+\[
+    y(t)=sx(t)
+\]
+
+L'équation différentielle suivante :
+\[
+    \dot{y}(t)=s\big(x(t)+y(t)\big)
+\]
+peut alors être représentée par le schéma-bloc dans le domaine temporel suivant :
+
+\begin{center}
+\begin{tikzpicture}
+    \sbEntree{E1}
+    \sbCompSum[5.0]{comp}{E1}{}{+}{+}{}
+    \sbRelier[$x(t)$]{E1}{comp}
+    \sbBlocT[3]{T}{comp}
+    \sbRelier[]{comp}{T}
+    \sbInt[3]{B1}{T}
+    \sbRelier[$\dot{y}(t)$]{T}{B1}
+    \sbSortie[6]{S1}{B1}
+    \sbRelier[$y(t)$]{B1}{S1}
+    \sbRenvoi[5]{B1-S1}{comp}{}
+\end{tikzpicture}
 \end{center}
 
+sous forme d'opérateur, on réduira ce schéma-bloc par la relation suivante :
+\[
+    Y=s\mathcal{I}\big(X+Y\big)
+\]
+Le rapport de la sortie sur l'entrée
+\[
+    \dfrac{Y}{X}=\dfrac{s\mathcal{I}}{1-s\mathcal{I}}
+\]
+L'équation différentielle (2) :
+\[
+    \dot{y}(t)=x+sy(t)
+\]
 
 \begin{center}
 \begin{tikzpicture}
@@ -504,13 +554,70 @@ continu $x(t)$ permet de générer un signal $y(t)$ correspondant
     \sbCompSum[5.0]{comp}{E1}{}{+}{+}{}
     \sbRelier[$x(t)$]{E1}{comp}
     \sbInt[3]{B1}{comp}
-    \sbRelier[$\dfrac{\dot{y}(t)}{p}$]{comp}{B1}
-    \sbBlocT[3]{T}{B1}
-    \sbRelier[$\dfrac{y(t)}{p}$]{B1}{T}
-    \sbSortie[6]{S1}{T}
-    \sbRelier[$y(t)$]{T}{S1}
-    \sbRenvoi[5]{T-S1}{comp}{}
+    \sbRelier[$\dot{y}(t)$]{comp}{B1}
+    \sbSortie[6]{S1}{B1}
+    \sbRelier[$y(t)$]{B1}{S1}
+    \sbDecaleNoeudy{B1}{R}
+    \sbBlocTr[-1.5]{R1}{R}
+    \sbRelieryx{B1-S1}{R1}
+    \sbRelierxy[]{R1}{comp}
 \end{tikzpicture}
 \end{center}
+
+Sous forme d'opérateur
+\[
+    Y=\mathcal{I}\big(X+sY\big)
+\]
+\[
+    \dfrac{Y}{X}=\dfrac{\mathcal{I}}{1-s\mathcal{I}}
+\]
+L'équation différentielle (3) :
+\[
+    \dot{y}(t)=\dot{x}(t)+sy(t)
+\]
+\begin{center}
+\begin{tikzpicture}
+    \sbEntree{E1}
+    \sbCompSum[5.0]{comp}{E1}{}{+}{+}{}
+    \sbRelier[$x(t)$]{E1}{comp}
+    \sbSortie[12]{S1}{comp}
+    \node [left of =S1, node distance=4em] (ref) {};
+    \sbRelierNoDraw[]{ref}{S1}
+    \sbRelier[$y(t)$]{comp}{S1}
+    \sbDecaleNoeudy{S1}{R}
+    \sbIntr[4]{B1}{R}
+    \sbRelieryx{ref-S1}{B1}
+    \sbBlocTr[2.5]{R1}{B1}
+    \sbRelier[]{B1}{R1}
+    \sbRelierxy[]{R1}{comp}
+\end{tikzpicture}
+\end{center}
+Sous forme d'opérateur
+\[
+    Y=X+s\mathcal{I}Y
+\]
+\[
+    \dfrac{Y}{X}=\dfrac{1}{1-s\mathcal{I}}
+\]
+Il est possible de développer $\dfrac{1}{1-s\mathcal{I}}$ sous forme de série entière :
+\[
+    \dfrac{1}{1-s\mathcal{I}}=\sum_{n=0}^{\infty}(s\mathcal{I})^n=(1+s\mathcal{I}+s^2\mathcal{I}^2+s^3\mathcal{I}^3\ldots)
+\]
+L'application de l'opérateur $\mathcal{I}^n$ revient à appliquer $\mathcal{I}$ $n$ fois.
+
+Prenons l'exemple de l'équation différentielle :
+\[
+    \dot{y}(t)=x+sy(t)
+\]
+en appliquant la transformée de Laplace on obtiendrait :
+\[
+    Y(p)=\dfrac{1}{p-s}X(p)
+\]
+
+Pour une entrée $x(t)=\delta(t)$, la sortie devient dans le domaine de Laplace $Y(p)=\dfrac{1}{p-s}$, par la transformée de Laplace
+inverse celà devient $y(t)=e^{-st}u(t)$.
+
+
+
 
 \end{document}
