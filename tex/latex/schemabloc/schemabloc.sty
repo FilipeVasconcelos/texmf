@@ -5,7 +5,6 @@
 \RequirePackage{tikz}
 \usetikzlibrary{shapes,arrows}
 
-
 %macros dessin des schéma-blocs mise à jour 6 janvier 2009
 % version 1.5
 
@@ -13,7 +12,7 @@
 \tikzstyle{sbStyleLien}=[-latex]
 \tikzstyle{sbStyleBloc}=[draw, rectangle,]
 \tikzstyle{sbStyleBlocPatate}=[]
-\tikzstyle{sbStyleBlocT}=[]
+\tikzstyle{sbStyleBlocT}=[draw, isosceles triangle,isosceles triangle apex angle=60,]
 \tikzstyle{sbStyleSum}=[]%style Sum CC
 % Commandes de changement de style
 \newcommand{\sbStyleLienDefaut}{
@@ -27,11 +26,16 @@
 \newcommand{\sbStyleBlocT}[1]{
 \tikzstyle{sbStyleBlocT}+=[#1]
 }
+
 \newcommand{\sbStyleBloc}[1]{
 \tikzstyle{sbStyleBloc}+=[#1]
 }
+
 \newcommand{\sbStyleBlocDefaut}{
 \tikzstyle{sbStyleBloc}=[draw, rectangle,]
+}
+\newcommand{\sbStyleBlocTDefaut}{
+\tikzstyle{sbStyleBlocT}=[draw, isosceles triangle,isosceles triangle apex angle=60,]
 }
 
 \newcommand{\sbStyleSum}[1]{
@@ -66,19 +70,48 @@ node distance=#1em,sbStyleBloc,right] (#2) {#3};
 \node (#2droite) at (#2.east){};
 \node (BlocdeFindroite) at (#2.east){};
 }
+\newcommand{\sbBlocr}[4][2]{
+\node [ 
+    minimum height=3em, minimum width=3em, left of = #4gauche, 
+node distance=#1em, sbStyleBloc,left] (#2) {#3};
+\node (#2gauche) at (#2.west){};
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% extension pour les schémas-bloc dans le domaine temporel
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\sbInt}[3][2]{
+\node [draw, rectangle,
+    minimum height=3em, minimum width=3em, right of = #3droite,
+node distance=#1em,sbStyleBloc,right] (#2) {$\displaystyle\int$};
+\node (#2droite) at (#2.east){};
+\node (BlocdeFindroite) at (#2.east){};
+}
+\newcommand{\sbIntr}[3][2]{
+\node [draw, rectangle,
+    minimum height=3em, minimum width=3em, left of = #3gauche,
+node distance=#1em,sbStyleBloc,left] (#2) {$\displaystyle\int$};
+\node (#2gauche) at (#2.west){};
+}
+\newcommand{\sbBlocT}[4][2]{
+\node [draw, isosceles triangle,isosceles triangle apex angle=60,
+    minimum size=2.5em, right of = #4droite,
+    node distance=#1em,sbStyleBlocT,right] (#2) {#3};
+\node (#2droite) at (#2.east){};
+\node (BlocdeFindroite) at (#2.east){};
+}
+\newcommand{\sbBlocTr}[4][2]{
+\node [draw, isosceles triangle,isosceles triangle apex angle=60,
+    minimum size=2.5em, left of = #4gauche,shape border rotate=180,
+    node distance=#1em,sbStyleBlocT,left] (#2) {#3};
+\node (#2gauche) at (#2.west){};
+}
 
 \newcommand{\sbBlocPatate}[4][2]{
 \node [draw, cloud, cloud puffs=5, draw, 
     minimum height=3em, minimum width=5em, right of = #4droite,
 node distance=#1em,sbStyleBlocPatate,right] (#2) {#3};
 \node (#2droite) at (#2.east){};
-}
-
-\newcommand{\sbBlocr}[4][2]{
-\node [ 
-    minimum height=3em, minimum width=3em, left of = #4gauche, 
-node distance=#1em, sbStyleBloc,left] (#2) {#3};
-\node (#2gauche) at (#2.west){};
 }
 
 \newcommand{\sbBlocL}[4][2]{
@@ -109,6 +142,9 @@ node distance=#1em, sbStyleBloc,left] (#2) {#3};
 %\Commande de lien
 \newcommand{\sbRelier}[3][]{
  \draw [sbStyleLien,auto] (#2) -- node[name=#2-#3] {#1} (#3);
+}
+\newcommand{\sbRelierNoDraw}[3][]{
+ \draw [line width=0pt,auto] (#2) -- node[name=#2-#3] {#1} (#3);
 }
 
 \newcommand{\sbRelieryx}[2]{
