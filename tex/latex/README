@@ -1,0 +1,75 @@
+Ensemble des sty développés pour l'enseignenement des différents
+modules de l'ESME.
+
+# -----------------------------------------------------------------------------
+# dev. par un tier
+# -----------------------------------------------------------------------------
+doclicense/
+    [2018/02/17 v1.7.0 Support for putting documents under a license]
+
+Robert Papanicola :
+schemabloc/
+    %macros dessin des schéma-blocs mise à jour 6 janvier 2009
+    % version 1.5
+rpcinematik/
+    verions 0.1 - 12/10/2007
+    version 0.5 -  19 janvier 2009 - mise en ligne
+    version 0.6 -  juin 2017 - correction d'un petit bug sur la liaison linéaire annulaire
+# -----------------------------------------------------------------------------
+# dev. par fmv
+# -----------------------------------------------------------------------------
+bode_diagram/ 
+    [2018/03/20 v0.01 LaTeX package pour tracer des diagrammes de Bode vierge]
+
+fig-planes/
+    [2017/06/05 v0.01 LaTeX package dessiner des figures planes;
+    2018/09/26 v0.02 LaTeX package dessiner des figures planes en couleur
+    2019/12/12 v0.03 LaTeX package dessiner des figures planes en couleur (rotation et translation)]
+
+gear_tikz/ (non fonctionnel dev arrêté)
+    [2017/06/05 v0.01 LaTeX package dessiner des engrenage droit]
+
+gfluence/  
+    [2018/06/25 macros tikz de graphe de fluence comme présenté dans Ostertag]
+
+gliaison/ (en cours de dev.)
+    [2019/11/27 v0.01 LaTeX package dessiner des graphes de liaisons]
+
+kinematik/
+    [2017/06/05 v0.01 LaTeX package commande pour la cinématique des solides;
+    2018/10/01 v1.0 LaTeX package commande pour la mécanique des solides]
+
+mathfmv/
+    [2017/07/11 v0.01 LaTeX package pour différentes expressions mathématiques]
+
+mintedscilabfmv/
+  [2020/11/17 v0.01 LaTeX package pour définir la syntaxe scilab pour minted]
+
+nntikz/
+    [2018/09/25 macros tikz pour le tracé des graphes de réseau de neurones]
+
+poles
+    [2019/10/19 v0.1 LaTeX package pour la création de carte de pôles et zéros.]
+    [2021/11/04 v0.2 LaTeX package pour la création de carte de pôles et zéros]
+
+routhtab
+    [2017/06/05 v0.01 LaTeX package pour la création de tableau de routh]
+
+schemablocfmv/
+    Ce paquet regroupe des macros schemabloc de R. Papanicola utiles pour fmv.
+    [2020/10/28 v0.03 LaTeX package de macros schemabloc (tikz)]
+
+siunitxfmv/
+    [2019/10/21 v0.01 LaTeX package de déclarations d'unités siunitx]
+
+tcolorfmv/
+    [2019/10/21 v0.01 LaTeX package de macros tcolorbox variées]
+
+qcmexoq/ tdexoq/
+    [2017/06/05 v0.01 LaTeX package commande pour la création d'exercices et de questions]
+
+tikzfmv/
+    [2019/10/21 v0.01 LaTeX package de macros tikz variées]
+
+vecteurs/
+    [2017/06/05 v0.01 LaTeX package pour le calcul vectoriel]
