@@ -54,21 +54,21 @@
 \ifcounter{chapter}{\newcounter{numexos}[chapter]}{\newcounter{numexos}}
 %\setcounter{numexos}{0}
 \iflanguage{francais}{
-\newcommandx{\exercice}[3][2=\Large,3=]{
+\newcommandx{\exercice}[3][2=\Large,3=]{%
     \setcounter{numques}{0}
     \addtocounter{numexos}{1}
     \ifthenelse{\equal{\thenumexos}{1}}{%
         \ifthenelse{\equal{#1}{}}%
-        {\noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,}\\[0.2cm]}
-        {\noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1}\\[0.2cm]}
+        {\bigskip\noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,}\\[0.2cm]}
+        {\bigskip\noindent{\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1}\\[0.2cm]}
     }{%
         \ifthenelse{\equal{#1}{}}%
-        {\noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,}\\[0.2cm]}
-        {\noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1}\\[0.2cm]}
-    }
-}
-}{
-\newcommandx{\exercice}[3][2=\Large,3=]{
+        {\bigskip\noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,}\\[0.2cm]}
+        {\bigskip\noindent{\newline\normalfont#2#3\bfseries Exercice\,\thenumexos\,:\,\,\,#1}\\[0.2cm]}
+    }%
+}%
+}{%
+\newcommandx{\exercice}[3][2=\Large,3=]{%
     \setcounter{numques}{0}
     \addtocounter{numexos}{1}
     \ifthenelse{\equal{\thenumexos}{1}}{%
@@ -79,9 +79,9 @@
         \ifthenelse{\equal{#1}{}}%
         {\noindent{\newline\normalfont#2#3\bfseries Exercise\,\thenumexos\,}\\[0.2cm]}
         {\noindent{\newline\normalfont#2#3\bfseries Exercise\,\thenumexos\,:\,\,\,#1}\\[0.2cm]}
-    }
-}
-}
+    }%
+}%
+}%
 \endinput
 %%
 %% End of file `tdexoq.sty'.
