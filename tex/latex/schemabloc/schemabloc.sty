@@ -37,16 +37,12 @@
 \newcommand{\sbStyleBlocTDefaut}{
 \tikzstyle{sbStyleBlocT}=[draw, isosceles triangle,isosceles triangle apex angle=60,]
 }
-
 \newcommand{\sbStyleSum}[1]{
 \tikzstyle{sbStyleSum}+=[#1]
 }
-
 \newcommand{\sbStyleSumDefaut}{
 \tikzstyle{sbStyleSum}=[]
 }%style Sum default CC
-
-
 \newcommand{\sbPerturb}[2][0]{
     \node (O) at (0,0) {};
     \node [above of=O, node distance=#1em,coordinate, name=#2] {};
@@ -61,29 +57,26 @@
 \newcommand{\sbSortie}[3][2]{
     \node [coordinate, right of=#3droite, node distance=#1em, minimum size=0em,right] (#2) {};
 }
-
 %Commandes de Bloc
 \newcommand{\sbBloc}[4][2]{
 \node [draw, rectangle, 
-    minimum height=3em, minimum width=3em, right of = #4droite,
-node distance=#1em,sbStyleBloc,right] (#2) {#3};
+       minimum height=3em, minimum width=3em, right of = #4droite,
+       node distance=#1em,sbStyleBloc,right] (#2) {#3};
 \node (#2droite) at (#2.east){};
 \node (BlocdeFindroite) at (#2.east){};
 }
 \newcommand{\sbBlocr}[4][2]{
-\node [ 
-    minimum height=3em, minimum width=3em, left of = #4gauche, 
-node distance=#1em, sbStyleBloc,left] (#2) {#3};
+\node [minimum height=3em, minimum width=3em, left of = #4gauche, 
+       node distance=#1em, sbStyleBloc,left] (#2) {#3};
 \node (#2gauche) at (#2.west){};
 }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % extension pour les schémas-bloc dans le domaine temporel
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\sbInt}[3][2]{
 \node [draw, rectangle,
-    minimum height=3em, minimum width=3em, right of = #3droite,
-node distance=#1em,sbStyleBloc,right] (#2) {$\displaystyle\int$};
+       minimum height=3em, minimum width=3em, right of = #3droite,
+       node distance=#1em,sbStyleBloc,right] (#2) {$\displaystyle\int$};
 \node (#2droite) at (#2.east){};
 \node (BlocdeFindroite) at (#2.east){};
 }
@@ -284,9 +277,7 @@ label=175:$#4$,label=-85:$#5$,label=85:$#6$,sbStyleSum] (#2) {};
 \sbDecaleNoeudy[5]{FindeChaine}{sbDebutRetour}
 \sbChaineRetour[#1]{sbDebutRetour}{#4}
 \draw [sbStyleLien,-] (FindeChaine)  |-   (sbDebutRetour.west)  ;
-
 \draw [sbStyleLien] (BlocdeFingauche.base)  -|   node[name=sbNomRetour,near end,right] {} (Comp#2) ;
-
 }
 
 %vielles definitions, ne plus utiliser, décommenter si nécessaire
