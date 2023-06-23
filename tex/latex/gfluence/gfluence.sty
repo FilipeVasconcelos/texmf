@@ -64,7 +64,11 @@
     }
 }
 \newcommandx{\gfSortie}[5][1=5,3=+]{
-    \node [gfStyleNoeud, right of=#4droite, node distance=#1em] (#5) {};
+    \node [right of=#4droite, node distance=#1em] (#5) {};
+    \ifthenelse{\equal{#3}{}}{
+    }{
+        \node [gfStyleNoeud,right of=#4droite, node distance=#1em, name=#5] at (#5) {};
+    }
     \ifthenelse{\equal{#3}{+}}{
     \node [xshift=0.8em,yshift=0.8em] at (#5) {#2};
     }{
