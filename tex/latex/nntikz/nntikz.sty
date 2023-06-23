@@ -1,7 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1999/01/01]
 \ProvidesPackage{nntikz}
 [2018/09/25 macros tikz pour le tracé des graphes de réseau de neurones]
-
 \RequirePackage{ifthen}
 \RequirePackage{xargs}
 \RequirePackage{xparse}
@@ -13,57 +12,72 @@
 \gdef\yoff{1}
 \tikzstyle{neuron}=[thick,draw,circle,minimum size=10pt,inner sep=0pt]
 \newcommand{\neuron}[1]{
-\tikzstyle{neuron}+=[#1]
+    \tikzstyle{neuron}+=[#1]
 }
 \tikzstyle{neuron input}=[fill=green!50,neuron]
 \tikzstyle{neuron output}=[fill=red!50,neuron]
 
 \newcommandx{\nninput}[3][2=1,3=]
 {
-	\def\dim{#2}
-        \expandafter\newcommand\csname#1\endcsname{#2}
-        \foreach \xn in {1,...,\dim} {
-		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-                \ifthenelse{\equal{#3}{}}{
-                    \node[neuron input] (#1-\xn) at (0,\y) {};
-                }{
-                    \node[minimum size=20pt,neuron input] (#1-\xn) at (0,\y) {$#3_{\xn}$};
-                }
-	    }
+    %#1 : nom de la couche
+    %#2 : nombre de neurones de la couche (default : 1)
+    %#3 : nom de la variable du neurone (default : vide) 
+    \def\dim{#2}
+    \expandafter\newcommand\csname#1\endcsname{#2}
+    \foreach \xn in {1,...,\dim} {
+        \pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
+        \ifthenelse{\equal{#3}{}}{
+            \node[neuron input] (#1-\xn) at (0,\y) {};
+        }{
+            \node[minimum size=20pt,neuron input] 
+            (#1-\xn) at (0,\y) {$#3_{\xn}$};
+        }
+    }
 }
 \newcommandx{\nnoutput}[4][2=1,3=0,4=]
 {
-	\def\dim{#2}
-        \expandafter\newcommand\csname#1\endcsname{#2}
-	\foreach \xn in {1,...,\dim} {
-		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-                \ifthenelse{\equal{#4}{}}{
-                    \node[neuron output] (#1-\xn) at (#3*\xoff,\y) {};
-                }{
-                    \node[minimum size=20pt,neuron output] (#1-\xn) at (#3*\xoff,\y) {$#4_{\xn}$};
-                }
-	    }
+    %#1 : nom de la couche
+    %#2 : nombre de neurones de la couche (default: 1)
+    %#3 : décalage en x                   (default: 0) 
+    %#4 : nom de la variable du neurone   (default: vide) 
+    \def\dim{#2}
+    \expandafter\newcommand\csname#1\endcsname{#2}
+    \foreach \xn in {1,...,\dim}{
+        \pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
+        \ifthenelse{\equal{#4}{}}{
+            \node[neuron output] (#1-\xn) at (#3*\xoff,\y) {};
+        }{
+            \node[minimum size=20pt,neuron output] 
+            (#1-\xn) at (#3*\xoff,\y) {$#4_{\xn}$};
+        }
+    }
 }
 \newcommandx{\nnhidden}[4][2=1,3=0,4=]
 {
-	\def\dim{#2}
-	\pgfmathsetmacro{\colo}{#3*15}
-        \expandafter\newcommand\csname#1\endcsname{#2}
-	\foreach \xn in {1,...,\dim} {
-		\pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
-                \ifthenelse{\equal{#4}{}}{
-                    \node[fill=blue!\colo,neuron] (#1-\xn) at (#3*\xoff,\y) {};
-                }{
-                    \node[minimum size=20pt,fill=blue!\colo,neuron] (#1-\xn) at (#3*\xoff,\y) {$#4_{#3\xn}$};
-                }
-	    }
+    %#1 : nom de la couche
+    %#2 : nombre de neurones de la couche (default: 1)
+    %#3 : décalage en x                   (default: 0) 
+    %#4 : nom de la variable du neurone   (default: vide) 
+    \def\dim{#2}
+    \pgfmathsetmacro{\colo}{#3*15}
+    \expandafter\newcommand\csname#1\endcsname{#2}
+    \foreach \xn in {1,...,\dim} {
+        \pgfmathsetmacro{\y}{\yoff*\xn-(\dim-1)*\yoff/2}
+        \ifthenelse{\equal{#4}{}}{
+            \node[fill=blue!\colo,neuron] (#1-\xn) at (#3*\xoff,\y) {};
+        }{
+            \node[minimum size=20pt,fill=blue!\colo,neuron] 
+            (#1-\xn) at (#3*\xoff,\y) {$#4_{#3\xn}$};
+        }
+    }
 }
-
 \newcommandx{\nnfull}[3][3=]{%
-	\foreach \source in {1,...,\csname#1\endcsname}{
-		\foreach \dest in {1,...,\csname#2\endcsname}
-		{
-			\path (#1-\source) edge[-latex,#3] (#2-\dest);
-		}
+    %#1 : nom de la couche en entrée 
+    %#2 : nom de la couche en sortie
+    %#3 : option du lien (edge) 
+    \foreach \source in {1,...,\csname#1\endcsname}{
+        \foreach \dest in {1,...,\csname#2\endcsname}{
+	    \path (#1-\source) edge[-latex,#3] (#2-\dest);
 	}
+    }
 }
