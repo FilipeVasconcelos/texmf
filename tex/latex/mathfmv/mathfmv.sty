@@ -55,6 +55,7 @@
 
 % d droit dérivée
 \newcommand*{\dd}[1]{\mathrm{d}{#1}}
+\newcommand*{\ddd}[1]{\mathrm{d^2}{#1}}
 \newcommand*{\devi}[2]{\dfrac{\mathrm{d}^{#2}{#1}}{\dd{t^{#2}}}}
 \newcommand*{\deviV}[3]{\left[\devi{#1}{#2}\right]_{#3}}
 \newcommand*{\deviR}[3]{\dfrac{\mathrm{d}^{#2}{#1}}{\dd{#3^{#2}}}}
@@ -80,8 +81,6 @@
 % dot longueur
 \newcommand*{\dlambda}{\dot{\lambda}}
 
-
-
 %creer un vecteur du type \xx{_1}
 \newcommandx{\ccvect}[2][2=]{%
     \csname #1#1\endcsname{#2}%
@@ -99,6 +98,13 @@
 \newcommand{\ccentm}[2]{%
 \text{#1}_{#2}%
 }  
+
+%quelques boldsymbol
+\newcommand{\bdM}{\boldsymbol{M}}
+\newcommand{\bdI}{\boldsymbol{I}}
+\newcommand{\bdA}{\boldsymbol{A}}
+\newcommand{\bdB}{\boldsymbol{B}}
+\newcommand{\bdC}{\boldsymbol{C}}
 
 \endinput
 
