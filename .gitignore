@@ -25,6 +25,10 @@
 *.slg
 *.sls
 *.toc
+*.nav
+*.snm
+*.vrb
+*.svg
 
 tlpkg/
 tex/latex/doclicense/images/index.html
