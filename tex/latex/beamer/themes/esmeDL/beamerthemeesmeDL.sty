@@ -5,6 +5,8 @@
 \usetikzlibrary{spy}
 \RequirePackage{ifthen}
 \RequirePackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 \RequirePackage{tcolorbox}
 \RequirePackage{calc}
 \tcbuselibrary{skins}
@@ -44,14 +46,14 @@
 
 \theoremstyle{definition}
 % QUESTION WOOCLAP
-\newtheorem{blockWooclap}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=0.4cm]{icone_wooclap}~Allez sur wooclap.com et utilisez le code :~}
+\newtheorem{blockWooclap}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=0.75cm]{icone_wooclap}~Allez sur wooclap.com et utilisez le code :~}
 \AtBeginEnvironment{blockWooclap}{%
 \setbeamercolor{block title}{fg=bleuesme!90!white,bg=white}
 \setbeamercolor{block body}{bg=bleuesme!11!white,fg=bleuesme}
 }
 \AfterEndEnvironment{blockWooclap}{%
-\begin{tikzpicture}[overlay]
-    \draw[dashed,rounded corners,bleuesme,line width=1.5pt] (-0.13,1.25) rectangle (14.13,2.3);
+\begin{tikzpicture}[remember picture,overlay]
+\draw[dashed,rounded corners,bleuesme,line width=1.5pt] (-0.13,\paperheight-7.7cm) rectangle (14.13,\paperheight-6.5cm);
 \end{tikzpicture}\par
 }
 \newtheorem{blockQues}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=0.75cm]{icone_question_vert}~Consigne :~}
