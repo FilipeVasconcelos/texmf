@@ -19,22 +19,42 @@
 \setbeamertemplate{blocks}[rounded][shadow=true]  
 
 \theoremstyle{definition}
+\IfLanguageName{french}{
 \newtheorem{blockDef}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{definition}~Définition}
+}%
+{%      
+\newtheorem{blockDef}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{definition}~Definition}
+}
 \AtBeginEnvironment{blockDef}{%
   \setbeamercolor{block title}{fg=white,bg=bleuesme}
   \setbeamercolor{block body}{bg=bleuclairesme,fg=bleuesme}
 }
+\IfLanguageName{french}{%
 \newtheorem{blockProp}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{propriete}~Propriétés}
+}%
+{
+\newtheorem{blockProp}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{propriete}~Properties}
+}%
 \AtBeginEnvironment{blockProp}{%
   \setbeamercolor{block title}{fg=white,bg=rougeesme}
   \setbeamercolor{block body}{bg=rougeclairesme,fg=rougeesme}
 }
+\IfLanguageName{french}{%
 \newtheorem{blockEx}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{exemple_blanc}~Exemple}
+}%
+{%
+\newtheorem{blockEx}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{exemple_blanc}~Example}
+}
 \AtBeginEnvironment{blockEx}{%
   \setbeamercolor{block title}{fg=white,bg=vertesme}
   \setbeamercolor{block body}{bg=vertesme!25!white,fg=vertesme}
 }
+\IfLanguageName{french}{%
 \newtheorem{blockRem}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{remarque_blanc}~Remarque}
+}%
+{%
+\newtheorem{blockRem}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{remarque_blanc}~Note}
+}
 \AtBeginEnvironment{blockRem}{%
   \setbeamercolor{block title}{fg=white,bg=grisesme}
   \setbeamercolor{block body}{bg=grisesme!25!white,fg=grisesme}
