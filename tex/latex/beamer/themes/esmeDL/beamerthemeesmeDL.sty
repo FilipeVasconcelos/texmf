@@ -17,6 +17,7 @@
 \useoutertheme{esmeDL}
 \usecolortheme{esmeDL}
 
+\setbeamersize{text margin left=12mm,text margin right=12mm}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[rounded][shadow=true]  
 
@@ -76,22 +77,43 @@
     \draw[dashed,rounded corners,vertesme,line width=1.5pt] (-0.13,1.25) rectangle (14.13,2.3);
 \end{tikzpicture}\par
 }
+
+\IfLanguageName{french}{%
 \newtheorem{blockDef}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{definition}~Définition}
+}%
+{%
+\newtheorem{blockDef}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{definition}~Definition}
+}
 \AtBeginEnvironment{blockDef}{%
   \setbeamercolor{block title}{fg=white,bg=bleuesme}
   \setbeamercolor{block body}{bg=bleuclairesme,fg=bleuesme}
 }
-\newtheorem{blockProp}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{propriete}~Propriétés}
+\IfLanguageName{french}{%
+\newtheorem{blockProp}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{propriete}~Propriété}
+}%
+{%
+\newtheorem{blockProp}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{propriete}~Property}
+}
 \AtBeginEnvironment{blockProp}{%
   \setbeamercolor{block title}{fg=white,bg=rougeesme}
   \setbeamercolor{block body}{bg=rougeclairesme,fg=rougeesme}
 }
+\IfLanguageName{french}{%
 \newtheorem{blockEx}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{exemple_blanc}~Exemple}
+}%
+{%
+\newtheorem{blockEx}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{exemple_blanc}~Example}
+}
 \AtBeginEnvironment{blockEx}{%
   \setbeamercolor{block title}{fg=white,bg=vertesme}
   \setbeamercolor{block body}{bg=vertesme!25!white,fg=vertesme}
 }
+\IfLanguageName{french}{%
 \newtheorem{blockRem}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{remarque_blanc}~Remarque}
+}%
+{%
+\newtheorem{blockRem}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=\fontcharht\font`\B]{remarque_blanc}~Note}
+}
 \AtBeginEnvironment{blockRem}{%
   \setbeamercolor{block title}{fg=white,bg=grisesme}
   \setbeamercolor{block body}{bg=grisesme!25!white,fg=grisesme}
