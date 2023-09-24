@@ -17,13 +17,11 @@
 \RequirePackage{amsthm}
 \RequirePackage{amssymb}
 %\RequirePackage{gensymb}
-\RequirePackage{iflang}
 
 
 \def\hi{Ce paquet permet de dessiner des diagrammes de Bode vierge}
 \let\myDate\date
 
-\iflanguage{francais}{
 \newcommandx{\bodegain}[6][4=,5=,6=]{%
 \def\xx{#1}
 \def\yy{#2}
@@ -68,52 +66,6 @@
 %\addplot[ultra thick, blue,domain=1e:1e4, samples=201] {#6};
 \end{axis}
 }
-}{%
-\newcommandx{\bodegain}[6][4=,5=,6=]{%
-\def\xx{#1}
-\def\yy{#2}
-\def\hh{#3}
-\begin{axis}[
-    name=bodegain,
-    width=0.9\textwidth,
-    height=\hh\textheight,
-    ylabel={Gain (dB)},
-    xticklabels={#4},
-    yticklabels={#5},
-    ytick={0,1,...,\yy}, 
-    xmode=log,ymode=normal,
-    xmin=1e0, xmax=1e\xx,
-    ymin=0, ymax=\yy,
-    grid=both,
-    major grid style={black!50,line width=.4pt}
-]
-%\addplot[ultra thick, blue,domain=1e1:1e4, samples=201] {#6};
-\end{axis}
-}
-\newcommandx{\bodephase}[6][4=,5=,6=]{%
-\def\xx{#1}
-\def\yy{#2}
-\def\hh{#3}
-\begin{axis}[
-    name=bodephase,
-    at={(bodegain.below south west)},yshift=-0.005\textheight,anchor=north west,
-    width=0.9\textwidth,
-    height=\hh\textheight,
-    xlabel={Angular frequency (rad/s)},
-    ylabel={Phase (degrees)},
-    xticklabels={#4},
-    yticklabels={#5},
-    ytick={0,1,...,\yy}, 
-    xmode=log,ymode=normal,
-    xmin=1e0, xmax=1e\xx,
-    ymin=0, ymax=\yy,
-    grid=both,
-    major grid style={black!50}
-]
-%\addplot[ultra thick, blue,domain=1e:1e4, samples=201] {#6};
-\end{axis}
-}
-}%
 
 
 
