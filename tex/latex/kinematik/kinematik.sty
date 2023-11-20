@@ -18,6 +18,11 @@
 \def\hi{Ce paquet donne acc\`es à un grand nombre de grandeur math\'ematique pour la m\'ecanique des solides.}
 \let\myDate\date
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Ecriture dérivée %%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommandx*{\dv}[2]{\frac{d^{(#2)}{#1}}{dt}}
+\newcommandx*{\dvv}[2]{\frac{d^{2 (#2)}{#1}}{dt^2}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% Mécanismes %%%%%%%%%%%%%%%%%%%
@@ -39,10 +44,10 @@
 
 % Elements de reduction cinematique
 \newcommandx*{\Om}[2][1=]{\overrightarrow{\Omega^{#1}_{#2}}}
-\newcommandx*{\Ome}[2][1=]{\overrightarrow{\omega}_{#2}^{#1}} %anglophone
+\newcommandx*{\Ome}[2]{\overrightarrow{\omega}_{#2}^{#1}} %anglophone
 % Vitesse point géométrique
 \newcommandx*{\TV}[4][1=,3=]{\overrightarrow{V^{#1}_{\mathrm{#2}_{#3}/#4}}}
-\newcommandx*{\TVe}[3]{\overrightarrow{v}_{#2}^{#1}(#3,t)} %anglophone
+\newcommandx*{\TVe}[3]{\overrightarrow{v}_{#2}^{#1}(#3,t)}
 % Vitesse
 \newcommandx*{\TCV}[5][1=,3=]{\overrightarrow{V^{#1}_{\mathrm{#2}_{#3}\in#4/#5}}}
 % Acceleration
@@ -51,6 +56,13 @@
 % Torseur cinematique
 \newcommandx*{\torC}[4][1=,4=]{\Big\{\mathcal{V}^{#1}_{#2}\Big\}_{\mathrm{#3}_{#4}}}
 \newcommandx*{\torCe}[3]{\Big\{\mathcal{V}^{#1}_{#2}\Big\}_{#3}} %anglophone
+\newcommandx*{\torCeFull}[5]{\torCe{#1}{#2}{#3}=\left\{ 
+\begin{matrix}
+\Ome{#1}{#2}={#4}\
+\\
+\TVe{#1}{#2}{#3}={#5}\\
+\end{matrix}
+\right\}} %anglophone
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% Statique %%%%%%%%%%%%%%%%%%%%%
@@ -69,6 +81,13 @@
 \newcommandx*{\torAM}[5][1=,5=]{\Big\{\mathcal{F}^{#1}_{#2\rightarrow#3}\Big\}_{\mathrm{#4}_{#5}}}
 \newcommandx*{\torCM}[5][1=,5=]{\Big\{\mathcal{C}^{#1}_{m,#2\rightarrow#3}\Big\}_{\mathrm{#4}_{#5}}}
 \newcommandx*{\torAMe}[3]{\Big\{\mathcal{\tau}^{#1}_{#2}\Big\}_{#3}} %anglophone
+\newcommandx*{\torAMeFull}[5]{\Big\{\mathcal{\tau}^{#1}_{#2}\Big\}_{#3}=\left\{ 
+\begin{matrix}
+\vect{R}={#4}\
+\\
+\vect{M}_{#3 \in #1}={#5}\\
+\end{matrix}
+\right\}}%anglophone
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% Cinétique %%%%%%%%%%%%%%%%%%%%
@@ -76,11 +95,22 @@
 
 % Résultante
 \newcommand*{\Pk}[2]{\overrightarrow{P_{#1/#2}}}
+\newcommand*{\Pke}[2]{\vect{p}_{#2}^{#1}} %anglophone
 % Moment Cinétique
 \newcommandx*{\TKM}[5][1=,3=]{\overrightarrow{L^{#1}_{\mathrm{#2}_{#3},#4/#5}}}
+\newcommandx*{\TKMe}[3]{\vect{\sigma}_{#3 \in #2}^{#1}} %anglophone
 \newcommandx*{\TKMs}[5][1=,3=]{\overrightarrow{\sigma^{#1}_{\mathrm{#2}_{#3},#4/#5}}}
+
 % Torseur Cinétique
 \newcommandx*{\torK}[5][1=,5=]{\Big\{\mathcal{C}^{#1}_{#2/#3}\Big\}_{\mathrm{#4}_{#5}}}
+\newcommandx*{\torKe}[3]{\Big\{\mathcal{P}^{#1}_{#2}\Big\}_{#3}} %anglophone
+\newcommandx*{\torKeFull}[5]{\torKe{#1}{#2}{#3}=\left\{ 
+\begin{matrix}
+\vect{p}_{#2}^{#1}={#4}\
+\\
+\vect{\sigma}_{#3 \in #2}^{#1}={#5}\\
+\end{matrix}
+\right\}} %anglophone
 % Energie Cinétique
 \newcommandx*{\KK}[2][1=]{K^{#1}_{#2}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,7 +122,14 @@
 \newcommandx*{\TDM}[5][1=,3=]{\overrightarrow{\delta^{#1}_{\mathrm{#2}_{#3},#4/#5}}}
 % Torseur Dynamique
 \newcommandx*{\torD}[5][1=,5=]{\Big\{\mathcal{D}^{#1}_{#2/#3}\Big\}_{\mathrm{#4}_{#5}}}
-
+\newcommandx*{\torDe}[3]{\Big\{\mathcal{D}^{#1}_{#2}\Big\}_{#3}} %anglophone
+\newcommandx*{\torDeFull}[5]{\Big\{\mathcal{D}^{#1}_{#2}\Big\}_{#3}=\left\{ 
+\begin{matrix}
+{#4}\
+\\
+{#5}\\
+\end{matrix}
+\right\}} %anglophone
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%% Puissance et Energie  %%%%%%%%%%%
@@ -114,9 +151,8 @@
 \newcommand*{\TT}[1]{\overrightarrow{T_{\mathrm{#1}}}}                % tension
 \newcommand*{\LL}[1]{\overrightarrow{L_{\mathrm{#1}}}}                % moment cinétique
 \newcommand*{\PP}[1]{\overrightarrow{P_{\mathrm{#1}}}}                % poids
-\newcommand*{\QQ}[1]{\overrightarrow{Q_{\mathrm{#1}}}}                % force résistante (machine simple)
 \newcommandx*{\MM}[3][2=]{\overrightarrow{M{_{\mathrm{#1}_{#2},#3}}}} % moment
-\newcommand*{\RR}[1]{\overrightarrow{R_{\mathrm{#1}}}}                % resultante
+\newcommand*{\RR}[1]{\overrightarrow{R_{\mathrm{#1}}}}                 % resultante
 
 % Moment d'inertie
 \newcommandx*{\Ia}[4][3=]{I_{\axe{#1}{#2}[#3]}(#4)}
@@ -148,6 +184,7 @@
 }
 {\big\{\mathcal{T}_{#1}\big\}_{\mathrm{#2}_{#3}}}
 }
+
 %torseur ligne
 \newcommandx*{\torl}[4][4=]{\begin{Bmatrix}#1\\[0.5em]#2\end{Bmatrix}_{\mathrm{#3}_{#4}}}
 %torseur colonne 6 composantes
