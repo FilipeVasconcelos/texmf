@@ -54,7 +54,7 @@ dvid:
 	latex -draftmode ${filename}
 	latex -draftmode ${filename}
 
-read:  pdf
+read: pdf
 	xpdf ${filename}.pdf 
 
 aread: pdf
