@@ -110,10 +110,14 @@
 \makeatother
 
 % Grille réponse
-\newcommand{\feuilleDR}[1]{%
+\makeatletter
+\newcommand{\feuilleDR}[2][]{%
+\ifx\@reponse\@true
 \begin{tikzpicture}
-    \draw[gray!30](0,0)grid[step=0.5cm](\linewidth,#1);
-\end{tikzpicture}}%
+    \draw[gray!30](0,0)grid[step=0.5cm](\linewidth,#2);
+\end{tikzpicture}#1\fi}%
+\makeatother
+
 %Page title
 \makeatletter
 \newcommand\logoIMG{%
