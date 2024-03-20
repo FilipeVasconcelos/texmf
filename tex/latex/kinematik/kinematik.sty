@@ -47,12 +47,12 @@
 \newcommandx*{\Ome}[2]{\overrightarrow{\omega}_{#2}^{#1}} %anglophone
 % Vitesse point géométrique
 \newcommandx*{\TV}[4][1=,3=]{\overrightarrow{V^{#1}_{\mathrm{#2}_{#3}/#4}}}
-\newcommandx*{\TVe}[3]{\overrightarrow{v}_{#2}^{#1}(#3,t)}
+\newcommandx*{\TVe}[4][4=]{\overrightarrow{v}_{#2}^{#1}(\mathrm{#3}_{#4},t)}
 % Vitesse
 \newcommandx*{\TCV}[5][1=,3=]{\overrightarrow{V^{#1}_{\mathrm{#2}_{#3}\in#4/#5}}}
 % Acceleration
 \newcommandx*{\TCA}[5][1=,3=]{\overrightarrow{\Gamma^{#1}_{\mathrm{#2}_{#3}\in#4/#5}}}
-\newcommandx*{\TAe}[3]{\overrightarrow{a}_{#2}^{#1}(#3,t)} %anglophone
+\newcommandx*{\TAe}[4][4=]{\overrightarrow{a}_{#2}^{#1}(\mathrm{#3}_{#4},t)} %anglophone
 % Torseur cinematique
 \newcommandx*{\torC}[4][1=,4=]{\Big\{\mathcal{V}^{#1}_{#2}\Big\}_{\mathrm{#3}_{#4}}}
 \newcommandx*{\torCe}[3]{\Big\{\mathcal{V}^{#1}_{#2}\Big\}_{#3}} %anglophone
@@ -81,12 +81,11 @@
 \newcommandx*{\torAM}[5][1=,5=]{\Big\{\mathcal{F}^{#1}_{#2\rightarrow#3}\Big\}_{\mathrm{#4}_{#5}}}
 \newcommandx*{\torCM}[5][1=,5=]{\Big\{\mathcal{C}^{#1}_{m,#2\rightarrow#3}\Big\}_{\mathrm{#4}_{#5}}}
 \newcommandx*{\torAMe}[3]{\Big\{\mathcal{\tau}^{#1}_{#2}\Big\}_{#3}} %anglophone
-\newcommandx*{\torAMeFull}[5]{\Big\{\mathcal{\tau}^{#1}_{#2}\Big\}_{#3}=\left\{ 
-\begin{matrix}
-\vect{R}={#4}\
-\\
-\vect{M}_{#3 \in #1}={#5}\\
-\end{matrix}
+\newcommandx*{\torAMeFull}[6][4=]{\Big\{\mathcal{\tau}^{#1}_{#2}\Big\}_{\mathrm{#3}_{#4}}=\left\{ 
+\begin{aligned}
+    \vec{R}&={#5}\\
+    \vec{M}_{\mathrm{#3}_{#4}\in#1}&={#6}
+\end{aligned}
 \right\}}%anglophone
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -98,7 +97,7 @@
 \newcommand*{\Pke}[2]{\vect{p}_{#2}^{#1}} %anglophone
 % Moment Cinétique
 \newcommandx*{\TKM}[5][1=,3=]{\overrightarrow{L^{#1}_{\mathrm{#2}_{#3},#4/#5}}}
-\newcommandx*{\TKMe}[3]{\vect{\sigma}_{#3 \in #2}^{#1}} %anglophone
+\newcommandx*{\TKMe}[4][4=]{\vect{\sigma}_{\mathrm{#3}_{#4} \in #2}^{#1}} %anglophone
 \newcommandx*{\TKMs}[5][1=,3=]{\overrightarrow{\sigma^{#1}_{\mathrm{#2}_{#3},#4/#5}}}
 
 % Torseur Cinétique
@@ -122,7 +121,7 @@
 \newcommandx*{\TDM}[5][1=,3=]{\overrightarrow{\delta^{#1}_{\mathrm{#2}_{#3},#4/#5}}}
 % Torseur Dynamique
 \newcommandx*{\torD}[5][1=,5=]{\Big\{\mathcal{D}^{#1}_{#2/#3}\Big\}_{\mathrm{#4}_{#5}}}
-\newcommandx*{\torDe}[3]{\Big\{\mathcal{D}^{#1}_{#2}\Big\}_{#3}} %anglophone
+\newcommandx*{\torDe}[4][4=]{\Big\{\mathcal{D}^{#1}_{#2}\Big\}_{\mathrm{#3}_{#4}}} %anglophone
 \newcommandx*{\torDeFull}[5]{\Big\{\mathcal{D}^{#1}_{#2}\Big\}_{#3}=\left\{ 
 \begin{matrix}
 {#4}\

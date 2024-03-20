@@ -33,20 +33,20 @@ de base pour la cinématique.}
 }{
     \def\angle{\cang{#2}{#3}}
 }
-\def\rt{#4}
-\def\ct{#5} % color
-\def\rf{#6}
-\def\cf{#7} % color
+\def\rrt{#4}
+\def\cct{#5} % color
+\def\rrf{#6}
+\def\ccf{#7} % color
 \fplanescontinue#8
 }
 
 \newcommandx{\fplanescontinue}[7][1=x,2=y,3=z,4=O,5=,6=O,7=,usedefault]{ 
-\def\xbt{\ccvect{#1}[\rt]}
-\def\xbf{\ccvect{#1}[\rf]}
-\def\ybt{\ccvect{#2}[\rt]}
-\def\ybf{\ccvect{#2}[\rf]}
-\def\zbt{\ccvect{#3}[\rt]}
-\def\zbf{\ccvect{#3}[\rf]}
+\def\xxbt{\ccvect{#1}[\rrt]}
+\def\xxbf{\ccvect{#1}[\rrf]}
+\def\yybt{\ccvect{#2}[\rrt]}
+\def\yybf{\ccvect{#2}[\rrf]}
+\def\zzbt{\ccvect{#3}[\rrt]}
+\def\zzbf{\ccvect{#3}[\rrf]}
 \def\origine{\ccent{#4}{#5}}
 \def\originem{\ccentm{#4}{#5}}
 \def\origined{\ccent{#6}{#7}}
@@ -91,19 +91,19 @@ Remarques :
         \coordinate (y0) at (0,1);
         \coordinate (x1) at (1,0);
         \coordinate (y1) at (0,1);
-        \draw [-latex,thick,color=\ct] (b) -- ($(b)+2.4*(x1)$) node [below] {$\xbt$};
-        \draw [-latex,thick,color=\cf] (a) -- ($(a)+2.4*(x0)$) node [below] {$\xbf$} ;
-        \draw [-latex,thick,color=\cf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\ybf$};
-        \draw [-latex,thick,color=\ct] (b) -- ($(b)+2.4*(y1)$) node [above] {$\ybt$};
+        \draw [-latex,thick,color=\cct] (b) -- ($(b)+2.4*(x1)$) node [below] {$\xxbt$};
+        \draw [-latex,thick,color=\ccf] (a) -- ($(a)+2.4*(x0)$) node [below] {$\xxbf$} ;
+        \draw [-latex,thick,color=\ccf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\yybf$};
+        \draw [-latex,thick,color=\cct] (b) -- ($(b)+2.4*(y1)$) node [above] {$\yybt$};
         \draw [thick,fill=black] (a) circle (1pt)   node [below,yshift=-0.5ex]{\origine};
         \draw [thick,fill=black] (b) circle (1pt)   node [below,yshift=-0.5ex]{\origined};
         \coordinate (z) at ($(a)+(-1,0.3)$);
-        \draw [thick] (z) circle (3pt)              node [\cf,below] {$\hphantom{\zbt}=\zbf$};
-        \draw [thick,fill=black] (z) circle (0.5pt) node [\ct,below] {$\zbt\hphantom{=\zbf}$};
+        \draw [thick] (z) circle (3pt)              node [\ccf,below] {$\hphantom{\zzbt}=\zzbf$};
+        \draw [thick,fill=black] (z) circle (0.5pt) node [\cct,below] {$\zzbt\hphantom{=\zzbf}$};
         \draw [-latex,thick] ($(a)+1.7*(y0)$) -- node[above] {$\angle$} ($(b)+1.7*(y0)$);
         \ifthenelse{\equal{\mode}{tv}}{%
-        \node at (0.9,-1.4) {$\begin{aligned}\Om{\rt/\rf}&=\vnull\\\TCV{\originedm}{\rt}{\rf}
-                                                         &=\dot{\angle}\xbf\end{aligned}$};
+        \node at (0.9,-1.4) {$\begin{aligned}\Om{\rrt/\rrf}&=\vnull\\\TCV{\originedm}{\rrt}{\rrf}
+                                                         &=\dot{\angle}\xxbf\end{aligned}$};
         }{}
     }{
         \coordinate (a) at (0,0);
@@ -112,10 +112,10 @@ Remarques :
         \coordinate (x1) at (0.93969256961929659, 0.34202028390474665);
         \coordinate (y1) at (-0.34202028390474665, 0.93969256961929659);
 
-        \draw [-latex,thick,color=\cf] (a) -- ($(a)+2.4*(x0)$) node [right] {$\xbf$} ;
-        \draw [-latex,thick,color=\ct] (a) -- ($(a)+2.4*(x1)$) node [right] {$\xbt$};
-        \draw [-latex,thick,color=\cf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\ybf$};
-        \draw [-latex,thick,color=\ct] (a) -- ($(a)+2.4*(y1)$) node [above] {$\ybt$};
+        \draw [-latex,thick,color=\ccf] (a) -- ($(a)+2.4*(x0)$) node [right] {$\xxbf$} ;
+        \draw [-latex,thick,color=\cct] (a) -- ($(a)+2.4*(x1)$) node [right] {$\xxbt$};
+        \draw [-latex,thick,color=\ccf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\yybf$};
+        \draw [-latex,thick,color=\cct] (a) -- ($(a)+2.4*(y1)$) node [above] {$\yybt$};
         \draw [-latex,thick] 
         pic["$\angle$",draw=black,-latex,
         angle eccentricity=1.2,angle radius=1.7cm] {angle=x0--a--x1}
@@ -123,14 +123,14 @@ Remarques :
         angle eccentricity=1.2,angle radius=1.7cm] {angle=y0--a--y1};
         \coordinate (z) at ($(a)+(-1,0.3)$);
         \draw [thick,fill=black] (a) circle (1pt)   node [below,yshift=-0.5ex]{\origine};
-        \draw [thick] (z) circle (3pt)              node [\cf,below] {$\hphantom{\zbt}=\zbf$};
-        \draw [thick,fill=black] (z) circle (0.5pt) node [\ct,below] {$\zbt\hphantom{=\zbf}$};
+        \draw [thick] (z) circle (3pt)              node [\ccf,below] {$\hphantom{\zzbt}=\zzbf$};
+        \draw [thick,fill=black] (z) circle (0.5pt) node [\cct,below] {$\zzbt\hphantom{=\zzbf}$};
         % if mode not t but r or b
         \ifthenelse{\equal{\mode}{r}}{%
-            \node at (0.9,-1.0) {$\Om{\rt/\rf}=\dot{\angle}\zbf$};}
+            \node at (0.9,-1.0) {$\Om{\rrt/\rrf}=\dot{\angle}\zzbf$};}
         {}
         \ifthenelse{\equal{\mode}{b}}{%
-        \node at (0.9,-1.4) {$\begin{aligned}\Om{\rt/\rf}&=\dot{\angle}\zbf\\\TCV{\originem}{\rt}{\rf}&=\vnull\end{aligned}$};
+        \node at (0.9,-1.4) {$\begin{aligned}\Om{\rrt/\rrf}&=\dot{\angle}\zzbf\\\TCV{\originem}{\rrt}{\rrf}&=\vnull\end{aligned}$};
         }{}
     }
 }
