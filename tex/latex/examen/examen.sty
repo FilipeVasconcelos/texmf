@@ -7,6 +7,7 @@
 \RequirePackage{xspace}
 \RequirePackage{ifthen}
 
+\newcommand{\fr}[2]{\iflanguage{francais}{#1}{#2}}
 \makeatletter
 %commandes internes au paquet examen.sty
 \newcommand{\@promo}{None}     %ex. IngéSUP, IngéSPE, Ingé1
@@ -41,9 +42,9 @@
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\fancyfoot[LO,RE]{\textbf{\thepage}} 
+\fancyfoot[RO,LE]{\textbf{\thepage}} 
 \makeatletter
-\fancyfoot[LE,RO]{\includegraphics[height=1.25cm]{\@logo}} 
+\fancyfoot[RE,LO]{\includegraphics[height=1.25cm]{\@logo}} 
 \fancyfoot[C]{\@epreuve~-~\@promo~-~\@annee~-~\@module}
 \makeatother
 
@@ -231,5 +232,10 @@
   \Apply@consignes
   \thispagestyle{empty}
   \newpage
+  %adding a blank page after title page
+  \thispagestyle{empty}
+  \pagenumbering{gobble}
+  $\,$\clearpage
+  \thispagestyle{fancy}\pagenumbering{arabic}\setcounter{page}{3}
 }
 \makeatother
