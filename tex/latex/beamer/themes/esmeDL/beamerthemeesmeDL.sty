@@ -2,6 +2,8 @@
 
 % Requirement
 \RequirePackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
 \usetikzlibrary{spy}
 \RequirePackage{ifthen}
 \RequirePackage{iflang}
@@ -49,9 +51,13 @@
 
 \theoremstyle{definition}
 % QUESTION WOOCLAP
-\newtheorem{blockWooclap}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=0.75cm]{icone_wooclap}~Allez sur wooclap.com et utilisez le code :~}
+\IfLanguageName{french}{%
+\newtheorem{blockWooclap}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=0.75cm]{icone_wooclap}~Lancez l'activité wooclap de la séance: ~}
+}{%
+\newtheorem{blockWooclap}[theorem]{\rule[-0.6ex]{0pt}{2.5ex}\includegraphics[height=0.75cm]{icone_wooclap}~Launch the Wooclap activity of the current lecture: ~}
+}%
 \AtBeginEnvironment{blockWooclap}{%
-\setbeamercolor{block title}{fg=bleuesme!90!white,bg=white}
+\setbeamercolor{block title}{fg=bleuesme!11!white,bg=bleuesme}
 \setbeamercolor{block body}{bg=bleuesme!11!white,fg=bleuesme}
 }%
 %\AfterEndEnvironment{blockWooclap}{%
