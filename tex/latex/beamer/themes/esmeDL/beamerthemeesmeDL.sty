@@ -8,7 +8,7 @@
 \RequirePackage{ifthen}
 \RequirePackage{iflang}
 \RequirePackage{pifont}
-\RequirePackage{xpatch  }
+\RequirePackage{xpatch}
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
 \RequirePackage{tcolorbox}
@@ -126,6 +126,53 @@
   \setbeamercolor{block title}{fg=white,bg=grisesme}
   \setbeamercolor{block body}{bg=grisesme!25!white,fg=grisesme}
 }%
+
+
+% Ceci permet d'afficher une diapositive de table des matières
+% à chaque fois qu'une section est définie
+\IfLanguageName{french}{%
+    \AtBeginSection[]
+    {%
+    \begin{frame}
+        \frametitle{Sommaire}
+        \tableofcontents[sections=1-5,currentsection,hideothersubsections]
+    \end{frame}
+    }%
+}%
+{%
+    \AtBeginSection[]
+    {%
+    \begin{frame}
+        \frametitle{Outline}
+        \tableofcontents[sections=1-5,currentsection,hideothersubsections]
+    \end{frame}
+    }%
+}
+
+% Ajoute la page de titre et le sommaire lorsque l'environnement document est appelé/
+\IfLanguageName{french}{%
+    \AddToHook{begindocument/end}{%
+        \begin{frame}
+            \titlepage
+        \end{frame}%
+        \begin{frame}
+            \frametitle{Sommaire}
+            \tableofcontents[hideallsubsections]
+        \end{frame}
+    }%
+}%
+{%
+    \AddToHook{begindocument/end}{%
+        \begin{frame}
+            \titlepage
+        \end{frame}%
+        \begin{frame}
+            \frametitle{Outline}
+            \tableofcontents[hideallsubsections]
+        \end{frame}
+    }%
+}%
+
 \graphicspath{{./img/}}
 
 \mode<all>
