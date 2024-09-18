@@ -14,6 +14,9 @@
 \def\hi{Ce paquet regroupe des macros tcolorbox utiles pour fmv.}
 \let\myDate\date
 \tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+\tcbuselibrary{many}
+\tcbuselibrary{listings}
 %fmvstyle from pccstyle Portland Community College
 \tcbset{shield externalize,
         fmvstyle/.style={,
@@ -137,6 +140,31 @@
     title={#2},
     #1
 }
+\newtcolorbox{codebash}[2][]{%
+enhanced,
+breakable,
+sharpish corners,
+width=0.9\linewidth,
+fonttitle=\bfseries\color{black},
+frame hidden,
+box align=center,
+%colframe=white,
+colback=blue!8,
+title={#2},
+#1
+}
+\newtcolorbox{resultatbash}[1][]{%
+enhanced,
+breakable,
+sharpish corners,
+width=0.9\linewidth,
+box align=center,
+frame hidden,
+%colframe=white,
+colback=red!8,
+#1
+}
+
 
 \endinput
 %%
