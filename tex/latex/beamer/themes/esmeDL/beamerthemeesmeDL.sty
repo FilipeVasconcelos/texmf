@@ -21,6 +21,10 @@
 \useoutertheme{esmeDL}
 \usecolortheme{esmeDL}
 
+\makeatletter
+\patchcmd{\beamer@sectionintoc}{\vskip1.5em}{\vskip1em}{}{}
+\makeatother
+
 \setbeamersize{text margin left=12mm,text margin right=12mm}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{blocks}[rounded][shadow=true]  
