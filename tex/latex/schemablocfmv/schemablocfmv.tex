@@ -8,6 +8,7 @@
 \usepackage{tikz,pgf,pgfplots}
 \pgfplotsset{compat=newest}
 \usepackage{tikzfmv}
+\usepackage{schemabloc}
 \usepackage{schemablocfmv}
 \usepackage{mathfmv}
 \usepackage{amsmath}
@@ -57,7 +58,6 @@ Commande \textbf{b}loc \textbf{s}imple:
 \end{center}
 \hrule
 \vspace{0.5cm}
-
 Commande \textbf{b}loc \textbf{s}imple (étendue) : 
 
 \verb?\bs[a][b][c][d]?
@@ -488,7 +488,7 @@ sous forme d'opérateur on écrira $Y=\mathcal{I}X$ de façon équivalente.
 \sbStyleBlocDefaut
 \sbStyleLienDefaut
 \sbStyleSumDefaut
-\sbStyleBlocT{ultra thick,col3}
+%\sbStyleBlocT{ultra thick,col3}
 \begin{center}
     \begin{tikzpicture}
         \sbEntree{E1}
@@ -504,7 +504,7 @@ le triangle de la façon suivante:
 \begin{center}
 \begin{tikzpicture}
     \sbEntree{E1}
-    \sbBlocT[3]{T}{E1}
+    \sbBlocT[3]{T}{$s$}{E1}
     \sbRelier[$x(t)$]{E1}{T}
     \sbSortie[3]{S1}{T}
     \sbRelier[$y(t)$]{T}{S1}
@@ -525,7 +525,7 @@ peut alors être représentée par le schéma-bloc dans le domaine temporel suiv
     \sbEntree{E1}
     \sbCompSum[5.0]{comp}{E1}{}{+}{+}{}
     \sbRelier[$x(t)$]{E1}{comp}
-    \sbBlocT[3]{T}{comp}
+    \sbBlocT[3]{T}{s}{comp}
     \sbRelier[]{comp}{T}
     \sbInt[3]{B1}{T}
     \sbRelier[$\dot{y}(t)$]{T}{B1}
@@ -558,9 +558,9 @@ L'équation différentielle (2) :
     \sbSortie[6]{S1}{B1}
     \sbRelier[$y(t)$]{B1}{S1}
     \sbDecaleNoeudy{B1}{R}
-    \sbBlocTr[-1.5]{R1}{R}
+    \sbBlocTr[-1.5]{R1}{s}{R}
     \sbRelieryx{B1-S1}{R1}
-    \sbRelierxy[]{R1}{comp}
+    \sbRelierxy{R1}{comp}
 \end{tikzpicture}
 \end{center}
 
@@ -587,7 +587,7 @@ L'équation différentielle (3) :
     \sbDecaleNoeudy{S1}{R}
     \sbIntr[4]{B1}{R}
     \sbRelieryx{ref-S1}{B1}
-    \sbBlocTr[2.5]{R1}{B1}
+    \sbBlocTr[2.5]{R1}{s}{B1}
     \sbRelier[]{B1}{R1}
     \sbRelierxy[]{R1}{comp}
 \end{tikzpicture}
@@ -616,8 +616,6 @@ en appliquant la transformée de Laplace on obtiendrait :
 
 Pour une entrée $x(t)=\delta(t)$, la sortie devient dans le domaine de Laplace $Y(p)=\dfrac{1}{p-s}$, par la transformée de Laplace
 inverse celà devient $y(t)=e^{-st}u(t)$.
-
-
 
 
 \end{document}
