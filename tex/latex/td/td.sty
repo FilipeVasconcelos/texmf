@@ -8,7 +8,7 @@
 \RequirePackage{ifthen}
 \newcommand{\fr}[2]{\iflanguage{francais}{#1}{#2}}
 \makeatletter
-%commandes internes au paquet examen.sty
+%commandes internes au paquet td.sty
 \newcommand{\@promo}{None}     %ex. IngéSUP, IngéSPE, Ingé1
 \newcommand{\@module}{None}    %ex. Systèmes Techniques, Mathématiques Fondamentales
 \newcommand{\@titre}{None}     %ex. 2022-2023
@@ -24,6 +24,7 @@
 \newcommand{\tdno}[1]{\renewcommand{\@tdno}{#1}}
 \newcommand{\logo}[1]{\renewcommand{\@logo}{#1}}
 \newcommand{\esme}[1]{\renewcommand{\@esme}{#1}\renewcommand{\@logo}{ESME_LOGO_SEUL_NOIR_2021}}
+%\newcommand{\esme}[1]{\renewcommand{\@esme}{#1}}
 \newcommand{\correction}[1]{\renewcommand{\@correction}{#1}}
 \newcommand{\reponse}[1]{\renewcommand{\@reponse}{#1}}
 \newcommand{\corrige}[2]{%
