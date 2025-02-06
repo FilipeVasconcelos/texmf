@@ -21,7 +21,7 @@
 \newcommand{\@correction}{false}
 %\newboolean{correction}
 %\setboolean{correction}{false} % Set to true or false as needed
-\newcommand{\@reponse}{None}
+\newcommand{\@grille}{None}
 \newcommand{\@documentautorise}{None}
 \newcommand{\@moyencalcul}{None}
 \newcommand{\@dispositions}{None}
@@ -34,7 +34,7 @@
 \newcommand{\dureeEval}[1]{\renewcommand{\@dureeEval}{#1}}
 \newcommand{\logo}[1]{\renewcommand{\@logo}{#1}}
 \newcommand{\esme}[1]{\renewcommand{\@esme}{#1}\renewcommand{\@logo}{ESME_LOGO_SEUL_NOIR_2021}}
-\newcommand{\reponse}[1]{\renewcommand{\@reponse}{#1}}
+\newcommand{\grille}[1]{\renewcommand{\@grille}{#1}}
 \newcommand{\correction}[1]{\renewcommand{\@correction}{#1}}
 \newcommand{\documentautorise}[1]{\renewcommand{\@documentautorise}{#1}}
 \newcommand{\moyencalcul}[1]{\renewcommand{\@moyencalcul}{#1}}
@@ -72,7 +72,7 @@
   % ---------------------------------------------------------------------
   % document réponse 
   % ---------------------------------------------------------------------
-  \ifx\@reponse\@true 
+  \ifx\@grille\@true 
     \iflanguage{francais}{%
         \textbf{Les réponses seront exclusivement reportées sur le
         document réponse. Aucun autre document ne sera corrigé. 
@@ -159,7 +159,7 @@
 \makeatletter
 \newcommand{\feuilleDR}[2][]{%
 \def\sizegrid{#2}
-\ifx\@reponse\@true
+\ifx\@grille\@true
 \ifthenelse{\equal{\sizegrid}{0cm}}{%
 #1
 }{%
@@ -235,7 +235,7 @@
   \vskip 1.5em
   \logoIMG
   \vfill
-  \ifx\@reponse\@true
+  \ifx\@grille\@true
   \iflanguage{francais}{%
   {\Large\noindent\textbf{\textsc{Prénom / Nom}}}\\[0.8cm]
   {\centering\rule{0.8\textwidth}{1pt}}
