@@ -43,11 +43,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newlength\sizegrid
 \newlength\halfgrid
-\newcommandx{\reponse}[4][1=1cm,2=,3=,usedefault]
+\newcommandx{\reponse}[5][1=1cm,2=,3=,4=,usedefault]
 {%
-\def\answer{#4}
-\def\aprescorrige{#2}
+\def\answer{#5}
+\def\pasaucorrige{#4}
 \def\apresgrille{#3}
+\def\aprescorrige{#2}
 \setlength{\sizegrid}{#1}
 \setlength{\halfgrid}{0.5\sizegrid}
 % vérifier que l'argument de réponse n'est pas vide.
@@ -59,11 +60,15 @@
         \fi
         % si on utilise une grille, on écrit la réponse sur la grille
         \ifx\@grille\@true
-            \begin{tikzpicture}
-                \draw[ultra thick,inner sep=0] (0,0) rectangle (\linewidth,\sizegrid);
-                \draw[gray!40] (0,0) grid[step=0.5cm] (\linewidth,\sizegrid);
-                \node[align=center,text width=\linewidth] at (0.5\linewidth,\halfgrid) {\answer};
-            \end{tikzpicture}
+            \ifdim\sizegrid>0pt 
+                \begin{tikzpicture}
+                    \draw[ultra thick,inner sep=0] (0,0) rectangle (\linewidth,\sizegrid);
+                    \draw[gray!40] (0,0) grid[step=0.5cm] (\linewidth,\sizegrid);
+                    \node[align=center,text width=\linewidth] at (0.5\linewidth,\halfgrid) {\answer};
+                \end{tikzpicture}
+            \else
+                \answer 
+            \fi
             \apresgrille
         \fi
         % si on n'utilise pas de grille on donne juste la réponse
@@ -76,12 +81,15 @@
     \ifx\@corrige\@false
        % on trace la grille réponse
         \ifx\@grille\@true
-            \begin{tikzpicture}
-                \draw[ultra thick,inner sep=0] (0,0) rectangle (\linewidth,\sizegrid);
-                \draw[gray!40] (0,0) grid[step=0.5cm](\linewidth,\sizegrid);
-            \end{tikzpicture}
+            \ifdim\sizegrid>0pt
+                \begin{tikzpicture}
+                    \draw[ultra thick,inner sep=0] (0,0) rectangle (\linewidth,\sizegrid);
+                    \draw[gray!40] (0,0) grid[step=0.5cm](\linewidth,\sizegrid);
+                \end{tikzpicture}
+            \fi
             \apresgrille
         \fi
+        \pasaucorrige
     \fi
 }%
 
