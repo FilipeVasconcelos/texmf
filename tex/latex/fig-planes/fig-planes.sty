@@ -91,10 +91,10 @@ Remarques :
         \coordinate (y0) at (0,1);
         \coordinate (x1) at (1,0);
         \coordinate (y1) at (0,1);
-        \draw [-latex,thick,color=\cct] (b) -- ($(b)+2.4*(x1)$) node [below] {$\xxbt$};
-        \draw [-latex,thick,color=\ccf] (a) -- ($(a)+2.4*(x0)$) node [below] {$\xxbf$} ;
-        \draw [-latex,thick,color=\ccf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\yybf$};
-        \draw [-latex,thick,color=\cct] (b) -- ($(b)+2.4*(y1)$) node [above] {$\yybt$};
+        \draw [-latex,very thick,color=\cct] (b) -- ($(b)+2.4*(x1)$) node [below] {$\xxbt$};
+        \draw [-latex,very thick,color=\ccf] (a) -- ($(a)+2.4*(x0)$) node [below] {$\xxbf$} ;
+        \draw [-latex,very thick,color=\ccf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\yybf$};
+        \draw [-latex,very thick,color=\cct] (b) -- ($(b)+2.4*(y1)$) node [above] {$\yybt$};
         \draw [thick,fill=black] (a) circle (1pt)   node [below,yshift=-0.5ex]{\origine};
         \draw [thick,fill=black] (b) circle (1pt)   node [below,yshift=-0.5ex]{\origined};
         \coordinate (z) at ($(a)+(-1,0.3)$);
@@ -112,11 +112,11 @@ Remarques :
         \coordinate (x1) at (0.93969256961929659, 0.34202028390474665);
         \coordinate (y1) at (-0.34202028390474665, 0.93969256961929659);
 
-        \draw [-latex,thick,color=\ccf] (a) -- ($(a)+2.4*(x0)$) node [right] {$\xxbf$} ;
-        \draw [-latex,thick,color=\cct] (a) -- ($(a)+2.4*(x1)$) node [right] {$\xxbt$};
-        \draw [-latex,thick,color=\ccf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\yybf$};
-        \draw [-latex,thick,color=\cct] (a) -- ($(a)+2.4*(y1)$) node [above] {$\yybt$};
-        \draw [-latex,thick] 
+        \draw [-latex,very thick,color=\ccf] (a) -- ($(a)+2.4*(x0)$) node [right] {$\xxbf$} ;
+        \draw [-latex,very thick,color=\cct] (a) -- ($(a)+2.4*(x1)$) node [right] {$\xxbt$};
+        \draw [-latex,very thick,color=\ccf] (a) -- ($(a)+2.4*(y0)$) node [above] {$\yybf$};
+        \draw [-latex,very thick,color=\cct] (a) -- ($(a)+2.4*(y1)$) node [above] {$\yybt$};
+        \draw [-latex,very thick] 
         pic["$\angle$",draw=black,-latex,
         angle eccentricity=1.2,angle radius=1.7cm] {angle=x0--a--x1}
         pic["$\angle$",draw=black,-latex,
