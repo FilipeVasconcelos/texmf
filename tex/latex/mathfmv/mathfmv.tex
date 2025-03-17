@@ -1,72 +1,103 @@
-% mathfmv package
-% 
-% (c) Filipe Vasconcelos
-%
-%% This program can be redistributed and/or modified under the terms
-%% of the LaTeX Project Public License Distributed from CTAN archives
-%% in directory macros/latex/base/lppl.txt.
-% 
-\NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{mathfmv}
-  [2017/07/11 v0.01 LaTeX package pour différentes expressions mathématiques]
-\RequirePackage{xargs}
-\RequirePackage{amsmath}
-\RequirePackage{mathrsfs}
-\RequirePackage{tikz}
-\def\hi{Ce paquet definit differents symboles mathématiques.}
-\let\myDate\date
+\documentclass[a4paper,9pt]{article} 
+\usepackage[utf8]{inputenc}          
+\usepackage[T1]{fontenc}             
+\usepackage[francais]{babel}         
+\usepackage{lmodern}                 
+\usepackage{geometry}                                                                                                         
+\geometry{hmargin=2.5cm,vmargin=2.6cm}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{mathfmv}
+\usepackage{vecteurs}
+\usepackage{verbatim}
 
-%texte en gras
-\newcommand*{\tbf}[1]{\textbf{#1}}
+\begin{document}
 
-%chap6 du cours d'auto
-\newcommand*{\hmm}[2]{
-    {\tikzset{external/export=false}
-          \tikz[overlay, 
-                remember picture,
-                baseline=-\the\dimexpr\fontdimen22\textfont2\relax
-                ] 
-          \node[rectangle,
-                inner sep=1pt,
-                rounded corners,
-                draw,
-                #2,
-                thick,
-                text=black
-                ] {$#1$};
-            }
-} 
-
+\begin{verbatim}
 % systèmes de coordonnnées pour tikz
 \newcommand{\ptcyl}[3]{{#1*cos(#2)},{#1*sin(#2)},{#3}}
 \newcommand{\ptsph}[3]{{#1*sin(#2)*cos(#3)},{#1*sin(#2)*sin(#3)},{#1*cos(#2)}}
+\end{verbatim}
+\[
+    \ptcyl{0.1}{0.2}{0.4}
+\]
+\[
+    \ptsph{0.3}{0.4}{0.2}
+\]
 
+\begin{verbatim}
 % Laplace 
 \newcommand*{\laplace}[1]{\mathscr{L}\left\{#1\right\}}
+\end{verbatim}
+\[
+    \laplace{s}
+\]
+\begin{verbatim}
+% Inverse Laplace
 \newcommand*{\laplacei}[1]{\mathscr{L}^{-1}\left\{#1\right\}}
+\end{verbatim}
+\[
+    \laplacei{F}
+\]
+\begin{verbatim}
 \newcommand*{\rttensor}[1]{\overline{\overline{#1}}}
+\end{verbatim}
+\[
+    \rttensor{A}
+\]
 
+\begin{verbatim}
+% Complex numbers
+\renewcommand{\Re}[1]{\mathrm{Re}[#1]}
+\renewcommand{\Im}[1]{\mathrm{Im}[#1]}
 % j omega
 \newcommand*{\jw}{j\omega}
 \newcommand*{\jtw}{j\tau\omega}
 \newcommand*{\tw}{\tau\omega}
 \newcommand*{\ttww}{\tau^2\omega^2}
-
-\renewcommand{\Re}[1]{\mathrm{Re}[#1]}
-\renewcommand{\Im}[1]{\mathrm{Im}[#1]}
-
+\end{verbatim}
+\[
+    \Re{p},\Im{p}
+\]
+\[
+    \jw,\jtw,\tw,\ttww
+\]
+\begin{verbatim}
 % d droit dérivée
 \newcommand*{\dd}[1]{\mathrm{d}{#1}}
 \newcommand*{\ddd}[1]{\mathrm{d^2}{#1}}
 \newcommand*{\devi}[2]{\dfrac{\mathrm{d}^{#2}{#1}}{\dd{t^{#2}}}}
 \newcommand*{\deviV}[3]{\left[\devi{#1}{#2}\right]_{#3}}
 \newcommand*{\deviR}[3]{\dfrac{\mathrm{d}^{#2}{#1}}{\dd{#3^{#2}}}}
+\end{verbatim}
+\[
+    \dd{x},\dd{y}
+\]
+\[
+    \ddd{x},\ddd{y}
+\]
+\[
+    \devi{x}{},\devi{y}{3}
+\]
+\[
+    \deviV{\xx{3}}{}{R_0}
+\]
+\[
+    \deviR{f(y)}{2}{y}
+\]
+\clearpage
+\begin{verbatim}
 % cos/sin
 \newcommandx{\cosa}[1][1=]{\cos\alpha_{#1}}
 \newcommandx{\cosb}[1][1=]{\cos\alpha_{#1}}
 \newcommandx{\sina}[1][1=]{\sin\alpha_{#1}}
 \newcommandx{\sinb}[1][1=]{\sin\alpha_{#1}}
+\end{verbatim}
+\[
+    \cosa[1],\cosa[2],\sina[1],\sinb[2]
+\]
 
+\begin{verbatim}
 % dot angle
 \newcommand*{\dalpha}{\dot{\alpha}}
 \newcommand*{\dtheta}{\dot{\theta}}
@@ -75,41 +106,40 @@
 \newcommand*{\dpsi}{\dot{\psi}}
 \newcommand*{\drho}{\dot{\rho}}
 \newcommand*{\dmu}{\dot{\mu}}
+\end{verbatim}
+\[
+    \dalpha,\dtheta,\dphi,\dbeta,\dpsi,\drho,\dmu
+\]
+\begin{verbatim}
 % ddot angle
 \newcommand*{\ddalpha}{\ddot{\alpha}}
 \newcommand*{\ddtheta}{\ddot{\theta}}
 \newcommand*{\ddphi}{\ddot{\phi}}
 \newcommand*{\ddbeta}{\ddot{\beta}}
 \newcommand*{\ddpsi}{\ddot{\psi}}
+\end{verbatim}
+\[
+    \ddalpha,\ddtheta,\ddphi,\ddbeta,\ddpsi
+\]
 
+\begin{verbatim}
 % dot longueur
 \newcommand*{\dlambda}{\dot{\lambda}}
+\end{verbatim}
+\[
+    \dlambda
+\]
 
-%creer un vecteur du type \xx{_1}
-\newcommandx{\ccvect}[2][2=]{%
-    \csname #1#1\endcsname{#2}%
-}
-
-%créer un angle à partir de son nom
-\newcommand{\cang}[2]{%
-\csname #1\endcsname_{#2}%
-}
-
-\newcommand{\ccent}[2]{%
-#1$_{#2}$%
-}
-
-\newcommand{\ccentm}[2]{%
-\text{#1}_{#2}%
-}  
-
+\begin{verbatim}
 %quelques boldsymbol
 \newcommand{\bdM}{\boldsymbol{M}}
 \newcommand{\bdI}{\boldsymbol{I}}
 \newcommand{\bdA}{\boldsymbol{A}}
 \newcommand{\bdB}{\boldsymbol{B}}
 \newcommand{\bdC}{\boldsymbol{C}}
+\end{verbatim}
+\[
+    \bdM,\bdI,\bdA,\bdB,\bdC
+\]
 
-\endinput
-%%
-%% End of file `mathfmv.sty'.
+\end{document}
