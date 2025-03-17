@@ -68,9 +68,9 @@
 \newcommandx{\reponse}[5][1=1cm,2=,3=,4=]
 {%
 \def\answer{#5}
-\def\pasaucorrige{#4}
-\def\apresgrille{#3}
-\def\aprescorrige{#2}
+\def\enoncesansgrille{#4}   % seulement dans l'énoncé sans grille
+\def\enoncegrille{#3}       % seulement dans l'énoncé avec grille
+\def\corrigegrille{#2}      % au corrigé avec grille
 \setlength{\sizegrid}{#1}
 \setlength{\halfgrid}{0.5\sizegrid}
 % vérifier que l'argument de réponse n'est pas vide.
@@ -92,13 +92,12 @@
             \else
                 \answer 
             \fi
-            \apresgrille
+            \corrigegrille
         \fi
         % si on n'utilise pas de grille on donne juste la réponse
         \ifx\@grille\@false
             \answer 
         \fi
-        \aprescorrige
    \fi
    % Si on ne compile pas le corrigé
     \ifx\@corrige\@false
@@ -110,10 +109,10 @@
                     \draw[gray!40] (0,0) grid[step=0.5cm](\linewidth,\sizegrid);
                 \end{tikzpicture}
             \fi
-            \apresgrille
+            \enoncegrille
         \fi
         \ifx\@grille\@false
-            \pasaucorrige
+            \enoncesansgrille
         \fi
     \fi
 }%
@@ -290,19 +289,19 @@
   \vskip 1.5em
   \logoIMG
   \vfill
-  \ifx\@grille\@true
-  \iflanguage{francais}{%
-  {\Large\noindent\textbf{\textsc{Prénom / Nom}}}\\[0.8cm]
-  {\centering\rule{0.8\textwidth}{1pt}}
-  }{% 
-  {\Large\noindent\textbf{\textsc{First Name/ Last Name}}}\\[0.8cm]
-  {\centering\rule{0.8\textwidth}{1pt}}
-  }
+  \ifx\@corrige\@false
+    \ifx\@grille\@true
+      \fr{{\Large\noindent\textbf{\textsc{Prénom / Nom}}}\\[0.8cm]}
+         {{\Large\noindent\textbf{\textsc{First Name/ Last Name}}}\\[0.8cm]}
+         {\centering\rule{0.8\textwidth}{1pt}}
 
-  %espace nécessaire pour le passage à la ligne des consignes
-  \vspace{1cm}
+    %espace nécessaire pour le passage à la ligne des consignes
+      \vspace{1cm}
+    \fi
   \fi
-  \Apply@consignes
+  \ifx\@corrige\@false
+      \Apply@consignes
+  \fi  
   \thispagestyle{empty}
   \newpage
   %adding a blank page after title page
