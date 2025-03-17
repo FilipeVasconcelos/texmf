@@ -21,8 +21,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% Ecriture dérivée %%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommandx*{\dv}[2]{\frac{d^{(#2)}{#1}}{dt}}
-\newcommandx*{\dvv}[2]{\frac{d^{2 (#2)}{#1}}{dt^2}}
+% deprécié ! nous devrions utiliser les opérateurs de mathfmv
+%\newcommandx*{\dv}[2]{\frac{i^{(#2)}{#1}}{dt}}
+%\newcommandx*{\dvv}[2]{\frac{d^{2 (#2)}{#1}}{dt^2}}
+%%%%%%%%%% Anglophone %%%%%%%%%%%%%%%%%% généraliser les macros deviV deviR ... dans mathfmv 
+\newcommandx*{\dif}[2]{\frac{{\mathrm{d}^#1}}{\mathrm{d}t}\left [{#2} \right]}
+\newcommandx*{\diff}[2]{\frac{\mathrm{d}^{2^({#1})}}{\mathrm{d}t^2}\left [{#2} \right]}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%% Mécanismes %%%%%%%%%%%%%%%%%%%
