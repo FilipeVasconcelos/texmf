@@ -34,7 +34,6 @@
 \newcommand{\@tdno}{None}     %ex. 2022-2023
 \newcommand{\@logo}{None}
 \newcommand{\@esme}{false}
-%\newcommand{\@corrige}{false}
 \newcommand{\@grille}{None}
 \newcommand{\@lang}{None}
 \newcommand{\@location}{Bordeaux-Lille-Lyon-Paris}
@@ -46,9 +45,7 @@
 \newcommand{\tdno}[1]{\renewcommand{\@tdno}{#1}}
 \newcommand{\logo}[1]{\renewcommand{\@logo}{#1}}
 \newcommand{\esme}[1]{\renewcommand{\@esme}{#1}\renewcommand{\@logo}{ESME_LOGO_SEUL_NOIR_2021}}
-%\newcommand{\corrige}[1]{\renewcommand{\@corrige}{#1}}
 \newcommand{\grille}[1]{\renewcommand{\@grille}{#1}}
-%\newcommand{\lang}[1]{\renewcommand{\@lang}{#1}}
 \newcommand{\location}[1]{\renewcommand{\@location}{#1}}
 \fr{\renewcommand{\@lang}{francais}}{\renewcommand{\@lang}{english}}
 
@@ -59,19 +56,6 @@
 \newboolean{langenglish}
 \setboolean{langenglish}{\fr{false}{true}}
 
-\newcommand{\mynewminted}[2]{%
-  \newminted[#1]{bash}{#2}%
-  \tcbset{myminted/#1/.style={minted language=bash,minted options={#2}}}}
-
-\mynewminted{rbash}{tabsize=4,fontsize=\small}
-
-\newtcblisting[
-  list inside=mypyg]{listingsbox}[1][]{%
-  before skip=1pt,
-  listing only,enhanced,breakable,boxrule=0.5pt,
-  sharpish corners, width=\linewidth,
-  colback=white, colframe=black!75, drop shadow=blue!25,myminted/rbash,#1}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grille réponse + corrige
@@ -79,7 +63,7 @@
 \newlength\sizegrid
 \newlength\halfgrid
 
-\newcommandx{\reponse}[5][1=1cm,2=,3=,4=]{%
+\newcommandx{\grillereponse}[5][1=1cm,2=,3=,4=]{%
 \def\answer{#5}
 \def\enoncesansgrille{#4}   % seulement dans l'énoncé sans grille
 \def\enoncegrille{#3}       % seulement dans l'énoncé avec grille
@@ -151,13 +135,10 @@
 \setcounter{numques}{0}
 \newcommandx{\question}[2][1=]{%
 \addtocounter{numques}{1}
-%\ifx\@corrige\@true
 \ifeditioncorrige
-    \hfill\break\noindent{\normalfont#1\bfseries Q\thenumques.\xspace~#2\\[0.5ex]}
-%\fi
+\hfill\break\noindent{\normalfont#1\bfseries Q\thenumques.\xspace~#2\\[0.5ex]}
 \else
-%\ifx\@corrige\@false
-    \hfill\break\noindent{\normalfont#1\bfseries Q\thenumques.\xspace\normalfont\normalcolor~#2\\[0.5ex]}
+\hfill\break\noindent{\normalfont#1\bfseries Q\thenumques.\xspace\normalfont\normalcolor~#2\\[0.5ex]}
 \fi
 }%
 \long\def\@td{TD}
@@ -172,7 +153,7 @@
     \setcounter{numques}{0}
     \addtocounter{numexos}{1}
     \ifthenelse{\equal{#1}{}}%
-    {\bigskip\noindent{\newline\normalfont#2\bfseries\exercicetitle\,\thenumexos\,}\\[1ex]}
+    {\bigskip\noindent{\newline\normalfont#2\bfseries\exercicetitle\,\thenumexos\,}\\[0.5ex]}
     {\bigskip\noindent{\newline\normalfont#2\bfseries\exercicetitle\,\thenumexos\,:\,\,\,#1}\\[0.5ex]}
 }%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -183,17 +164,14 @@
   \vskip 1em%
   \begin{center}%
   \let \footnote \thanks
-    %\ifthenelse{\equal{\@corrige}{true}}{
     \ifeditioncorrige
         {\LARGE \textsc{\@promo~-~\@module}\\[0.5em]
         \emph{\@activite~\@tdno~ -- \@titre~\textbf{(\fr{Corrigé}{Answers})}}
         }%
     \else
-    %}{
         {\LARGE \textsc{\@promo~-~\@module}\\[0.5em]
         \emph{\@activite~\@tdno~ -- \@titre}
         }%
-    %}%
     \fi
     \ifthenelse{\equal{\@esme}{true}}{%
     \vskip 0.5em%

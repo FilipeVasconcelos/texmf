@@ -16,7 +16,7 @@
 \tcbuselibrary{skins}
 \tcbuselibrary{breakable}
 \tcbuselibrary{many}
-\tcbuselibrary{listings}
+\tcbuselibrary{listings,minted}
 %fmvstyle from pccstyle Portland Community College
 \tcbset{shield externalize,
         fmvstyle/.style={,
@@ -182,6 +182,22 @@ colframe=white,
 colback=red!8,
 #1
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pour les td d'Unix
+\newcommand{\mynewminted}[2]{%
+  \newminted[#1]{bash}{#2}%
+  \tcbset{myminted/#1/.style={minted language=bash,minted options={#2}}}}
+
+\mynewminted{rbash}{tabsize=4,fontsize=\small}
+
+\newtcblisting[
+  list inside=mypyg]{mintedbox}[1][]{%
+  before skip=1pt,
+  listing only,enhanced,breakable,boxrule=0.5pt,
+  sharpish corners, width=\linewidth,
+  colback=white, colframe=black!75, drop shadow=blue!25,myminted/rbash,#1}
+
+
 
 \endinput
 %%
