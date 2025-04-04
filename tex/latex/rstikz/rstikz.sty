@@ -1,3 +1,13 @@
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{angles,quotes} % for pic
+\usetikzlibrary{arrows.meta} % for arrow size
+\usetikzlibrary{bending} % for arrow head angle
+\usetikzlibrary{decorations.pathmorphing} % for decorate random steps
+\tikzset{>=latex} % for LaTeX arrow head
+\usetikzlibrary{arrows}
+\tikzstyle{arrow}=[draw, -latex]
+\tikzset{>=latex} % for LaTeX arrow head
 \NewDocumentCommand{\RSload}{m m O{} O{above,col4} m m O{3} O{90} O{0.2}}{
     % #1: angle rotation du repère de la figure
     % #2: Couleur des fleches
@@ -59,7 +69,6 @@
     \end{scope}
 }
 
-
 \NewDocumentCommand{\RSpin}{mmmO{}O{above}}{
     % #1: angle rotation du repère de la figure
     % #2: Largeur du bati
@@ -113,95 +122,3 @@
     \tikzstyle{SolidStyle#1}+=[SolidStyle,#2]
 }
 
-\begin{tikzpicture}
-    \draw[color=black!10!white] (-1cm,0) grid (12cm,15cm);
-    \RSSolideExt{S0}[col1]
-    \RSSolideExt{S1}[col4]
-    %\def\ybase{0}
-    %\RSload{0}{1}{col4}[$q_1(x)$][above, col4]{0,\ybase}
-    %\RSload{180}{2}{col2}[$q_3(x)$][below, col2]{6,\ybase}
-
-    \coordinate (A) at (1,2);
-    \coordinate (B) at (1,4);
-    \coordinate (C) at (4,3);
-    \coordinate (D) at (6,3);
-    \draw[SolidStyleS0] (A) -- (B);
-    \RSfix{0}{0.6}{A}[1.0][0.25][S0]
-    \RSfix{180}{0.6}{B}[1.0][0.25][S0]
-    \RSload{90}{col1}[$q_1(x)$][left, col1]{A}{B}
-    \draw[SolidStyleS1] (C) -- (D);
-    \RSfix{-90}{1.0}{C}[1.0][0.25][S1]
-    \RSfix{90}{1.0}{D}[1.0][0.25][S1]
-    \RSload{180}{col4}[$q_2(x)$][above,col4]{C}{D}[2]
-
-    \coordinate (A) at (1,5);
-    \coordinate (B) at (1,7);
-    \coordinate (C) at (4,6);
-    \coordinate (D) at (6,6);
-    \draw[SolidStyleS0] (A) -- (B);
-    \RSplan{0}{0.6}{A}[1.0][0.25][S0]
-    \RSplan{180}{0.6}{B}[1.0][0.25][S0]
-    \draw[SolidStyleS1] (C) -- (D);
-    \RSplan{-90}{1.0}{C}[1.0][0.25][S1]
-    \RSplan{90}{1.0}{D}[1.0][0.25][S1]
-
-    \def\ybase{8}
-    \coordinate (A) at (1,\ybase);
-    \coordinate (B) at (3,\ybase);
-    \coordinate (C) at (5,\ybase);
-    \coordinate (D) at (7,\ybase);
-    \draw[SolidStyleS0] (A) -- (B);
-    \draw[SolidStyleS1] (C) -- (D);
-    \RSpin{0}{0.6}{A}[A][above left]
-    \RSpin{90}{0.6}{B}[B][above left]
-    \RSpin{180}{1.0}{C}[C][below right]
-    \RSpin{0}{1.0}{D}[D][above right]
-
-    \def\ybase{10}
-    \coordinate (A) at (1,\ybase);
-    \coordinate (B) at (3,\ybase);
-    \coordinate (C) at (5,\ybase);
-    \coordinate (D) at (7,\ybase);
-    \draw[SolidStyleS0] (A) -- (B);
-    \draw[SolidStyleS1] (C) -- (D);
-    \RSrol{0}{0.6}{A}
-    \RSrol{90}{0.6}{B}
-    \RSrol{180}{1.0}{C}
-    \RSrol{0}{1.0}{D}
-
-    \def\ybase{12}
-    \coordinate (A) at (2,\ybase);
-    \coordinate (B) at (6,\ybase);
-    \draw[SolidStyleS0] (A) -- (B);
-    \RSpin{0}{1.0}{A}[A][above left]
-    \RSpin{0}{1.0}{B}[B][above left]
-
-    \coordinate (A) at (9,3);
-    \coordinate (B) at (11,4);
-    \draw[SolidStyleS0] (A) -- (B);
-    \RSfix{-90}{1.0}{A}[1.0][0.25][S0][A][below right]
-    \RSfix{90}{1.0}{B}[1.0][0.25][S0][B][above left]
-    \RSload{180}{col1}[$q_3(x)$][above,col1]{A}{B}[2]
-
-    \coordinate (A) at (9,6);
-    \coordinate (B) at (11,7);
-    \draw[SolidStyleS0] (A) -- (B);
-    \RSplan{-90}{1.0}{A}[1.0][0.25][S0][A][below right]
-    \RSplan{90}{1.0}{B}[1.0][0.25][S0][B][above left]
-    \RSload{180}{col3}[$q_4(x)$][above,col3]{A}{B}[2][63]
-
-    \coordinate (A) at (9,9);
-    \coordinate (B) at (11,10);
-    \draw[SolidStyleS0] (A) -- (B);
-    \draw[SolidStyleS1] (C) -- (D);
-    \RSpin{0}{0.6}{A}[A][above left]
-    \RSpin{90}{0.6}{B}[B][above left]
-
-    \coordinate (A) at (9,12);
-    \coordinate (B) at (11,13);
-    \draw[SolidStyleS0] (A) -- (B);
-    \draw[SolidStyleS1] (C) -- (D);
-    \RSrol{0}{0.6}{A}[A][above left]
-    \RSrol{90}{0.6}{B}[B][above left]
-
-\end{tikzpicture}
