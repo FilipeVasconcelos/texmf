@@ -8,30 +8,73 @@
 \usetikzlibrary{arrows}
 \tikzstyle{arrow}=[draw, -latex]
 \tikzset{>=latex} % for LaTeX arrow head
-\NewDocumentCommand{\RSload}{m m O{} O{above,col4} m m O{3} O{90} O{0.2}}{
-    % #1: angle rotation du repère de la figure
-    % #2: Couleur des fleches
-    % #3: Label de la charge
-    % #4: options du node pour le label 
-    % #5: starting node 
-    % #6: finishing node 
-    % #7: Longeur des fleches
-    % #8: Orientation des fleches
-    % #9: Espace entre les fleches
-    \begin{scope}[
-        rotate=#1, % rotation de la figure d'un angle donné        
-        transform shape,
-        every arrow/.style={dblarwR={#2}{1pt}{1pt}} 
-    ]
-        % Draw all arrows along the horizontal axis
-        \path[
-        postaction={decorate,decoration={markings,
-        mark=between positions 0.0 and 1.0+#9 step #9 with {\draw [every arrow] (0,0mm) --+ (#8:-#7em);}}},
-        postaction={decorate,decoration={markings,
-        mark=at position 0.5 with {\node at (0,-#7em) [#4,transform shape=false] {#3};}}},
+\NewDocumentCommand{\RSUniformload}{m m O{above} m m O{col4} O{0.2}}{
+    % #1: Orientation de la charge 
+    % #2: label de la charge
+    % #3: options du node pour le label 
+    % #4: starting node 
+    % #5: finishing node
+    % #6: couleur fleche
+    % #7: espace entre les fleches
+    \pgfmathsetmacro{\NN}{int(round(1.0/#7))}
+    \pgfmathsetmacro{\HN}{int(round(\NN/2))}
+    % Draw all arrows along the horizontal axis
+    \path
+        [postaction={decorate,decoration={markings,
+         mark=between positions 0.0 and 1.0+#7 step #7 with { 
+         \draw [dblarwR={#6}{1.0pt}{1.0pt}] (0,0mm) --+ (#1:0.75);}}},
+         postaction={decorate,decoration={markings,
+         mark=at position 0.5 with {
+         \node at ($(0,0)+(#1:0.75)$) [#3,#6,transform shape=false] {#2};}}},
         thin]
-          (#6) -- (#5);
-    \end{scope}
+        (#4) -- (#5);
+}
+\NewDocumentCommand{\RSLinearload}{m m O{above} m m O{col4} O{0.2}}{
+    % #1: Orientation de la charge 
+    % #2: Label de la charge
+    % #3: options du node pour le label 
+    % #4: starting node 
+    % #5: finishing node
+    % #6: Couleur fleche
+    % #7: Espace entre les fleches
+    \pgfmathsetmacro{\NN}{int(round(1.0/#7))}
+    \pgfmathsetmacro{\HN}{int(round(\NN/2))}
+    % Draw all arrows along the horizontal axis
+    \path
+        [postaction={decorate,decoration={markings,
+         mark=between positions 0.0 and 1.0+#7 step #7 with {
+         \pgfmathsetmacro{\full}{(0.75*\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})/\NN}
+         \draw [dblarwR={#6}{1.0pt}{1.0pt}] (0,0mm) --+ (#1:\full) node (tmp) {};}}},
+         postaction={decorate,decoration={markings,
+         mark=at position 1.0 with {
+         \node at (tmp) [#3,#6,transform shape=false] {#2};}}},
+        thin]
+        (#4) -- (#5);
+}
+\NewDocumentCommand{\RSTwoLinearload}{m m m O{above} O{above} m m O{col4} O{0.2}}{
+    % #1: Orientation de la charge 
+    % #2: Label de la charge à gauche
+    % #3: Label de la charge à droite
+    % #4: options du node pour le label à gauche 
+    % #5: options du node pour le label à droite 
+    % #6: starting node 
+    % #7: finishing node
+    % #8: Couleur fleche
+    % #9: Espace entre les fleches
+    \pgfmathsetmacro{\NN}{int(round(1.0/#9))}
+    \pgfmathsetmacro{\HN}{int(round(\NN/2))}
+    % Draw all arrows along the horizontal axis
+    \path
+    [postaction={decorate,decoration={markings,
+     mark=between positions 0.0 and 1.0+#9 step #9 with {
+     \pgfmathsetmacro{\full}{(2.0+0.5*\pgfkeysvalueof{/pgf/decoration/mark info/sequence number})/\NN}
+     \draw [dblarwR={#6}{1.0pt}{1.0pt}] (0,0mm) --+ (#8:\full) node (tmp) {};},
+    }},
+    postaction={decorate,decoration={markings,
+    mark=at position 0.0 with {
+    \node at (tmp) [#3,#7,transform shape=false] {#2};}}},
+    thin]
+    (#4) -- (#5);
 }
 
 \NewDocumentCommand{\RSfix}{m m m O{0.5} O{0.15} O{col5} O{} O{above} }{
@@ -69,7 +112,7 @@
     \end{scope}
 }
 
-\NewDocumentCommand{\RSpin}{mmmO{}O{above}}{
+\NewDocumentCommand{\RSpin}{mmm O{} O{above}}{
     % #1: angle rotation du repère de la figure
     % #2: Largeur du bati
     % #3: Noeud (coordonnées) du centre
@@ -84,9 +127,9 @@
                                           ($(-0.5*#2,-0.5*#2)$) -- cycle;
         \draw[thin,draw=col5,fill=white]            (#3) circle[radius=0.1*#2] node[#5,transform shape=false] {#4};
         \draw[col5,
-              decorate,decoration={border,segment length=0.2em},
-                                          segment amplitude=0.5em,
-                                          segment angle=45, thin]
+              decorate,decoration={border,segment length=0.2em,
+                                          amplitude=0.5em,
+                                          angle=45}, thin]
               ($(basefixe)+(\halfSize,0)$) -- ($(basefixe)+(-\halfSize,0)$); 
         \draw[thin,col5] ($(basefixe)+(\halfSize,0)$) -- ($(basefixe)+(-\halfSize,0)$);
     \end{scope}
@@ -105,14 +148,14 @@
         \draw[thin,draw=col5,fill=white] (#3) --+
                                           ($(0.5*#2,-0.5*#2)$) --+
                                           ($(-0.5*#2,-0.5*#2)$) -- cycle;
-        \draw[thin,draw=col5,fill=white]            (#3) circle[radius=0.1*#2] node[#5,transform shape=false] {#4};
+        \draw[thin,draw=col5,fill=white] (#3) circle[radius=0.1*#2] node[#5,transform shape=false] {#4};
         \draw[col5,thick,
-              decorate,decoration={border,segment length=0.2em},
-                                          segment amplitude=0.5em,
-                                          segment angle=45, thin]
+              decorate,decoration={border,segment length=0.2em,
+                                          amplitude=0.5em,
+                                          angle=45}, thin]
               ($(basefixe)+(\halfSize,0)$) -- ($(basefixe)+(-\halfSize,0)$); 
         \draw[thin,col5,postaction={decorate,decoration={markings,
-        mark=between positions 0.0 and 1.0 step 0.2 with {\draw[thin] (0,-0.25*\rel) circle[radius=0.15*\rel];}}}
+        mark=between positions 0.2 and 0.8 step 0.2 with {\draw[thin] (0,-0.25*\rel) circle[radius=0.15*\rel];}}}
         ] ($(basefixe)+(\halfSize,0)$) -- ($(basefixe)+(-\halfSize,0)$);
     \end{scope}
 }

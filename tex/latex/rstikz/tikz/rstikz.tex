@@ -2,9 +2,6 @@
     \draw[color=black!10!white] (-1cm,0) grid (12cm,15cm);
     \RSSolideExt{S0}[col1]
     \RSSolideExt{S1}[col4]
-    %\def\ybase{0}
-    %\RSload{0}{1}{col4}[$q_1(x)$][above, col4]{0,\ybase}
-    %\RSload{180}{2}{col2}[$q_3(x)$][below, col2]{6,\ybase}
 
     \coordinate (A) at (1,2);
     \coordinate (B) at (1,4);
@@ -13,11 +10,11 @@
     \draw[SolidStyleS0] (A) -- (B);
     \RSfix{0}{0.6}{A}[1.0][0.25][S0]
     \RSfix{180}{0.6}{B}[1.0][0.25][S0]
-    \RSload{90}{col1}[$q_1(x)$][left, col1]{A}{B}
+    \RSUniformload{90}{$q_1$}[left]{A}{B}[col4][0.2]
     \draw[SolidStyleS1] (C) -- (D);
     \RSfix{-90}{1.0}{C}[1.0][0.25][S1]
     \RSfix{90}{1.0}{D}[1.0][0.25][S1]
-    \RSload{180}{col4}[$q_2(x)$][above,col4]{C}{D}[2]
+    \RSLinearload{90}{$q_2$}[above]{C}{D}[col3][0.2]
 
     \coordinate (A) at (1,5);
     \coordinate (B) at (1,7);
@@ -66,14 +63,14 @@
     \draw[SolidStyleS0] (A) -- (B);
     \RSfix{-90}{1.0}{A}[1.0][0.25][S0][A][below right]
     \RSfix{90}{1.0}{B}[1.0][0.25][S0][B][above left]
-    \RSload{180}{col1}[$q_3(x)$][above,col1]{A}{B}[2]
+    \RSTwoLinearload{90}{$p$}{$q$}[above][above]{C}{D}[col3][0.2]
 
     \coordinate (A) at (9,6);
     \coordinate (B) at (11,7);
     \draw[SolidStyleS0] (A) -- (B);
     \RSplan{-90}{1.0}{A}[1.0][0.25][S0][A][below right]
     \RSplan{90}{1.0}{B}[1.0][0.25][S0][B][above left]
-    \RSload{180}{col3}[$q_4(x)$][above,col3]{A}{B}[2][63]
+    \RSTwoLinearload{90}{$p$}{$q$}[above][above]{C}{D}[col3][0.2]
 
     \coordinate (A) at (9,9);
     \coordinate (B) at (11,10);
