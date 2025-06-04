@@ -1,3 +1,3 @@
-# Dépôt de l'ensemble de mon texmf. 
+# my_texmf
 
-Les paquets sont essentiellements liés à la production de document $\LaTeX$ pour les différents modules enseignés à l'ESME.
+Les paquets sont essentiellement liés à la production de document $\LaTeX$ pour les différents modules enseignés à l'ESME.
