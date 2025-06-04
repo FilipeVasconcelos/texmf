@@ -141,46 +141,46 @@
     #1
 }
 \newtcolorbox{codebash}[2][]{%
-enhanced,
-breakable,
-sharpish corners,
-width=0.9\linewidth,
-fonttitle=\bfseries\color{black},
-frame hidden,
-box align=center,
-%colframe=white,
-colback=blue!8,
-title={#2},
-#1
+    enhanced,
+    breakable,
+    sharpish corners,
+    width=0.9\linewidth,
+    fonttitle=\bfseries\color{black},
+    frame hidden,
+    box align=center,
+    %colframe=white,
+    colback=blue!8,
+    title={#2},
+    #1
 }
 \newtcolorbox{resultatbash}[1][]{%
-enhanced,
-breakable,
-sharpish corners,
-width=0.9\linewidth,
-box align=center,
-frame hidden,
-%colframe=white,
-colback=red!8,
-#1
+    enhanced,
+    breakable,
+    sharpish corners,
+    width=0.9\linewidth,
+    box align=center,
+    frame hidden,
+    %colframe=white,
+    colback=red!8,
+    #1
 }
 \newtcolorbox{codebashverbatim}[1][]{%
-enhanced,
-breakable,
-sharpish corners,
-width=\linewidth,
-colframe=white,
-colback=blue!8,
-#1
+    enhanced,
+    breakable,
+    sharpish corners,
+    width=\linewidth,
+    colframe=white,
+    colback=blue!8,
+    #1
 }
 \newtcolorbox{resultatbashverbatim}[1][]{%
-enhanced,
-breakable,
-sharpish corners,
-width=\linewidth,
-colframe=white,
-colback=red!8,
-#1
+    enhanced,
+    breakable,
+    sharpish corners,
+    width=\linewidth,
+    colframe=white,
+    colback=red!8,
+    #1
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pour les td d'Unix
@@ -190,15 +190,15 @@ colback=red!8,
 
 \mynewminted{rbash}{tabsize=4,fontsize=\small}
 
-\newtcblisting[
-  list inside=mypyg]{mintedbox}[1][]{%
+\newtcblisting[list inside=mypyg]{mintedbox}[1][]{%
   before skip=1pt,
   listing only,enhanced,breakable,boxrule=0.5pt,
   sharpish corners, width=\linewidth,
-  colback=white, colframe=black!75, drop shadow=blue!25,myminted/rbash,#1}
-
-
-
+  colback=white, 
+  colframe=black!75, 
+  drop shadow=blue!25,
+  myminted/rbash,#1
+}
 \endinput
 %%
 %% End of file `tcolorfmv.sty'.
