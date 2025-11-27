@@ -37,6 +37,7 @@
 \newcommand{\@qcm}{false}
 \newcommand{\@soin}{false}
 \newcommand{\@malus}{false}
+\newcommand{\@moodle}{false}
 \newcommand{\@luck}{true}
 \newcommand{\@none}{None}
 \newcommand{\@location}{Bordeaux-Lille-Lyon-Paris}
@@ -229,7 +230,9 @@
 
     }
   \fi
-  
+  % ---------------------------------------------------------------------
+  % Consigne QCM 
+  % ---------------------------------------------------------------------
   \ifx\@qcm\@true
      \iflanguage{francais}{%
         \textbf{Lorsque la question est à choix multiples, entourer la ou les bonnes réponses directement sur le document.}\\
@@ -239,6 +242,9 @@
 
      }
   \fi
+  % ---------------------------------------------------------------------
+  % Consigne Soin 
+  % ---------------------------------------------------------------------
   \ifx\@soin\@true
      \iflanguage{francais}{%
         \textbf{Attention au soin apporté à votre copie ! Des points négatifs si les réponses sont illisibles et/ou si les figures
@@ -251,6 +257,9 @@
 
      }
   \fi
+  % ---------------------------------------------------------------------
+  % Consigne Malus 
+  % ---------------------------------------------------------------------
   \ifx\@malus\@true
      \iflanguage{francais}{%
         \textbf{Ne répondez pas au hasard car une réponse fausse est sanctionnée d'un malus pour compenser le biais lié au hasard.
@@ -262,7 +271,26 @@
 
      }
   \fi
+  % ---------------------------------------------------------------------
+  % Consigne Version Moodle 
+  % ---------------------------------------------------------------------
+  \ifx\@moodle\@true
+     \iflanguage{francais}{%
+         \textbf{Cet examen est la version papier d'une évaluation Coderunner initialement conçue pour Moodle. 
+                 Si certains types de questions restent inchangées, les exercices de programmation 
+                 conservent leur contenu mais perdent les fonctionnalités interactives et les vérifications 
+                 automatiques propres à Coderunner; l’expérience utilisateur s’en trouve nécessairement dégradée.}\\
 
+     }{%
+        \textbf{This exam is the paper version of a Coderunner assessment originally designed for Moodle. 
+                While the multiple-choice questions remain unchanged, the programming exercises retain their content 
+                but lack the interactive features and automatic checks provided by Coderunner, 
+                resulting in a necessarily degraded user experience."}\\
+     }
+  \fi
+  % ---------------------------------------------------------------------
+  % Message d'entrain 
+  % ---------------------------------------------------------------------
   \ifx\@luck\@true
      \iflanguage{francais}{%
         \textbf{Bon courage !}\\
