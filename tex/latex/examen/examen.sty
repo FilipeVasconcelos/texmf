@@ -348,11 +348,15 @@
 \iflanguage{francais}{%
     \newcommand\exercicetitle{Exercice}
     \newcommand\dureetitle{Durée}
-    \newcommand\heuretitle{heures}
+    \newcommand\heuretitle[1]{%
+     #1~heure\ifnum#1>1 s\fi\relax
+}
 }{%
     \newcommand\exercicetitle{Exercise}
     \newcommand\dureetitle{Time}
-    \newcommand\heuretitle{hours}
+    \newcommand\heuretitle[1]{%
+     #1~hour\ifnum#1>1 s\fi\relax
+}
 }%
 \newcommandx{\exercice}[2][2=\Large]{%
     \setcounter{numques}{0}
@@ -388,7 +392,7 @@
             \emph{\@epreuve~-~\@titreEval}\\
         \fi
     \fi
-    \dureetitle : \@dureeEval~\heuretitle\par}%
+      \dureetitle : \heuretitle{\@dureeEval}\par}%
     \ifx\@esme\@true
         \vskip 1.5em%
         {\large
