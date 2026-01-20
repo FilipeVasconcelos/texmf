@@ -35,6 +35,7 @@
 \newcommand{\@moyencalcul}{false}
 \newcommand{\@dispositions}{true}
 \newcommand{\@qcm}{false}
+\newcommand{\@qcmgradescope}{false}
 \newcommand{\@soin}{false}
 \newcommand{\@malus}{false}
 \newcommand{\@moodle}{false}
@@ -56,7 +57,9 @@
 \newcommand{\location}[1]{\renewcommand{\@location}{#1}}
 \newcommand{\luck}[1]{\renewcommand{\@luck}{#1}}
 \newcommand{\qcm}[1]{\renewcommand{\@qcm}{#1}}
+\newcommand{\qcmgradescope}[1]{\renewcommand{\@qcmgradescope}{#1}}
 \newcommand{\malus}[1]{\renewcommand{\@malus}{#1}}
+\newcommand{\moodle}[1]{\renewcommand{\@moodle}{#1}}
 \newcommand{\soin}[1]{\renewcommand{\@soin}{#1}}
 % edition corrige
 \newboolean{editioncorrige} 
@@ -158,7 +161,7 @@
 
     }{%
         \textbf{Responses will be reported exclusively on the
-        response document. No other document will be corrected.
+        response document. No other document will be marked.
         Be as concise as possible and use the available spacing wisely.}\\
 
     }
@@ -239,6 +242,22 @@
 
      }{%
         \textbf{For multiple-choice questions, please circle the correct answer(s) directly on the document.}\\
+
+     }
+  \fi
+  % ---------------------------------------------------------------------
+  % Consigne QCM GRADESCOPE 
+  % ---------------------------------------------------------------------
+  \ifx\@qcm\@true
+     \iflanguage{francais}{%
+        \textbf{Les réponses seront exclusivement reportées sur le
+                document réponse. Aucun autre document ne sera corrigé. 
+                Indiqué la version de l'énoncé sur celui-ci.}\\
+
+     }{%
+        \textbf{Answers must be submitted exclusively on the answer 
+                sheet. No other documents will be marked.
+                Indicate the version of the problem statement on this sheet.}\\
 
      }
   \fi
