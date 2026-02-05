@@ -38,6 +38,7 @@
 \newcommand{\@qcmgradescope}{false}
 \newcommand{\@soin}{false}
 \newcommand{\@malus}{false}
+\newcommand{\@moodle}{false}
 \newcommand{\@luck}{true}
 \newcommand{\@none}{None}
 \newcommand{\@location}{Bordeaux-Lille-Lyon-Paris}
@@ -58,6 +59,7 @@
 \newcommand{\qcm}[1]{\renewcommand{\@qcm}{#1}}
 \newcommand{\qcmgradescope}[1]{\renewcommand{\@qcmgradescope}{#1}}
 \newcommand{\malus}[1]{\renewcommand{\@malus}{#1}}
+\newcommand{\moodle}[1]{\renewcommand{\@moodle}{#1}}
 \newcommand{\soin}[1]{\renewcommand{\@soin}{#1}}
 % edition corrige
 \newboolean{editioncorrige} 
@@ -159,7 +161,7 @@
 
     }{%
         \textbf{Responses will be reported exclusively on the
-        response document. No other document will be corrected.
+        response document. No other document will be marked.
         Be as concise as possible and use the available spacing wisely.}\\
 
     }
@@ -231,18 +233,9 @@
 
     }
   \fi
-  
-  \ifx\@qcmgradescope\@true
-     \iflanguage{francais}{%
-        \textbf{Les réponses seront exclusivement reportées sur le
-        document réponse. Aucun autre document ne sera corrigé.}\\
-
-     }{%
-        \textbf{Responses will be reported exclusively on the
-        response document. No other document will be corrected.}\\
-
-     }
-  \fi
+  % ---------------------------------------------------------------------
+  % Consigne QCM 
+  % ---------------------------------------------------------------------
   \ifx\@qcm\@true
      \iflanguage{francais}{%
         \textbf{Lorsque la question est à choix multiples, entourer la ou les bonnes réponses directement sur le document.}\\
@@ -252,6 +245,25 @@
 
      }
   \fi
+  % ---------------------------------------------------------------------
+  % Consigne QCM GRADESCOPE 
+  % ---------------------------------------------------------------------
+  \ifx\@qcmgradescope\@true
+     \iflanguage{francais}{%
+        \textbf{Les réponses seront exclusivement reportées sur le
+                document réponse. Aucun autre document ne sera corrigé. 
+                Indiqué la version de l'énoncé sur celui-ci.}\\
+
+     }{%
+        \textbf{Answers must be submitted exclusively on the answer 
+                sheet. No other documents will be marked.
+                Indicate the version of the problem statement on this sheet.}\\
+
+     }
+  \fi
+  % ---------------------------------------------------------------------
+  % Consigne Soin 
+  % ---------------------------------------------------------------------
   \ifx\@soin\@true
      \iflanguage{francais}{%
         \textbf{Attention au soin apporté à votre copie ! Des points négatifs si les réponses sont illisibles et/ou si les figures
@@ -264,6 +276,9 @@
 
      }
   \fi
+  % ---------------------------------------------------------------------
+  % Consigne Malus 
+  % ---------------------------------------------------------------------
   \ifx\@malus\@true
      \iflanguage{francais}{%
         \textbf{Ne répondez pas au hasard car une réponse fausse est sanctionnée d'un malus pour compenser le biais lié au hasard.
@@ -275,7 +290,26 @@
 
      }
   \fi
+  % ---------------------------------------------------------------------
+  % Consigne Version Moodle 
+  % ---------------------------------------------------------------------
+  \ifx\@moodle\@true
+     \iflanguage{francais}{%
+         \textbf{Cet examen est la version papier d'une évaluation Coderunner initialement conçue pour Moodle. 
+                 Si certains types de questions restent inchangées, les exercices de programmation 
+                 conservent leur contenu mais perdent les fonctionnalités interactives et les vérifications 
+                 automatiques propres à Coderunner; l’expérience utilisateur s’en trouve nécessairement dégradée.}\\
 
+     }{%
+        \textbf{This exam is the paper version of a Coderunner assessment originally designed for Moodle. 
+                While the multiple-choice questions remain unchanged, the programming exercises retain their content 
+                but lack the interactive features and automatic checks provided by Coderunner, 
+                resulting in a necessarily degraded user experience."}\\
+     }
+  \fi
+  % ---------------------------------------------------------------------
+  % Message d'entrain 
+  % ---------------------------------------------------------------------
   \ifx\@luck\@true
      \iflanguage{francais}{%
         \textbf{Bon courage !}\\
@@ -314,11 +348,15 @@
 \iflanguage{francais}{%
     \newcommand\exercicetitle{Exercice}
     \newcommand\dureetitle{Durée}
-    \newcommand\heuretitle{heures}
+    \newcommand\heuretitle[1]{%
+     #1~heure\ifnum#1>1 s\fi\relax
+}
 }{%
     \newcommand\exercicetitle{Exercise}
     \newcommand\dureetitle{Time}
-    \newcommand\heuretitle{hours}
+    \newcommand\heuretitle[1]{%
+     #1~hour\ifnum#1>1 s\fi\relax
+}
 }%
 \newcommandx{\exercice}[2][2=\Large]{%
     \setcounter{numques}{0}
@@ -354,7 +392,7 @@
             \emph{\@epreuve~-~\@titreEval}\\
         \fi
     \fi
-    \dureetitle : \@dureeEval~\heuretitle\par}%
+      \dureetitle : \heuretitle{\@dureeEval}\par}%
     \ifx\@esme\@true
         \vskip 1.5em%
         {\large
