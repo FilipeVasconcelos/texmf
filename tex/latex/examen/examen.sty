@@ -1,3 +1,8 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{examen}[2026/10/23 examen]
+\newif\ifexamen@amc
+\DeclareOption{amc}{\examen@amctrue}
+\ProcessOptions\relax
 % Requirement
 \RequirePackage{fancyhdr}
 \RequirePackage{graphicx}
@@ -19,6 +24,7 @@
 \usetikzlibrary{intersections}
 \RequirePackage{xargs}
 \RequirePackage{xspace}
+\RequirePackage{xstring}
 \RequirePackage{ifthen}
 
 \newcommand{\fr}[2]{\iflanguage{francais}{#1}{#2}}
@@ -63,9 +69,11 @@
 \newcommand{\soin}[1]{\renewcommand{\@soin}{#1}}
 % edition corrige
 \newboolean{editioncorrige} 
+\setboolean{editioncorrige}{false}
+\newif\ifnoteditioncorrige
+\noteditioncorrigetrue
 \newcommand{\corrige}[1]{
     \setboolean{editioncorrige}{#1}
-    \newif\ifnoteditioncorrige
     \ifeditioncorrige
         \noteditioncorrigefalse
     \else
@@ -149,7 +157,8 @@
 \newcommand{\Apply@consignes}{%
   \begingroup
   \long\def\@true{true}\long\def\@false{false}%
-  \noindent\fbox{\parbox{\linewidth\fboxrule\fboxsep}{
+  \noindent\fbox{%
+  \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}
   % ---------------------------------------------------------------------
   % document réponse 
   % ---------------------------------------------------------------------
@@ -196,13 +205,13 @@
   \ifx\@moyencalcul\@true
     \iflanguage{francais}{%
     \textbf{Moyens de calculs autorisés }: calculatrice de
-            poche, y compris calculatrice programmable, alphanumérique ou à
+            poche, calculatrice non programmable, alphanumérique ou à
             écran graphique, à fonctionnement autonome, non imprimante, autorisée
             conformément à la circulaire \no 99-186 du 16 novembre 1999.\\
 
     }{%
     \textbf{Means of calculation authorized:} the used of pocket calculators
-            are strictly permitted, including programmable calculators,
+            are strictly permitted, including non programmable calculators,
             alphanumeric, graphic display, stand-alone or non-printer are permitted
             in accordance with circular n°99-186 of November 16, 1999.\\
 
@@ -237,13 +246,19 @@
   % Consigne QCM 
   % ---------------------------------------------------------------------
   \ifx\@qcm\@true
-     \iflanguage{francais}{%
-        \textbf{Lorsque la question est à choix multiples, entourer la ou les bonnes réponses directement sur le document.}\\
-
-     }{%
-        \textbf{For multiple-choice questions, please circle the correct answer(s) directly on the document.}\\
-
-     }
+    \ifexamen@amc
+      \iflanguage{francais}{%
+          \textbf{Cochez ou noircissez entièrement, au stylo noir ou bleu foncé, les cases correspondant aux bonnes réponses.}\\
+      }{%
+          \textbf{Fill in completely, with a dark pen, the boxes corresponding to the correct answers.}\\
+      }
+    \else
+      \iflanguage{francais}{%
+          \textbf{Lorsque la question est à choix multiples, entourer la ou les bonnes réponses directement sur le document.}\\
+      }{%
+          \textbf{For multiple-choice questions, please circle the correct answer(s) directly on the document.}\\
+      }
+    \fi
   \fi
   % ---------------------------------------------------------------------
   % Consigne QCM GRADESCOPE 
@@ -319,12 +334,10 @@
 
      }
   \fi
-
-
-  }}
+  \end{minipage}% 
+  }%
 \endgroup
 }
-
 %Page title
 \newcommand\logoIMG{%
     \begin{figure}[!h]
@@ -332,6 +345,71 @@
         \includegraphics[width=0.25\textwidth]{\@logo}
     \end{figure}
 }%
+%Définitions des exercices et de la durée en fonction de la langue 
+\iflanguage{francais}{%
+    \newcommand\name{Prénom et Nom :}
+    \newcommand\exercicetitle{Exercice}
+    \newcommand\dureetitle{Durée}
+    \newcommand\heuretitle[1]{%
+      \IfSubStr{#1}{minute}{%
+        #1% Affiche directement "10 minutes" sans test numérique
+      }{%
+        #1~heure\ifnum#1>1 s\fi\relax% Comportement initial pour les heures (ex: 2 -> 2 heures)
+      }%
+    }
+}{%
+    \newcommand\name{Name :}
+    \newcommand\exercicetitle{Exercise}
+    \newcommand\dureetitle{Time}
+    \newcommand\heuretitle[1]{%
+      \IfSubStr{#1}{minute}{%
+        #1% Affiche directement le texte en anglais (ex: 10 minutes)
+      }{%
+        #1~hour\ifnum#1>1 s\fi\relax% Comportement initial (ex: 2 -> 2 hours)
+      }%
+    }
+}
+
+\def\examen@patchloc{%
+  \def\AMC@loc@q##1##2{\textbf{Q##1.}~##2}%
+  \def\AMC@loc@qf##1{\textbf{Q##1.}}%
+  \def\AMC@loc@none{\fr{Aucune de ces r\'eponses n'est correcte.}%
+                       {None of these answers is correct.}}%
+}
+\AtBeginDocument{\g@addto@macro\AMC@loc@FR{\examen@patchloc}}
+
+\newlength{\examen@boxwidth}
+\ifexamen@amc
+%-------------------- mode AMC --------------------
+  \newcommand{\EnteteExamen}{%
+    \begingroup
+    % largeur intérieure d'une boîte \fbox qui occupe exactement \linewidth
+    \setlength{\examen@boxwidth}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}%
+    \noindent
+    \begin{minipage}[c]{0.2\linewidth}
+      \includegraphics[width=0.5\linewidth]{\@logo}
+    \end{minipage}%
+    \begin{minipage}[c]{0.8\linewidth}
+      \centering
+      {\large
+       \@annee~-~\@promo~-~\@module\\
+       \emph{\@epreuve\ifx\@titreEval\@none\else~-~\@titreEval\fi}\\
+       \dureetitle~:~\heuretitle{\@dureeEval}\par
+      }
+    \end{minipage}\par\medskip
+    % Bloc d'identification de l'élève (indispensable pour AMC)
+    \noindent
+    \champnom{\fbox{%
+      \begin{minipage}{\examen@boxwidth}
+        \textbf{\name}\\[0.5em]
+        \dotfill\\[0.5cm]
+      \end{minipage}%
+    }}\par\medskip
+    \noindent
+    \Apply@consignes
+    \endgroup}
+\else
+%-------------------- mode classique --------------------
 %Exercices/Questions 
 \newcounter{numexos}
 \newcounter{numques}
@@ -345,19 +423,6 @@
 \fi
 }%
 
-\iflanguage{francais}{%
-    \newcommand\exercicetitle{Exercice}
-    \newcommand\dureetitle{Durée}
-    \newcommand\heuretitle[1]{%
-     #1~heure\ifnum#1>1 s\fi\relax
-}
-}{%
-    \newcommand\exercicetitle{Exercise}
-    \newcommand\dureetitle{Time}
-    \newcommand\heuretitle[1]{%
-     #1~hour\ifnum#1>1 s\fi\relax
-}
-}%
 \newcommandx{\exercice}[2][2=\Large]{%
     \setcounter{numques}{0}
     \addtocounter{numexos}{1}
@@ -430,3 +495,4 @@
   \pagenumbering{arabic}\setcounter{page}{3}\thispagestyle{esmestyle}
 }
 \makeatother
+\fi
