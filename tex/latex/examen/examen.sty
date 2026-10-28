@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{examen}[2026/10/23 examen]
+\ProvidesPackage{examen}[2026/10/28 examen]
 \newif\ifexamen@amc
 \DeclareOption{amc}{\examen@amctrue}
 \ProcessOptions\relax
@@ -48,12 +48,13 @@
 \newcommand{\@luck}{true}
 \newcommand{\@none}{None}
 \newcommand{\@location}{Bordeaux-Lille-Lyon-Paris}
+\newcommand{\@vide}{}
 %main def
 \newcommand{\promo}[1]{\renewcommand{\@promo}{#1}}
 \newcommand{\module}[1]{\renewcommand{\@module}{#1}}
 \newcommand{\annee}[1]{\renewcommand{\@annee}{#1}}
 \newcommand{\epreuve}[1]{\renewcommand{\@epreuve}{#1}}
-\newcommand{\titreEval}[1]{\renewcommand{\@titreEval}{#1}}
+\newcommand{\titreEval}[1]{\renewcommand{\@titreEval}{#1}\ifx\@titreEval\@vide\renewcommand{\@titreEval}{None}\fi}
 \newcommand{\dureeEval}[1]{\renewcommand{\@dureeEval}{#1}}
 \newcommand{\logo}[1]{\renewcommand{\@logo}{#1}}
 \newcommand{\esme}[1]{\renewcommand{\@esme}{#1}\renewcommand{\@logo}{ESME_LOGO_SEUL_NOIR_2021}}
